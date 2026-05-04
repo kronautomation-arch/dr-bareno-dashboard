@@ -1,0 +1,106 @@
+{
+  "updated_at": "2026-05-04 00:00",
+  "today": "2026-05-04",
+  "precio_cita": 200000.0,
+  "clinica": {
+    "hoy": {
+      "citas_agendadas": 0,
+      "procedimientos_vendidos": 0,
+      "tasa_conversion": 0.0,
+      "ingresos_citas": 0.0,
+      "ingresos_procedimientos": 0,
+      "ingresos_totales": 0.0,
+      "gasto_meta": 0.0,
+      "costo_por_cita": 0,
+      "porcentaje_publicidad": 0.0,
+      "utilidad_bruta": 0.0,
+      "roas": 0.0
+    },
+    "mes": {
+      "citas_agendadas": 0,
+      "procedimientos_vendidos": 0,
+      "tasa_conversion": 0.0,
+      "ingresos_citas": 0.0,
+      "ingresos_procedimientos": 0,
+      "ingresos_totales": 0.0,
+      "gasto_meta": 0.0,
+      "costo_por_cita": 0,
+      "porcentaje_publicidad": 0.0,
+      "utilidad_bruta": 0.0,
+      "roas": 0.0
+    }
+  },
+  "facetech": {
+    "hoy": {
+      "leads": 0,
+      "compras": 0,
+      "valor_ticket": 0,
+      "tasa_conversion": 0.0,
+      "ingresos": 0,
+      "gasto_meta": 0.0,
+      "costo_por_lead": 0,
+      "costo_por_compra": 0,
+      "utilidad_bruta": 0.0,
+      "roas": 0.0
+    },
+    "mes": {
+      "leads": 0,
+      "compras": 0,
+      "valor_ticket": 0,
+      "tasa_conversion": 0.0,
+      "ingresos": 0,
+      "gasto_meta": 0.0,
+      "costo_por_lead": 0,
+      "costo_por_compra": 0,
+      "utilidad_bruta": 0.0,
+      "roas": 0.0
+    }
+  },
+  "chart": {
+    "labels": [
+      "04-28",
+      "04-29",
+      "04-30",
+      "05-01",
+      "05-02",
+      "05-03",
+      "05-04"
+    ],
+    "clinica_ingresos": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "clinica_gasto": [
+      105454.0,
+      112129.0,
+      85840.0,
+      80497.0,
+      55393.0,
+      0,
+      100420.0
+    ],
+    "facetech_ingresos": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "facetech_gasto": [
+      0,
+      0,
+      60983.0,
+      7.0,
+      0,
+      0,
+      35.0
+    ]
+  }
+}
