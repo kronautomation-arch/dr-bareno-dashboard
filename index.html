@@ -400,6 +400,10 @@
       border-radius:var(--rs); padding:16px;
       backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
     }
+    .chart-canvas-wrap {
+      position:relative; height:160px; width:100%;
+    }
+    .chart-canvas-wrap canvas { position:absolute; inset:0; }
     .chart-hdr {
       display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:14px;
     }
@@ -656,7 +660,7 @@
             <div class="leg-row"><div class="leg-dot" style="background:var(--r2)"></div>Gasto</div>
           </div>
         </div>
-        <canvas id="chart-clinica" height="150"></canvas>
+        <div class="chart-canvas-wrap"><canvas id="chart-clinica"></canvas></div>
       </div>
       <div class="chart-card">
         <div class="chart-hdr">
@@ -828,7 +832,7 @@
             <div class="leg-row"><div class="leg-dot" style="background:var(--r2)"></div>Gasto</div>
           </div>
         </div>
-        <canvas id="chart-facetech" height="150"></canvas>
+        <div class="chart-canvas-wrap"><canvas id="chart-facetech"></canvas></div>
       </div>
       <div class="chart-card">
         <div class="chart-hdr">
@@ -1107,6 +1111,7 @@ function renderCharts(chart) {
       options: {
         responsive: true,
         maintainAspectRatio: false,
+        resizeDelay: 200,
         animation: { duration: 900, easing: 'easeOutQuart' },
         plugins: {
           legend: { display: false },
