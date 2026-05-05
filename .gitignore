@@ -1,0 +1,11 @@
+.env
+credentials.json
+venv/
+__pycache__/
+*.pyc
+logs/
+.tmp/
+
+# El subfolder dashboard/ vive en su propia rama gh-pages
+dashboard/.git/
+

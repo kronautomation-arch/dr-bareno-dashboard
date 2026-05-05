@@ -1,0 +1,4 @@
+python-dotenv==1.0.1
+facebook-business==20.0.2
+gspread==6.1.2
+google-auth==2.29.0
