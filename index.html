@@ -9,6 +9,9 @@
   <title>Dr. John Bareño</title>
   <link rel="manifest" href="manifest.json" />
   <link rel="apple-touch-icon" href="icons/icon-180.png" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="auth.js"></script>
+  <script>requireAuth('bareno');</script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <style>
     /* ─── TOKENS ─── */
@@ -1509,6 +1512,7 @@ async function loadData() {
     );
     document.getElementById('loading').style.display = 'none';
     document.getElementById('app').style.display = 'block';
+    if (typeof mountLogoutButton === 'function') mountLogoutButton();
   } catch(e) {
     document.getElementById('loading').innerHTML =
       `<div class="error-box">⚠️ Error cargando datos.<br>
