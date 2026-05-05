@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-05 07:56",
+  "updated_at": "2026-05-05 08:02",
   "today": "2026-05-05",
   "precio_cita": 200000.0,
   "clinica": {
@@ -10,10 +10,10 @@
       "ingresos_citas": 0.0,
       "ingresos_procedimientos": 0,
       "ingresos_totales": 0.0,
-      "gasto_meta": 7167.0,
+      "gasto_meta": 7270.0,
       "costo_por_cita": 0,
       "porcentaje_publicidad": 0.0,
-      "utilidad_bruta": -7167.0,
+      "utilidad_bruta": -7270.0,
       "roas": 0.0
     },
     "ayer": {
@@ -36,10 +36,10 @@
       "ingresos_citas": 0.0,
       "ingresos_procedimientos": 0,
       "ingresos_totales": 0.0,
-      "gasto_meta": 448615.0,
+      "gasto_meta": 448718.0,
       "costo_por_cita": 0,
       "porcentaje_publicidad": 0.0,
-      "utilidad_bruta": -448615.0,
+      "utilidad_bruta": -448718.0,
       "roas": 0.0
     },
     "mes": {
@@ -49,10 +49,10 @@
       "ingresos_citas": 0.0,
       "ingresos_procedimientos": 0,
       "ingresos_totales": 0.0,
-      "gasto_meta": 250646.0,
+      "gasto_meta": 250749.0,
       "costo_por_cita": 0,
       "porcentaje_publicidad": 0.0,
-      "utilidad_bruta": -250646.0,
+      "utilidad_bruta": -250749.0,
       "roas": 0.0
     }
   },
@@ -63,10 +63,10 @@
       "valor_ticket": 0,
       "tasa_conversion": 0.0,
       "ingresos": 0,
-      "gasto_meta": 29364.0,
+      "gasto_meta": 42036.0,
       "costo_por_lead": 0,
       "costo_por_compra": 0,
-      "utilidad_bruta": -29364.0,
+      "utilidad_bruta": -42036.0,
       "roas": 0.0
     },
     "ayer": {
@@ -87,10 +87,10 @@
       "valor_ticket": 0,
       "tasa_conversion": 0.0,
       "ingresos": 0,
-      "gasto_meta": 90389.0,
+      "gasto_meta": 103061.0,
       "costo_por_lead": 0,
       "costo_por_compra": 0,
-      "utilidad_bruta": -90389.0,
+      "utilidad_bruta": -103061.0,
       "roas": 0.0
     },
     "mes": {
@@ -99,10 +99,10 @@
       "valor_ticket": 0,
       "tasa_conversion": 0.0,
       "ingresos": 0,
-      "gasto_meta": 29406.0,
+      "gasto_meta": 42078.0,
       "costo_por_lead": 0,
       "costo_por_compra": 0,
-      "utilidad_bruta": -29406.0,
+      "utilidad_bruta": -42078.0,
       "roas": 0.0
     }
   },
@@ -132,7 +132,7 @@
       55393.0,
       0,
       107589.0,
-      7167.0
+      7270.0
     ],
     "facetech_ingresos": [
       0,
@@ -150,108 +150,120 @@
       0,
       0,
       35.0,
-      29364.0
+      42036.0
     ]
   },
   "alcance": {
     "clinica": {
       "hoy": {
-        "spend": 7167,
-        "reach": 367,
-        "impressions": 398,
+        "spend": 7270,
+        "reach": 371,
+        "impressions": 400,
         "frequency": 1.08,
-        "clicks": 25,
-        "ctr": 6.28,
-        "cpm": 18008,
-        "cpp": 19529
+        "clicks": 26,
+        "ctr": 6.5,
+        "cpm": 18175,
+        "cpp": 19596
       },
       "semana": {
-        "spend": 448615,
+        "spend": 448718,
         "reach": 21575,
-        "impressions": 37319,
+        "impressions": 37321,
         "frequency": 1.73,
-        "clicks": 2260,
+        "clicks": 2261,
         "ctr": 6.06,
-        "cpm": 12021,
-        "cpp": 20793
+        "cpm": 12023,
+        "cpp": 20798
       },
       "mes": {
-        "spend": 250646,
+        "spend": 250749,
         "reach": 15005,
-        "impressions": 22996,
+        "impressions": 22998,
         "frequency": 1.53,
-        "clicks": 1407,
+        "clicks": 1408,
         "ctr": 6.12,
-        "cpm": 10900,
-        "cpp": 16704
+        "cpm": 10903,
+        "cpp": 16711
       }
     },
     "facetech": {
       "hoy": {
-        "spend": 29364,
+        "spend": 42036,
         "reach": 1182,
-        "impressions": 3247,
-        "frequency": 2.75,
-        "clicks": 41,
-        "ctr": 1.26,
-        "cpm": 9043,
-        "cpp": 24843
+        "impressions": 4802,
+        "frequency": 4.06,
+        "clicks": 77,
+        "ctr": 1.6,
+        "cpm": 8754,
+        "cpp": 35563
       },
       "semana": {
-        "spend": 90389,
+        "spend": 103061,
         "reach": 5542,
-        "impressions": 8374,
-        "frequency": 1.51,
-        "clicks": 199,
-        "ctr": 2.38,
-        "cpm": 10794,
-        "cpp": 16310
+        "impressions": 9929,
+        "frequency": 1.79,
+        "clicks": 235,
+        "ctr": 2.37,
+        "cpm": 10380,
+        "cpp": 18596
       },
       "mes": {
-        "spend": 29406,
+        "spend": 42078,
         "reach": 1189,
-        "impressions": 3257,
-        "frequency": 2.74,
-        "clicks": 41,
-        "ctr": 1.26,
-        "cpm": 9029,
-        "cpp": 24732
+        "impressions": 4812,
+        "frequency": 4.05,
+        "clicks": 77,
+        "ctr": 1.6,
+        "cpm": 8744,
+        "cpp": 35389
       }
     }
   },
   "conclusiones": {
     "clinica": {
       "hoy": [
-        "📣 Hoy tu clínica llegó a 367 personas únicas en la región.",
-        "👁️ Frecuencia baja (1.1x por persona) — considera aumentar el presupuesto para mayor recordación de marca.",
-        "🎯 CTR 6.28% — supera el promedio médico (1.5%). Buena atención del anuncio."
+        "📣 Hoy tu clínica llegó a 371 personas únicas en la región — excelente alcance de marca.",
+        "👁️ 400 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
+        "🚀 Con 1.1x de frecuencia, tu anuncio está llegando constantemente a nuevas personas — la audiencia de la clínica sigue creciendo.",
+        "🎯 CTR 6.50% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
+        "🖱️ 26 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
       ],
       "semana": [
-        "📣 Esta semana tu clínica llegó a 21.575 personas únicas en la región.",
-        "👁️ Frecuencia baja (1.7x por persona) — considera aumentar el presupuesto para mayor recordación de marca.",
-        "🎯 CTR 6.06% — supera el promedio médico (1.5%). Buena atención del anuncio."
+        "📣 Esta semana tu clínica llegó a 21.575 personas únicas en la región — excelente alcance de marca.",
+        "👁️ 37.321 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
+        "🚀 Con 1.7x de frecuencia, tu anuncio está llegando constantemente a nuevas personas — la audiencia de la clínica sigue creciendo.",
+        "🎯 CTR 6.06% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
+        "🖱️ 2.261 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
       ],
       "mes": [
-        "📣 Este mes tu clínica llegó a 15.005 personas únicas en la región.",
-        "👁️ Frecuencia baja (1.5x por persona) — considera aumentar el presupuesto para mayor recordación de marca.",
-        "🎯 CTR 6.12% — supera el promedio médico (1.5%). Buena atención del anuncio."
+        "📣 Este mes tu clínica llegó a 15.005 personas únicas en la región — excelente alcance de marca.",
+        "👁️ 22.998 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
+        "🚀 Con 1.5x de frecuencia, tu anuncio está llegando constantemente a nuevas personas — la audiencia de la clínica sigue creciendo.",
+        "🎯 CTR 6.12% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
+        "🖱️ 1.408 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
       ]
     },
     "facetech": {
       "hoy": [
-        "📣 Hoy FaceTech llegó a 1.182 personas únicas — potenciales asistentes al congreso.",
-        "✅ Frecuencia 2.8x — buen nivel de recordación para el evento. Las personas recuerdan el congreso.",
-        "📊 CTR 1.26% — por debajo del promedio de eventos (1.8%)."
+        "📣 Hoy FaceTech llegó a 1.182 personas únicas — potenciales asistentes al congreso ya en el radar.",
+        "👁️ 4.802 impresiones generadas — el congreso FaceTech está presente en la mente de los profesionales de la región.",
+        "💪 Frecuencia 4.1x — el congreso FaceTech es ampliamente reconocido en la audiencia objetivo. Gran posicionamiento logrado.",
+        "📊 CTR 1.60% — el 1.60% de los profesionales que vieron el anuncio quisieron conocer más sobre el congreso FaceTech.",
+        "🖱️ 77 profesionales hicieron clic para conocer el congreso — interés genuino y demanda comprobada."
       ],
       "semana": [
-        "📣 Esta semana FaceTech llegó a 5.542 personas únicas — potenciales asistentes al congreso.",
-        "✅ Frecuencia 1.5x — buen nivel de recordación para el evento. Las personas recuerdan el congreso.",
-        "🎯 CTR 2.38% — por encima del promedio de eventos (1.8%)."
+        "📣 Esta semana FaceTech llegó a 5.542 personas únicas — potenciales asistentes al congreso ya en el radar.",
+        "👁️ 9.929 impresiones generadas — el congreso FaceTech está presente en la mente de los profesionales de la región.",
+        "✅ Frecuencia 1.8x — excelente nivel de recordación para el evento. Los profesionales están recordando el congreso FaceTech.",
+        "🎯 CTR 2.37% — por encima del promedio de eventos (1.8%). Gran atracción e interés generados por el congreso.",
+        "🖱️ 235 profesionales hicieron clic para conocer el congreso — interés genuino y demanda comprobada."
       ],
       "mes": [
-        "📣 Este mes FaceTech llegó a 1.189 personas únicas — potenciales asistentes al congreso.",
-        "✅ Frecuencia 2.7x — buen nivel de recordación para el evento. Las personas recuerdan el congreso.",
-        "📊 CTR 1.26% — por debajo del promedio de eventos (1.8%)."
+        "📣 Este mes FaceTech llegó a 1.189 personas únicas — potenciales asistentes al congreso ya en el radar.",
+        "👁️ 4.812 impresiones generadas — el congreso FaceTech está presente en la mente de los profesionales de la región.",
+        "💪 Frecuencia 4.0x — el congreso FaceTech es ampliamente reconocido en la audiencia objetivo. Gran posicionamiento logrado.",
+        "📊 CTR 1.60% — el 1.60% de los profesionales que vieron el anuncio quisieron conocer más sobre el congreso FaceTech.",
+        "🖱️ 77 profesionales hicieron clic para conocer el congreso — interés genuino y demanda comprobada."
       ]
     }
   }
