@@ -530,7 +530,7 @@
   <button class="fb-btn" onclick="switchPeriod('ayer')">Ayer</button>
   <button class="fb-btn" onclick="switchPeriod('semana')">Esta semana</button>
   <button class="fb-btn" onclick="switchPeriod('mes')">Este mes</button>
-  <button class="fb-btn" onclick="switchPeriod('mes')">Todo</button>
+  <button class="fb-btn" onclick="switchPeriod('todo')">Todo</button>
   <div class="fb-sep"></div>
   <button class="fb-mes-btn" id="fb-mes-btn" onclick="toggleMesPicker()">📅 <span id="fb-mes-label">Mes</span> ▾</button>
   <div class="fb-sep"></div>
@@ -1175,48 +1175,55 @@ function toggleMesPicker() {
 
   const mths = ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
                  'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
-  const now  = new Date();
-  const cur  = now.getMonth();
+  const now = new Date();
+  const cur = now.getMonth();
+  const btn = document.getElementById('fb-mes-btn');
+  const rect = btn.getBoundingClientRect();
 
   picker = document.createElement('div');
   picker.id = 'mes-picker';
   picker.style.cssText = `
-    position:absolute; top:100%; left:0; margin-top:6px;
-    background:#13172a; border:1px solid rgba(255,255,255,.1);
-    border-radius:12px; padding:8px; z-index:999;
-    display:grid; grid-template-columns:1fr 1fr 1fr; gap:4px;
-    box-shadow:0 8px 32px rgba(0,0,0,.5); min-width:200px;
+    position:fixed;
+    top:${rect.bottom + 8}px;
+    left:${rect.left}px;
+    background:#13172a;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:14px; padding:10px; z-index:9999;
+    display:grid; grid-template-columns:1fr 1fr 1fr; gap:5px;
+    box-shadow:0 12px 40px rgba(0,0,0,.6); min-width:190px;
   `;
 
   mths.forEach((m, i) => {
-    const btn = document.createElement('button');
-    btn.textContent = m.slice(0,3);
-    const isActive = i === cur;
-    btn.style.cssText = `
-      padding:7px 6px; border-radius:8px; font-size:12px; font-weight:700;
+    const b = document.createElement('button');
+    b.textContent = m.slice(0,3);
+    const active = i === cur;
+    b.style.cssText = `
+      padding:8px 6px; border-radius:9px; font-size:12px; font-weight:700;
       cursor:pointer; border:none; font-family:inherit;
-      background:${isActive ? 'var(--p1)' : 'rgba(255,255,255,.04)'};
-      color:${isActive ? '#fff' : '#94a3b8'};
-      transition:all .15s;
+      background:${active ? '#7c3aed' : 'rgba(255,255,255,.05)'};
+      color:${active ? '#fff' : '#94a3b8'};
+      transition:background .15s;
     `;
-    btn.onclick = () => {
+    b.onmouseenter = () => { if (!active) b.style.background = 'rgba(255,255,255,.1)'; };
+    b.onmouseleave = () => { if (!active) b.style.background = 'rgba(255,255,255,.05)'; };
+    b.onclick = () => {
       document.getElementById('fb-mes-label').textContent = m.slice(0,3);
       picker.remove();
       switchPeriod('mes');
     };
-    picker.appendChild(btn);
+    picker.appendChild(b);
   });
 
-  const wrap = document.getElementById('fb-mes-btn').parentElement;
-  wrap.style.position = 'relative';
-  wrap.appendChild(picker);
+  document.body.appendChild(picker);
 
-  setTimeout(() => document.addEventListener('click', function handler(e) {
-    if (!picker.contains(e.target) && e.target.id !== 'fb-mes-btn') {
-      picker.remove();
-      document.removeEventListener('click', handler);
-    }
-  }), 0);
+  setTimeout(() => {
+    document.addEventListener('click', function handler(e) {
+      if (!picker.contains(e.target) && e.target.id !== 'fb-mes-btn') {
+        picker.remove();
+        document.removeEventListener('click', handler);
+      }
+    });
+  }, 0);
 }
 
 /* ── Switch tab ── */
