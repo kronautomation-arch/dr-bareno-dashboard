@@ -94,14 +94,18 @@
       display:flex; align-items:center; gap:12px; margin-bottom:18px;
     }
     .avatar {
-      width:46px; height:46px; border-radius:50%; flex-shrink:0;
-      background: linear-gradient(135deg, var(--p1), var(--p2));
+      width:52px; height:52px; border-radius:14px; flex-shrink:0;
+      background: rgba(255,255,255,.06);
       display:flex; align-items:center; justify-content:center;
-      font-size:15px; font-weight:900; color:#fff;
-      border:2px solid rgba(255,255,255,.18);
-      box-shadow: 0 4px 20px rgba(124,58,237,.45);
+      border:1.5px solid rgba(255,255,255,.14);
+      box-shadow: 0 4px 20px rgba(0,0,0,.4), 0 0 0 1px rgba(124,58,237,.2);
+      overflow:hidden; padding:4px;
     }
-    .avatar.ft { background: linear-gradient(135deg, var(--b1), var(--b2)); box-shadow: 0 4px 20px rgba(29,78,216,.45); }
+    .avatar img {
+      width:100%; height:100%;
+      object-fit:contain; border-radius:10px;
+    }
+    .avatar.ft { box-shadow: 0 4px 20px rgba(0,0,0,.4), 0 0 0 1px rgba(29,78,216,.2); }
     .hdr-meta { flex:1; }
     .hdr-greeting { font-size:11px; color:var(--txt2); font-weight:500; letter-spacing:.3px; }
     .hdr-name { font-size:18px; font-weight:800; color:var(--txt); letter-spacing:-.5px; }
@@ -414,7 +418,7 @@
   <div class="orb orb-c"></div>
 
   <div class="hdr-row1">
-    <div class="avatar" id="avatar">JB</div>
+    <div class="avatar" id="avatar"><img src="logo.png" alt="Dr. Bareño" /></div>
     <div class="hdr-meta">
       <div class="hdr-greeting" id="greeting">Buenos días</div>
       <div class="hdr-name">Dr. John Bareño</div>
@@ -962,8 +966,7 @@ function switchTab(tab) {
   /* hero header theme */
   const hero = document.getElementById('hero-header');
   hero.classList.toggle('ft', isFt);
-  const av = document.getElementById('avatar');
-  av.classList.toggle('ft', isFt);
+  document.getElementById('avatar').classList.toggle('ft', isFt);
 
   /* tab pills */
   document.getElementById('tab-clinica').classList.toggle('active', !isFt);
