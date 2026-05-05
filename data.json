@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-05 00:00",
+  "updated_at": "2026-05-05 07:40",
   "today": "2026-05-05",
   "precio_cita": 200000.0,
   "clinica": {
@@ -10,10 +10,10 @@
       "ingresos_citas": 0.0,
       "ingresos_procedimientos": 0,
       "ingresos_totales": 0.0,
-      "gasto_meta": 0.0,
+      "gasto_meta": 7139.0,
       "costo_por_cita": 0,
       "porcentaje_publicidad": 0.0,
-      "utilidad_bruta": 0.0,
+      "utilidad_bruta": -7139.0,
       "roas": 0.0
     },
     "ayer": {
@@ -23,10 +23,10 @@
       "ingresos_citas": 0.0,
       "ingresos_procedimientos": 0,
       "ingresos_totales": 0.0,
-      "gasto_meta": 107580.0,
+      "gasto_meta": 107584.0,
       "costo_por_cita": 0,
       "porcentaje_publicidad": 0.0,
-      "utilidad_bruta": -107580.0,
+      "utilidad_bruta": -107584.0,
       "roas": 0.0
     },
     "semana": {
@@ -36,10 +36,10 @@
       "ingresos_citas": 0.0,
       "ingresos_procedimientos": 0,
       "ingresos_totales": 0.0,
-      "gasto_meta": 448554.0,
+      "gasto_meta": 448582.0,
       "costo_por_cita": 0,
       "porcentaje_publicidad": 0.0,
-      "utilidad_bruta": -448554.0,
+      "utilidad_bruta": -448582.0,
       "roas": 0.0
     },
     "mes": {
@@ -49,10 +49,10 @@
       "ingresos_citas": 0.0,
       "ingresos_procedimientos": 0,
       "ingresos_totales": 0.0,
-      "gasto_meta": 0.0,
+      "gasto_meta": 250613.0,
       "costo_por_cita": 0,
       "porcentaje_publicidad": 0.0,
-      "utilidad_bruta": 0.0,
+      "utilidad_bruta": -250613.0,
       "roas": 0.0
     }
   },
@@ -63,10 +63,10 @@
       "valor_ticket": 0,
       "tasa_conversion": 0.0,
       "ingresos": 0,
-      "gasto_meta": 0.0,
+      "gasto_meta": 13316.0,
       "costo_por_lead": 0,
       "costo_por_compra": 0,
-      "utilidad_bruta": 0.0,
+      "utilidad_bruta": -13316.0,
       "roas": 0.0
     },
     "ayer": {
@@ -87,10 +87,10 @@
       "valor_ticket": 0,
       "tasa_conversion": 0.0,
       "ingresos": 0,
-      "gasto_meta": 74332.0,
+      "gasto_meta": 74341.0,
       "costo_por_lead": 0,
       "costo_por_compra": 0,
-      "utilidad_bruta": -74332.0,
+      "utilidad_bruta": -74341.0,
       "roas": 0.0
     },
     "mes": {
@@ -99,10 +99,10 @@
       "valor_ticket": 0,
       "tasa_conversion": 0.0,
       "ingresos": 0,
-      "gasto_meta": 0.0,
+      "gasto_meta": 13358.0,
       "costo_por_lead": 0,
       "costo_por_compra": 0,
-      "utilidad_bruta": 0.0,
+      "utilidad_bruta": -13358.0,
       "roas": 0.0
     }
   },
@@ -131,8 +131,8 @@
       80497.0,
       55393.0,
       0,
-      107580.0,
-      7115.0
+      107584.0,
+      7139.0
     ],
     "facetech_ingresos": [
       0,
@@ -150,7 +150,7 @@
       0,
       0,
       35.0,
-      13307.0
+      13316.0
     ]
   }
 }
