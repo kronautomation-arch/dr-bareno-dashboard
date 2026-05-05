@@ -16,6 +16,32 @@
       "utilidad_bruta": 0.0,
       "roas": 0.0
     },
+    "ayer": {
+      "citas_agendadas": 0,
+      "procedimientos_vendidos": 0,
+      "tasa_conversion": 0.0,
+      "ingresos_citas": 0.0,
+      "ingresos_procedimientos": 0,
+      "ingresos_totales": 0.0,
+      "gasto_meta": 107577.0,
+      "costo_por_cita": 0,
+      "porcentaje_publicidad": 0.0,
+      "utilidad_bruta": -107577.0,
+      "roas": 0.0
+    },
+    "semana": {
+      "citas_agendadas": 0,
+      "procedimientos_vendidos": 0,
+      "tasa_conversion": 0.0,
+      "ingresos_citas": 0.0,
+      "ingresos_procedimientos": 0,
+      "ingresos_totales": 0.0,
+      "gasto_meta": 445320.0,
+      "costo_por_cita": 0,
+      "porcentaje_publicidad": 0.0,
+      "utilidad_bruta": -445320.0,
+      "roas": 0.0
+    },
     "mes": {
       "citas_agendadas": 0,
       "procedimientos_vendidos": 0,
@@ -41,6 +67,30 @@
       "costo_por_lead": 0,
       "costo_por_compra": 0,
       "utilidad_bruta": 0.0,
+      "roas": 0.0
+    },
+    "ayer": {
+      "leads": 0,
+      "compras": 0,
+      "valor_ticket": 0,
+      "tasa_conversion": 0.0,
+      "ingresos": 0,
+      "gasto_meta": 35.0,
+      "costo_por_lead": 0,
+      "costo_por_compra": 0,
+      "utilidad_bruta": -35.0,
+      "roas": 0.0
+    },
+    "semana": {
+      "leads": 0,
+      "compras": 0,
+      "valor_ticket": 0,
+      "tasa_conversion": 0.0,
+      "ingresos": 0,
+      "gasto_meta": 68449.0,
+      "costo_por_lead": 0,
+      "costo_por_compra": 0,
+      "utilidad_bruta": -68449.0,
       "roas": 0.0
     },
     "mes": {
@@ -82,7 +132,7 @@
       55393.0,
       0,
       107577.0,
-      2972.0
+      3884.0
     ],
     "facetech_ingresos": [
       0,
@@ -100,7 +150,7 @@
       0,
       0,
       35.0,
-      7069.0
+      7424.0
     ]
   }
 }

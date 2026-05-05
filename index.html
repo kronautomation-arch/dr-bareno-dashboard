@@ -132,34 +132,12 @@
       font-size:10px; color:var(--txt3); margin-bottom:22px;
     }
 
-    /* period + tab toggles */
+    /* tab pills (in hero header) */
     .hdr-controls {
       position:relative; z-index:1;
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      display:flex; align-items:center; justify-content:flex-end; gap:6px;
     }
-    .pill-toggle {
-      display:flex;
-      background: rgba(255,255,255,.06);
-      border:1px solid var(--border2);
-      border-radius:12px; padding:4px; gap:3px;
-    }
-    .pill-btn {
-      padding:6px 16px; border-radius:9px;
-      font-size:12px; font-weight:700;
-      color:var(--txt2); background:transparent; border:none; cursor:pointer;
-      transition:all .22s; letter-spacing:-.1px;
-    }
-    .pill-btn.active {
-      background: var(--p1); color:#fff;
-      box-shadow:0 3px 14px rgba(124,58,237,.4);
-    }
-    .hero-header.ft .pill-btn.active {
-      background: var(--b1);
-      box-shadow:0 3px 14px rgba(29,78,216,.4);
-    }
-    .tab-pills {
-      display:flex; gap:6px;
-    }
+    .tab-pills { display:flex; gap:6px; }
     .tab-pill {
       display:flex; align-items:center; gap:5px;
       padding:8px 14px; border-radius:11px;
@@ -168,14 +146,46 @@
       cursor:pointer; transition:all .22s;
     }
     .tab-pill.active {
-      background:rgba(124,58,237,.18); border-color:rgba(124,58,237,.4);
-      color:var(--p2);
+      background:rgba(124,58,237,.18); border-color:rgba(124,58,237,.4); color:var(--p2);
     }
     .tab-pill.ft-tab.active {
-      background:rgba(29,78,216,.18); border-color:rgba(29,78,216,.4);
-      color:var(--b2);
+      background:rgba(29,78,216,.18); border-color:rgba(29,78,216,.4); color:var(--b2);
     }
     .tab-pill-icon { font-size:14px; }
+
+    /* ─── FILTER BAR ─── */
+    .filter-bar {
+      position:sticky; top:0; z-index:60;
+      background: rgba(8,12,24,.88);
+      backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+      border-bottom:1px solid var(--border);
+      padding:10px 16px;
+      display:flex; align-items:center; gap:6px;
+      overflow-x:auto; -webkit-overflow-scrolling:touch;
+      scrollbar-width:none;
+    }
+    .filter-bar::-webkit-scrollbar { display:none; }
+    .fb-btn {
+      flex-shrink:0;
+      padding:7px 14px; border-radius:9px;
+      font-size:12px; font-weight:700; letter-spacing:-.1px;
+      color:var(--txt2);
+      background: rgba(255,255,255,.05);
+      border:1px solid var(--border);
+      cursor:pointer; transition:all .2s; white-space:nowrap;
+    }
+    .fb-btn.active {
+      background: var(--p1); color:#fff; border-color:transparent;
+      box-shadow:0 3px 12px rgba(124,58,237,.4);
+    }
+    .hero-header.ft ~ .filter-bar .fb-btn.active {
+      background: var(--b1);
+      box-shadow:0 3px 12px rgba(29,78,216,.4);
+    }
+    .fb-sep {
+      flex-shrink:0; width:1px; height:22px;
+      background:var(--border); margin:0 4px;
+    }
 
     /* ─── PAGE WRAPPER ─── */
     .page { display:none; padding:20px 20px 0; }
@@ -430,10 +440,6 @@
   <div class="hdr-updated">Actualizado: <span id="updated-at">—</span></div>
 
   <div class="hdr-controls">
-    <div class="pill-toggle" id="period-toggle">
-      <button class="pill-btn active" onclick="switchPeriod('hoy')">Hoy</button>
-      <button class="pill-btn" onclick="switchPeriod('mes')">Este mes</button>
-    </div>
     <div class="tab-pills">
       <button class="tab-pill active" id="tab-clinica" onclick="switchTab('clinica')">
         <span class="tab-pill-icon">🏥</span> Clínica
@@ -443,6 +449,14 @@
       </button>
     </div>
   </div>
+</div>
+
+<!-- ═══ FILTER BAR ═══ -->
+<div class="filter-bar" id="filter-bar">
+  <button class="fb-btn active" onclick="switchPeriod('hoy')">Hoy</button>
+  <button class="fb-btn" onclick="switchPeriod('ayer')">Ayer</button>
+  <button class="fb-btn" onclick="switchPeriod('semana')">Esta semana</button>
+  <button class="fb-btn" onclick="switchPeriod('mes')">Este mes</button>
 </div>
 
 <!-- ═══ LOADING ═══ -->
@@ -946,12 +960,13 @@ function renderCharts(chart) {
 /* ── Switch period ── */
 function switchPeriod(p) {
   currentPeriod = p;
-  document.querySelectorAll('.pill-btn').forEach((el, i) => {
-    el.classList.toggle('active', (i===0&&p==='hoy')||(i===1&&p==='mes'));
-  });
+  document.querySelectorAll('.fb-btn').forEach(el => el.classList.remove('active'));
+  const idx = ['hoy','ayer','semana','mes'].indexOf(p);
+  const btns = document.querySelectorAll('.fb-btn');
+  if (btns[idx]) btns[idx].classList.add('active');
   if (DATA) {
-    renderClinica(DATA.clinica[p]);
-    renderFacetech(DATA.facetech[p]);
+    renderClinica(DATA.clinica[p] || DATA.clinica.hoy);
+    renderFacetech(DATA.facetech[p] || DATA.facetech.hoy);
   }
 }
 
@@ -960,18 +975,26 @@ function switchTab(tab) {
   currentTab = tab;
   const isFt = tab === 'facetech';
 
-  /* hero header theme */
-  const hero = document.getElementById('hero-header');
-  hero.classList.toggle('ft', isFt);
+  document.getElementById('hero-header').classList.toggle('ft', isFt);
   document.getElementById('avatar').classList.toggle('ft', isFt);
-
-  /* tab pills */
   document.getElementById('tab-clinica').classList.toggle('active', !isFt);
   document.getElementById('tab-facetech').classList.toggle('active', isFt);
-
-  /* pages */
   document.getElementById('page-clinica').classList.toggle('active', !isFt);
   document.getElementById('page-facetech').classList.toggle('active', isFt);
+
+  /* filter bar active color follows tab theme */
+  const bar = document.getElementById('filter-bar');
+  bar.dataset.theme = isFt ? 'ft' : 'cl';
+  document.querySelectorAll('.fb-btn.active').forEach(btn => {
+    btn.style.background = isFt ? 'var(--b1)' : 'var(--p1)';
+    btn.style.boxShadow  = isFt
+      ? '0 3px 12px rgba(29,78,216,.4)'
+      : '0 3px 12px rgba(124,58,237,.4)';
+  });
+  document.querySelectorAll('.fb-btn:not(.active)').forEach(btn => {
+    btn.style.background = '';
+    btn.style.boxShadow  = '';
+  });
 }
 
 /* ── Header date ── */
