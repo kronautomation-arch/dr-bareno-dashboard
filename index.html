@@ -184,8 +184,48 @@
     }
     .fb-sep {
       flex-shrink:0; width:1px; height:22px;
-      background:var(--border); margin:0 4px;
+      background:var(--border2); margin:0 4px;
     }
+    .fb-mes-btn {
+      flex-shrink:0;
+      display:flex; align-items:center; gap:5px;
+      padding:7px 12px; border-radius:9px;
+      font-size:12px; font-weight:700; letter-spacing:-.1px;
+      color:var(--txt2); background:rgba(255,255,255,.05);
+      border:1px solid var(--border); cursor:pointer;
+      transition:all .2s; white-space:nowrap;
+    }
+    .fb-range {
+      display:flex; align-items:center; gap:7px; flex-shrink:0;
+    }
+    .fb-range-lbl {
+      font-size:9px; font-weight:700; letter-spacing:.7px;
+      color:var(--txt3); white-space:nowrap; text-transform:uppercase;
+    }
+    .fb-date {
+      background:rgba(255,255,255,.05);
+      border:1px solid var(--border);
+      border-radius:8px; padding:6px 9px;
+      font-size:11px; font-weight:600; color:var(--txt);
+      font-family:inherit; cursor:pointer; width:122px;
+      transition:border-color .2s;
+    }
+    .fb-date:focus { outline:none; border-color:var(--p1); }
+    .fb-date::-webkit-calendar-picker-indicator {
+      filter:invert(1) opacity(.35); cursor:pointer;
+    }
+    .fb-arrow {
+      font-size:11px; color:var(--txt3); white-space:nowrap; flex-shrink:0;
+    }
+    .fb-apply {
+      flex-shrink:0;
+      padding:7px 16px; border-radius:9px;
+      font-size:12px; font-weight:700;
+      background:var(--p1); color:#fff; border:none; cursor:pointer;
+      box-shadow:0 3px 12px rgba(124,58,237,.35);
+      transition:all .2s; white-space:nowrap;
+    }
+    .fb-apply:active { transform:scale(.96); }
 
     /* ─── PAGE WRAPPER ─── */
     .page { display:none; padding:20px 20px 0; }
@@ -457,6 +497,19 @@
   <button class="fb-btn" onclick="switchPeriod('ayer')">Ayer</button>
   <button class="fb-btn" onclick="switchPeriod('semana')">Esta semana</button>
   <button class="fb-btn" onclick="switchPeriod('mes')">Este mes</button>
+  <button class="fb-btn" onclick="switchPeriod('mes')">Todo</button>
+  <div class="fb-sep"></div>
+  <button class="fb-mes-btn" id="fb-mes-btn">📅 <span id="fb-mes-label">Mes</span> ▾</button>
+  <div class="fb-sep"></div>
+  <div class="fb-range">
+    <span class="fb-range-lbl">Rango de fechas</span>
+    <div class="fb-sep"></div>
+    <input type="date" class="fb-date" id="range-start" />
+    <span class="fb-arrow">→ HASTA</span>
+    <input type="date" class="fb-date" id="range-end" />
+    <div class="fb-sep"></div>
+    <button class="fb-apply" onclick="applyRange()">Aplicar</button>
+  </div>
 </div>
 
 <!-- ═══ LOADING ═══ -->
@@ -997,6 +1050,39 @@ function switchTab(tab) {
   });
 }
 
+/* ── Range apply ── */
+function applyRange() {
+  const s = document.getElementById('range-start').value;
+  const e = document.getElementById('range-end').value;
+  if (!s || !e) return;
+  const today = new Date().toISOString().split('T')[0];
+  const yesterday = new Date(Date.now()-86400000).toISOString().split('T')[0];
+  // Map to closest available period
+  if (s === today && e === today)           switchPeriod('hoy');
+  else if (s === yesterday && e === yesterday) switchPeriod('ayer');
+  else {
+    // Determine if range fits within week or month
+    const diffDays = (new Date(e) - new Date(s)) / 86400000;
+    if (diffDays <= 7) switchPeriod('semana');
+    else               switchPeriod('mes');
+  }
+}
+
+/* ── Init date inputs ── */
+function initDateInputs() {
+  const now   = new Date();
+  const today = now.toISOString().split('T')[0];
+  const firstOfMonth = new Date(now.getFullYear(), now.getMonth(), 1)
+    .toISOString().split('T')[0];
+  document.getElementById('range-start').value = firstOfMonth;
+  document.getElementById('range-end').value   = today;
+
+  // Mes label
+  const mths = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+  const lbl  = document.getElementById('fb-mes-label');
+  if (lbl) lbl.textContent = mths[now.getMonth()];
+}
+
 /* ── Header date ── */
 function setDate() {
   const now  = new Date();
@@ -1030,6 +1116,7 @@ async function loadData() {
 
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
 setDate();
+initDateInputs();
 loadData();
 setInterval(loadData, 30 * 60 * 1000);
 </script>
