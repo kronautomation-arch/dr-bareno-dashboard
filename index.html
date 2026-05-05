@@ -94,18 +94,15 @@
       display:flex; align-items:center; gap:12px; margin-bottom:18px;
     }
     .avatar {
-      width:52px; height:52px; border-radius:14px; flex-shrink:0;
-      background: rgba(255,255,255,.06);
-      display:flex; align-items:center; justify-content:center;
-      border:1.5px solid rgba(255,255,255,.14);
-      box-shadow: 0 4px 20px rgba(0,0,0,.4), 0 0 0 1px rgba(124,58,237,.2);
-      overflow:hidden; padding:4px;
+      flex-shrink:0;
+      display:flex; align-items:center;
     }
     .avatar img {
-      width:100%; height:100%;
-      object-fit:contain; border-radius:10px;
+      height:48px;
+      width:auto;
+      object-fit:contain;
     }
-    .avatar.ft { box-shadow: 0 4px 20px rgba(0,0,0,.4), 0 0 0 1px rgba(29,78,216,.2); }
+    .avatar.ft {}
     .hdr-meta { flex:1; }
     .hdr-greeting { font-size:11px; color:var(--txt2); font-weight:500; letter-spacing:.3px; }
     .hdr-name { font-size:18px; font-weight:800; color:var(--txt); letter-spacing:-.5px; }
