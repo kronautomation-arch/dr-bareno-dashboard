@@ -487,6 +487,34 @@
       border-radius:var(--rs); padding:20px;
       font-size:13px; color:var(--r2); line-height:1.5;
     }
+
+    /* ─── POSICIONAMIENTO ─── */
+    .alcance-chips .chip-val { font-size:16px; }
+
+    .concl-card {
+      background: linear-gradient(135deg, rgba(124,58,237,.09) 0%, rgba(0,0,0,0) 100%);
+      border:1px solid rgba(124,58,237,.22);
+      border-radius:var(--rs); padding:18px; margin-bottom:16px;
+      backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+    }
+    .concl-card.ft {
+      background: linear-gradient(135deg, rgba(29,78,216,.09) 0%, rgba(0,0,0,0) 100%);
+      border-color: rgba(29,78,216,.22);
+    }
+    .concl-title {
+      font-size:13px; font-weight:700; color:var(--p2);
+      margin-bottom:13px; display:flex; align-items:center; gap:7px;
+    }
+    .concl-card.ft .concl-title { color:var(--b2); }
+    .concl-body { display:flex; flex-direction:column; gap:10px; }
+    .concl-item {
+      font-size:12px; line-height:1.65; color:var(--txt2);
+      padding:10px 12px;
+      background:rgba(255,255,255,.04); border-radius:10px;
+      border-left:2px solid rgba(168,85,247,.35);
+    }
+    .concl-card.ft .concl-item { border-left-color:rgba(96,165,250,.35); }
+    .concl-empty { font-size:11px; color:var(--txt3); font-style:italic; }
   </style>
 </head>
 <body>
@@ -724,6 +752,39 @@
       </div>
     </div>
 
+    <!-- Posicionamiento de Marca -->
+    <div class="sec-lbl" style="margin-top:8px">📡 Posicionamiento de Marca</div>
+    <div class="chips-wrap alcance-chips">
+      <div class="chips-row">
+        <div class="chip cp">
+          <div class="chip-lbl">👥 Alcance</div>
+          <div class="chip-val" id="c-reach">—</div>
+        </div>
+        <div class="chip cb">
+          <div class="chip-lbl">👁️ Impresiones</div>
+          <div class="chip-val" id="c-impressions">—</div>
+        </div>
+        <div class="chip ca">
+          <div class="chip-lbl">🔁 Frecuencia</div>
+          <div class="chip-val" id="c-freq">—</div>
+        </div>
+        <div class="chip cg">
+          <div class="chip-lbl">🎯 CTR</div>
+          <div class="chip-val" id="c-ctr">—</div>
+        </div>
+        <div class="chip cr">
+          <div class="chip-lbl">💡 CPM</div>
+          <div class="chip-val" id="c-cpm">—</div>
+        </div>
+      </div>
+    </div>
+    <div class="concl-card">
+      <div class="concl-title">💡 Análisis & Conclusiones</div>
+      <div class="concl-body" id="c-concl-body">
+        <div class="concl-empty">Cargando conclusiones…</div>
+      </div>
+    </div>
+
   </div><!-- /clinica -->
 
   <!-- ─── FACETECH ─── -->
@@ -905,6 +966,39 @@
         <div class="sum-right">
           <div class="sum-val" id="f-utilidad">$0</div>
         </div>
+      </div>
+    </div>
+
+    <!-- Posicionamiento de Marca -->
+    <div class="sec-lbl" style="margin-top:8px">📡 Posicionamiento de Marca</div>
+    <div class="chips-wrap alcance-chips">
+      <div class="chips-row">
+        <div class="chip cp">
+          <div class="chip-lbl">👥 Alcance</div>
+          <div class="chip-val" id="f-reach">—</div>
+        </div>
+        <div class="chip cb">
+          <div class="chip-lbl">👁️ Impresiones</div>
+          <div class="chip-val" id="f-impressions">—</div>
+        </div>
+        <div class="chip ca">
+          <div class="chip-lbl">🔁 Frecuencia</div>
+          <div class="chip-val" id="f-freq">—</div>
+        </div>
+        <div class="chip cg">
+          <div class="chip-lbl">🎯 CTR</div>
+          <div class="chip-val" id="f-ctr">—</div>
+        </div>
+        <div class="chip cr">
+          <div class="chip-lbl">💡 CPM</div>
+          <div class="chip-val" id="f-cpm">—</div>
+        </div>
+      </div>
+    </div>
+    <div class="concl-card ft">
+      <div class="concl-title">💡 Análisis & Conclusiones</div>
+      <div class="concl-body" id="f-concl-body">
+        <div class="concl-empty">Cargando conclusiones…</div>
       </div>
     </div>
 
@@ -1151,9 +1245,49 @@ function renderCharts(chart) {
   chartF = makeChart('chart-facetech', chart.facetech_ingresos, chart.facetech_gasto, '#60a5fa', '#2563eb');
 }
 
+/* ── Alcance & Conclusiones ── */
+function renderAlcanceClinica(ins, conclusiones) {
+  ins = ins || {};
+  set('c-reach',       (ins.reach||0).toLocaleString('es-CO'));
+  set('c-impressions', (ins.impressions||0).toLocaleString('es-CO'));
+  set('c-freq',        ((ins.frequency||0).toFixed(1)) + 'x');
+  set('c-ctr',         ((ins.ctr||0).toFixed(2)) + '%');
+  set('c-cpm',         COP(ins.cpm||0));
+
+  const body = document.getElementById('c-concl-body');
+  if (!body) return;
+  if (conclusiones && conclusiones.length > 0) {
+    body.innerHTML = conclusiones.map(txt =>
+      `<div class="concl-item">${txt}</div>`
+    ).join('');
+  } else {
+    body.innerHTML = '<div class="concl-empty">Ingresa datos en Google Sheets para activar el análisis automático.</div>';
+  }
+}
+
+function renderAlcanceFacetech(ins, conclusiones) {
+  ins = ins || {};
+  set('f-reach',       (ins.reach||0).toLocaleString('es-CO'));
+  set('f-impressions', (ins.impressions||0).toLocaleString('es-CO'));
+  set('f-freq',        ((ins.frequency||0).toFixed(1)) + 'x');
+  set('f-ctr',         ((ins.ctr||0).toFixed(2)) + '%');
+  set('f-cpm',         COP(ins.cpm||0));
+
+  const body = document.getElementById('f-concl-body');
+  if (!body) return;
+  if (conclusiones && conclusiones.length > 0) {
+    body.innerHTML = conclusiones.map(txt =>
+      `<div class="concl-item">${txt}</div>`
+    ).join('');
+  } else {
+    body.innerHTML = '<div class="concl-empty">Ingresa datos en Google Sheets para activar el análisis automático.</div>';
+  }
+}
+
 /* ── Switch period ── */
-const PERIOD_IDX = { hoy:0, ayer:1, semana:2, mes:3, todo:4 };
-const PERIOD_DATA = { hoy:'hoy', ayer:'ayer', semana:'semana', mes:'mes', todo:'mes' };
+const PERIOD_IDX    = { hoy:0, ayer:1, semana:2, mes:3, todo:4 };
+const PERIOD_DATA   = { hoy:'hoy', ayer:'ayer', semana:'semana', mes:'mes', todo:'mes' };
+const PERIOD_ALCANCE = { hoy:'hoy', ayer:'hoy', semana:'semana', mes:'mes', todo:'mes' };
 
 function switchPeriod(p) {
   currentPeriod = p;
@@ -1161,10 +1295,19 @@ function switchPeriod(p) {
   const btns = document.querySelectorAll('.fb-btn');
   const idx  = PERIOD_IDX[p];
   if (idx !== undefined && btns[idx]) btns[idx].classList.add('active');
-  const key = PERIOD_DATA[p] || 'mes';
+  const key    = PERIOD_DATA[p]    || 'mes';
+  const alcKey = PERIOD_ALCANCE[p] || 'mes';
   if (DATA) {
     renderClinica(DATA.clinica[key] || DATA.clinica.hoy);
     renderFacetech(DATA.facetech[key] || DATA.facetech.hoy);
+    renderAlcanceClinica(
+      DATA.alcance?.clinica?.[alcKey],
+      DATA.conclusiones?.clinica?.[alcKey]
+    );
+    renderAlcanceFacetech(
+      DATA.alcance?.facetech?.[alcKey],
+      DATA.conclusiones?.facetech?.[alcKey]
+    );
   }
 }
 
@@ -1304,9 +1447,18 @@ async function loadData() {
     DATA = await res.json();
     set('updated-at', DATA.updated_at || '—');
     setDate();
+    const alcKey = PERIOD_ALCANCE[currentPeriod] || 'hoy';
     renderClinica(DATA.clinica[currentPeriod]);
     renderFacetech(DATA.facetech[currentPeriod]);
     renderCharts(DATA.chart);
+    renderAlcanceClinica(
+      DATA.alcance?.clinica?.[alcKey],
+      DATA.conclusiones?.clinica?.[alcKey]
+    );
+    renderAlcanceFacetech(
+      DATA.alcance?.facetech?.[alcKey],
+      DATA.conclusiones?.facetech?.[alcKey]
+    );
     document.getElementById('loading').style.display = 'none';
     document.getElementById('app').style.display = 'block';
   } catch(e) {

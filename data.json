@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-05 07:40",
+  "updated_at": "2026-05-05 07:56",
   "today": "2026-05-05",
   "precio_cita": 200000.0,
   "clinica": {
@@ -10,10 +10,10 @@
       "ingresos_citas": 0.0,
       "ingresos_procedimientos": 0,
       "ingresos_totales": 0.0,
-      "gasto_meta": 7139.0,
+      "gasto_meta": 7167.0,
       "costo_por_cita": 0,
       "porcentaje_publicidad": 0.0,
-      "utilidad_bruta": -7139.0,
+      "utilidad_bruta": -7167.0,
       "roas": 0.0
     },
     "ayer": {
@@ -23,10 +23,10 @@
       "ingresos_citas": 0.0,
       "ingresos_procedimientos": 0,
       "ingresos_totales": 0.0,
-      "gasto_meta": 107584.0,
+      "gasto_meta": 107589.0,
       "costo_por_cita": 0,
       "porcentaje_publicidad": 0.0,
-      "utilidad_bruta": -107584.0,
+      "utilidad_bruta": -107589.0,
       "roas": 0.0
     },
     "semana": {
@@ -36,10 +36,10 @@
       "ingresos_citas": 0.0,
       "ingresos_procedimientos": 0,
       "ingresos_totales": 0.0,
-      "gasto_meta": 448582.0,
+      "gasto_meta": 448615.0,
       "costo_por_cita": 0,
       "porcentaje_publicidad": 0.0,
-      "utilidad_bruta": -448582.0,
+      "utilidad_bruta": -448615.0,
       "roas": 0.0
     },
     "mes": {
@@ -49,10 +49,10 @@
       "ingresos_citas": 0.0,
       "ingresos_procedimientos": 0,
       "ingresos_totales": 0.0,
-      "gasto_meta": 250613.0,
+      "gasto_meta": 250646.0,
       "costo_por_cita": 0,
       "porcentaje_publicidad": 0.0,
-      "utilidad_bruta": -250613.0,
+      "utilidad_bruta": -250646.0,
       "roas": 0.0
     }
   },
@@ -63,10 +63,10 @@
       "valor_ticket": 0,
       "tasa_conversion": 0.0,
       "ingresos": 0,
-      "gasto_meta": 13316.0,
+      "gasto_meta": 29364.0,
       "costo_por_lead": 0,
       "costo_por_compra": 0,
-      "utilidad_bruta": -13316.0,
+      "utilidad_bruta": -29364.0,
       "roas": 0.0
     },
     "ayer": {
@@ -87,10 +87,10 @@
       "valor_ticket": 0,
       "tasa_conversion": 0.0,
       "ingresos": 0,
-      "gasto_meta": 74341.0,
+      "gasto_meta": 90389.0,
       "costo_por_lead": 0,
       "costo_por_compra": 0,
-      "utilidad_bruta": -74341.0,
+      "utilidad_bruta": -90389.0,
       "roas": 0.0
     },
     "mes": {
@@ -99,10 +99,10 @@
       "valor_ticket": 0,
       "tasa_conversion": 0.0,
       "ingresos": 0,
-      "gasto_meta": 13358.0,
+      "gasto_meta": 29406.0,
       "costo_por_lead": 0,
       "costo_por_compra": 0,
-      "utilidad_bruta": -13358.0,
+      "utilidad_bruta": -29406.0,
       "roas": 0.0
     }
   },
@@ -131,8 +131,8 @@
       80497.0,
       55393.0,
       0,
-      107584.0,
-      7139.0
+      107589.0,
+      7167.0
     ],
     "facetech_ingresos": [
       0,
@@ -150,7 +150,109 @@
       0,
       0,
       35.0,
-      13316.0
+      29364.0
     ]
+  },
+  "alcance": {
+    "clinica": {
+      "hoy": {
+        "spend": 7167,
+        "reach": 367,
+        "impressions": 398,
+        "frequency": 1.08,
+        "clicks": 25,
+        "ctr": 6.28,
+        "cpm": 18008,
+        "cpp": 19529
+      },
+      "semana": {
+        "spend": 448615,
+        "reach": 21575,
+        "impressions": 37319,
+        "frequency": 1.73,
+        "clicks": 2260,
+        "ctr": 6.06,
+        "cpm": 12021,
+        "cpp": 20793
+      },
+      "mes": {
+        "spend": 250646,
+        "reach": 15005,
+        "impressions": 22996,
+        "frequency": 1.53,
+        "clicks": 1407,
+        "ctr": 6.12,
+        "cpm": 10900,
+        "cpp": 16704
+      }
+    },
+    "facetech": {
+      "hoy": {
+        "spend": 29364,
+        "reach": 1182,
+        "impressions": 3247,
+        "frequency": 2.75,
+        "clicks": 41,
+        "ctr": 1.26,
+        "cpm": 9043,
+        "cpp": 24843
+      },
+      "semana": {
+        "spend": 90389,
+        "reach": 5542,
+        "impressions": 8374,
+        "frequency": 1.51,
+        "clicks": 199,
+        "ctr": 2.38,
+        "cpm": 10794,
+        "cpp": 16310
+      },
+      "mes": {
+        "spend": 29406,
+        "reach": 1189,
+        "impressions": 3257,
+        "frequency": 2.74,
+        "clicks": 41,
+        "ctr": 1.26,
+        "cpm": 9029,
+        "cpp": 24732
+      }
+    }
+  },
+  "conclusiones": {
+    "clinica": {
+      "hoy": [
+        "📣 Hoy tu clínica llegó a 367 personas únicas en la región.",
+        "👁️ Frecuencia baja (1.1x por persona) — considera aumentar el presupuesto para mayor recordación de marca.",
+        "🎯 CTR 6.28% — supera el promedio médico (1.5%). Buena atención del anuncio."
+      ],
+      "semana": [
+        "📣 Esta semana tu clínica llegó a 21.575 personas únicas en la región.",
+        "👁️ Frecuencia baja (1.7x por persona) — considera aumentar el presupuesto para mayor recordación de marca.",
+        "🎯 CTR 6.06% — supera el promedio médico (1.5%). Buena atención del anuncio."
+      ],
+      "mes": [
+        "📣 Este mes tu clínica llegó a 15.005 personas únicas en la región.",
+        "👁️ Frecuencia baja (1.5x por persona) — considera aumentar el presupuesto para mayor recordación de marca.",
+        "🎯 CTR 6.12% — supera el promedio médico (1.5%). Buena atención del anuncio."
+      ]
+    },
+    "facetech": {
+      "hoy": [
+        "📣 Hoy FaceTech llegó a 1.182 personas únicas — potenciales asistentes al congreso.",
+        "✅ Frecuencia 2.8x — buen nivel de recordación para el evento. Las personas recuerdan el congreso.",
+        "📊 CTR 1.26% — por debajo del promedio de eventos (1.8%)."
+      ],
+      "semana": [
+        "📣 Esta semana FaceTech llegó a 5.542 personas únicas — potenciales asistentes al congreso.",
+        "✅ Frecuencia 1.5x — buen nivel de recordación para el evento. Las personas recuerdan el congreso.",
+        "🎯 CTR 2.38% — por encima del promedio de eventos (1.8%)."
+      ],
+      "mes": [
+        "📣 Este mes FaceTech llegó a 1.189 personas únicas — potenciales asistentes al congreso.",
+        "✅ Frecuencia 2.7x — buen nivel de recordación para el evento. Las personas recuerdan el congreso.",
+        "📊 CTR 1.26% — por debajo del promedio de eventos (1.8%)."
+      ]
+    }
   }
 }
