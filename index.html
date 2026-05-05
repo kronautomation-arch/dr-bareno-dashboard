@@ -4,683 +4,877 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Dr. Bareño" />
-  <title>Dr. John Bareño — Dashboard</title>
+  <title>Dr. John Bareño</title>
   <link rel="manifest" href="manifest.json" />
   <link rel="apple-touch-icon" href="icons/icon-180.png" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <style>
+    /* ─── TOKENS ─── */
     :root {
-      --bg: #f4f6fb;
-      --surface: #ffffff;
-      --surface2: #f8f9fe;
-      --border: #e8ecf4;
-      --purple: #6c5ce7;
-      --purple-light: #a29bfe;
-      --purple-bg: #f0eeff;
-      --blue: #0984e3;
-      --blue-bg: #e8f4fd;
-      --green: #00b894;
-      --green-bg: #e6f9f5;
-      --red: #e17055;
-      --red-bg: #fdf0ec;
-      --yellow: #fdcb6e;
-      --yellow-bg: #fef9ec;
-      --text: #2d3436;
-      --text2: #636e72;
-      --muted: #b2bec3;
-      --shadow: 0 2px 20px rgba(108,92,231,0.08);
-      --shadow-sm: 0 1px 8px rgba(0,0,0,0.06);
-      --safe-top: env(safe-area-inset-top, 0px);
+      --bg:      #080c18;
+      --bg2:     #0d1120;
+      --glass:   rgba(255,255,255,0.04);
+      --glass2:  rgba(255,255,255,0.07);
+      --border:  rgba(255,255,255,0.08);
+      --border2: rgba(255,255,255,0.14);
+
+      --p1: #7c3aed; --p2: #a855f7;
+      --b1: #1d4ed8; --b2: #60a5fa;
+      --g1: #059669; --g2: #34d399;
+      --r1: #be123c; --r2: #fb7185;
+      --a1: #d97706; --a2: #fbbf24;
+      --c1: #0891b2; --c2: #67e8f9;
+
+      --txt:  #f1f5f9;
+      --txt2: #94a3b8;
+      --txt3: #475569;
+      --txt4: #1e293b;
+
+      --safe-top:    env(safe-area-inset-top, 44px);
       --safe-bottom: env(safe-area-inset-bottom, 0px);
-      --radius: 20px;
-      --radius-sm: 14px;
+      --r: 22px;
+      --rs: 16px;
+      --rx: 12px;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+    *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
+    html { scroll-behavior:smooth; }
     body {
       background: var(--bg);
-      color: var(--text);
-      font-family: -apple-system, 'SF Pro Display', BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--txt);
+      font-family: -apple-system,'SF Pro Display',BlinkMacSystemFont,'Segoe UI',sans-serif;
       min-height: 100dvh;
-      padding-bottom: calc(88px + var(--safe-bottom));
+      padding-bottom: calc(90px + var(--safe-bottom));
+      overscroll-behavior: none;
     }
 
-    /* ── HEADER ── */
-    .header {
-      background: var(--surface);
-      padding: calc(var(--safe-top) + 16px) 20px 16px;
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    .header-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 4px;
-    }
-    .header-greeting { font-size: 13px; color: var(--text2); }
-    .header-title { font-size: 20px; font-weight: 800; color: var(--text); letter-spacing: -0.5px; }
-    .header-right { display: flex; align-items: center; gap: 10px; }
-    .sync-pill {
-      background: var(--green-bg);
-      color: var(--green);
-      font-size: 11px;
-      font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 20px;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-    .sync-dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--green);
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
-    .updated-text { font-size: 10px; color: var(--muted); margin-top: 2px; }
-
-    /* ── BOTTOM TABS ── */
-    .bottom-nav {
-      position: fixed;
-      bottom: 0; left: 0; right: 0;
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-      padding: 10px 0 calc(10px + var(--safe-bottom));
-      display: flex;
-      z-index: 100;
-      box-shadow: 0 -4px 20px rgba(0,0,0,0.06);
-    }
-    .nav-item {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-      padding: 6px 0;
-      cursor: pointer;
-      border: none;
-      background: transparent;
-      color: var(--muted);
-      font-size: 10px;
-      font-weight: 600;
-      transition: all 0.2s;
-    }
-    .nav-item.active { color: var(--purple); }
-    .nav-icon {
-      width: 28px; height: 28px;
-      border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px;
-      transition: all 0.2s;
-    }
-    .nav-item.active .nav-icon {
-      background: var(--purple-bg);
-    }
-
-    /* ── PERIOD TOGGLE ── */
-    .period-bar {
-      padding: 16px 20px 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .period-title { font-size: 16px; font-weight: 700; color: var(--text); }
-    .period-toggle {
-      display: flex;
-      background: var(--border);
-      border-radius: 10px;
-      padding: 3px;
-      gap: 2px;
-    }
-    .period-btn {
-      padding: 5px 14px;
-      border-radius: 8px;
-      font-size: 12px;
-      font-weight: 700;
-      cursor: pointer;
-      color: var(--text2);
-      background: transparent;
-      border: none;
-      transition: all 0.2s;
-    }
-    .period-btn.active {
-      background: var(--purple);
-      color: #fff;
-      box-shadow: 0 2px 8px rgba(108,92,231,0.3);
-    }
-
-    /* ── HERO CARD ── */
-    .hero-card {
-      margin: 16px 20px 0;
-      background: linear-gradient(135deg, var(--purple) 0%, #a29bfe 100%);
-      border-radius: var(--radius);
-      padding: 20px;
-      color: #fff;
+    /* ─── HERO HEADER ─── */
+    .hero-header {
       position: relative;
       overflow: hidden;
+      padding: calc(var(--safe-top) + 14px) 20px 28px;
     }
-    .hero-card::after {
-      content: '';
-      position: absolute;
-      top: -30px; right: -30px;
-      width: 120px; height: 120px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.1);
+    .hero-header::before {
+      content:'';
+      position:absolute; inset:0;
+      background: linear-gradient(150deg, #1c0a40 0%, #0d1535 55%, var(--bg) 100%);
+      z-index:0;
     }
-    .hero-card::before {
-      content: '';
-      position: absolute;
-      bottom: -20px; right: 40px;
-      width: 80px; height: 80px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.06);
+    /* decorative orbs */
+    .orb {
+      position:absolute; border-radius:50%; pointer-events:none; z-index:0;
     }
-    .hero-label { font-size: 12px; opacity: 0.8; font-weight: 600; margin-bottom: 6px; }
-    .hero-value { font-size: 34px; font-weight: 900; letter-spacing: -1px; line-height: 1; }
-    .hero-sub { font-size: 12px; opacity: 0.7; margin-top: 6px; }
-    .hero-badges {
-      display: flex;
-      gap: 8px;
-      margin-top: 14px;
+    .orb-a {
+      width:280px; height:280px;
+      background: radial-gradient(circle, rgba(124,58,237,.32) 0%, transparent 68%);
+      top:-100px; right:-70px;
     }
-    .hero-badge {
-      background: rgba(255,255,255,0.2);
-      border-radius: 8px;
-      padding: 6px 12px;
-      font-size: 11px;
-      font-weight: 700;
-      backdrop-filter: blur(4px);
+    .orb-b {
+      width:180px; height:180px;
+      background: radial-gradient(circle, rgba(168,85,247,.18) 0%, transparent 68%);
+      bottom:-60px; left:10px;
     }
-    .hero-badge span { opacity: 0.75; font-weight: 400; }
+    .orb-c {
+      width:100px; height:100px;
+      background: radial-gradient(circle, rgba(99,102,241,.25) 0%, transparent 68%);
+      top:40%; right:30%;
+    }
+    /* facetech orbs */
+    .hero-header.ft::before {
+      background: linear-gradient(150deg, #08214a 0%, #0d1535 55%, var(--bg) 100%);
+    }
+    .hero-header.ft .orb-a { background: radial-gradient(circle, rgba(29,78,216,.32) 0%, transparent 68%); }
+    .hero-header.ft .orb-b { background: radial-gradient(circle, rgba(96,165,250,.18) 0%, transparent 68%); }
+    .hero-header.ft .orb-c { background: radial-gradient(circle, rgba(6,182,212,.22) 0%, transparent 68%); }
 
-    /* ── SECTION TITLE ── */
-    .section-title {
-      padding: 20px 20px 10px;
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--text2);
-      text-transform: uppercase;
-      letter-spacing: 0.6px;
+    .hdr-row1 {
+      position:relative; z-index:1;
+      display:flex; align-items:center; gap:12px; margin-bottom:18px;
+    }
+    .avatar {
+      width:46px; height:46px; border-radius:50%; flex-shrink:0;
+      background: linear-gradient(135deg, var(--p1), var(--p2));
+      display:flex; align-items:center; justify-content:center;
+      font-size:15px; font-weight:900; color:#fff;
+      border:2px solid rgba(255,255,255,.18);
+      box-shadow: 0 4px 20px rgba(124,58,237,.45);
+    }
+    .avatar.ft { background: linear-gradient(135deg, var(--b1), var(--b2)); box-shadow: 0 4px 20px rgba(29,78,216,.45); }
+    .hdr-meta { flex:1; }
+    .hdr-greeting { font-size:11px; color:var(--txt2); font-weight:500; letter-spacing:.3px; }
+    .hdr-name { font-size:18px; font-weight:800; color:var(--txt); letter-spacing:-.5px; }
+    .live-badge {
+      display:flex; align-items:center; gap:6px;
+      background: rgba(5,150,105,.14); border:1px solid rgba(5,150,105,.3);
+      border-radius:99px; padding:6px 12px;
+      font-size:11px; font-weight:700; color:var(--g2); flex-shrink:0;
+    }
+    .live-dot {
+      width:7px; height:7px; border-radius:50%;
+      background:var(--g2);
+      animation: ping 2.2s ease infinite;
+    }
+    @keyframes ping {
+      0%  { box-shadow:0 0 0 0 rgba(52,211,153,.7); }
+      70% { box-shadow:0 0 0 9px rgba(52,211,153,0); }
+      100%{ box-shadow:0 0 0 0 rgba(52,211,153,0); }
     }
 
-    /* ── KPI GRID ── */
+    .hdr-date {
+      position:relative; z-index:1;
+      font-size:12px; color:var(--txt2); margin-bottom:2px;
+    }
+    .hdr-updated {
+      position:relative; z-index:1;
+      font-size:10px; color:var(--txt3); margin-bottom:22px;
+    }
+
+    /* period + tab toggles */
+    .hdr-controls {
+      position:relative; z-index:1;
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+    }
+    .pill-toggle {
+      display:flex;
+      background: rgba(255,255,255,.06);
+      border:1px solid var(--border2);
+      border-radius:12px; padding:4px; gap:3px;
+    }
+    .pill-btn {
+      padding:6px 16px; border-radius:9px;
+      font-size:12px; font-weight:700;
+      color:var(--txt2); background:transparent; border:none; cursor:pointer;
+      transition:all .22s; letter-spacing:-.1px;
+    }
+    .pill-btn.active {
+      background: var(--p1); color:#fff;
+      box-shadow:0 3px 14px rgba(124,58,237,.4);
+    }
+    .hero-header.ft .pill-btn.active {
+      background: var(--b1);
+      box-shadow:0 3px 14px rgba(29,78,216,.4);
+    }
+    .tab-pills {
+      display:flex; gap:6px;
+    }
+    .tab-pill {
+      display:flex; align-items:center; gap:5px;
+      padding:8px 14px; border-radius:11px;
+      font-size:12px; font-weight:700;
+      color:var(--txt3); background:var(--glass); border:1px solid var(--border);
+      cursor:pointer; transition:all .22s;
+    }
+    .tab-pill.active {
+      background:rgba(124,58,237,.18); border-color:rgba(124,58,237,.4);
+      color:var(--p2);
+    }
+    .tab-pill.ft-tab.active {
+      background:rgba(29,78,216,.18); border-color:rgba(29,78,216,.4);
+      color:var(--b2);
+    }
+    .tab-pill-icon { font-size:14px; }
+
+    /* ─── PAGE WRAPPER ─── */
+    .page { display:none; padding:20px 20px 0; }
+    .page.active {
+      display:block;
+      animation: slideUp .28s cubic-bezier(.16,1,.3,1);
+    }
+    @keyframes slideUp {
+      from { opacity:0; transform:translateY(14px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    /* ─── REVENUE HERO CARD ─── */
+    .rev-card {
+      position:relative; overflow:hidden;
+      background: linear-gradient(135deg, rgba(124,58,237,.22) 0%, rgba(168,85,247,.1) 60%, rgba(99,102,241,.05) 100%);
+      border:1px solid rgba(124,58,237,.3);
+      border-radius: var(--r);
+      padding:22px; margin-bottom:14px;
+      backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px);
+    }
+    .rev-card.ft {
+      background: linear-gradient(135deg, rgba(29,78,216,.22) 0%, rgba(96,165,250,.1) 60%, rgba(6,182,212,.05) 100%);
+      border-color:rgba(29,78,216,.3);
+    }
+    .rev-card::after {
+      content:''; position:absolute;
+      top:-70px; right:-50px;
+      width:180px; height:180px; border-radius:50%;
+      background: radial-gradient(circle, rgba(168,85,247,.2) 0%, transparent 70%);
+      pointer-events:none;
+    }
+    .rev-card.ft::after {
+      background: radial-gradient(circle, rgba(96,165,250,.2) 0%, transparent 70%);
+    }
+    .rev-eyebrow {
+      font-size:10px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase;
+      color:var(--p2); margin-bottom:6px; position:relative; z-index:1;
+    }
+    .rev-card.ft .rev-eyebrow { color:var(--b2); }
+    .rev-amount {
+      font-size:44px; font-weight:900; letter-spacing:-2.5px; line-height:1;
+      color:var(--txt); margin-bottom:5px; position:relative; z-index:1;
+    }
+    .rev-caption {
+      font-size:12px; color:var(--txt2); margin-bottom:20px; position:relative; z-index:1;
+    }
+    .rev-pills {
+      display:flex; gap:8px; flex-wrap:wrap; position:relative; z-index:1;
+    }
+    .rev-pill {
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:11px; padding:9px 14px;
+      backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+    }
+    .rev-pill-val {
+      font-size:17px; font-weight:800; color:var(--txt); letter-spacing:-.5px;
+    }
+    .rev-pill-lbl {
+      font-size:9px; color:var(--txt2); font-weight:600; text-transform:uppercase; letter-spacing:.5px; margin-top:2px;
+    }
+
+    /* ─── CHIPS (horizontal scroll) ─── */
+    .chips-wrap {
+      margin:0 -20px 14px; padding:0 20px;
+      overflow-x:auto; -webkit-overflow-scrolling:touch;
+      scrollbar-width:none;
+    }
+    .chips-wrap::-webkit-scrollbar { display:none; }
+    .chips-row { display:flex; gap:10px; width:max-content; }
+    .chip {
+      min-width:116px; border-radius:var(--rs); padding:14px 16px;
+      background:var(--glass); border:1px solid var(--border);
+      backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+    }
+    .chip-lbl {
+      font-size:9px; font-weight:700; text-transform:uppercase;
+      letter-spacing:.6px; color:var(--txt3); margin-bottom:6px;
+    }
+    .chip-val { font-size:19px; font-weight:800; letter-spacing:-.6px; }
+    .chip.cp .chip-val  { color:var(--p2); }
+    .chip.cr .chip-val  { color:var(--r2); }
+    .chip.cg .chip-val  { color:var(--g2); }
+    .chip.cb .chip-val  { color:var(--b2); }
+    .chip.ca .chip-val  { color:var(--a2); }
+
+    /* ─── SECTION LABEL ─── */
+    .sec-lbl {
+      font-size:10px; font-weight:700; letter-spacing:.9px;
+      text-transform:uppercase; color:var(--txt3); margin-bottom:10px;
+    }
+
+    /* ─── KPI GRID ─── */
     .kpi-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      padding: 0 20px;
+      display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px;
     }
     .kpi-card {
-      background: var(--surface);
-      border-radius: var(--radius-sm);
-      padding: 16px;
-      box-shadow: var(--shadow-sm);
-      border: 1px solid var(--border);
+      background:var(--glass); border:1px solid var(--border);
+      border-radius:var(--rs); padding:16px;
+      backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+      position:relative; overflow:hidden;
+      transition:transform .14s, background .14s;
     }
-    .kpi-card.wide { grid-column: span 2; }
+    .kpi-card:active { transform:scale(.97); background:var(--glass2); }
+    /* accent top bar */
+    .kpi-card::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:2px;
+      border-radius:var(--rs) var(--rs) 0 0;
+    }
+    .kpi-card.kp::before { background:linear-gradient(90deg,var(--p1),var(--p2)); }
+    .kpi-card.kb::before { background:linear-gradient(90deg,var(--b1),var(--b2)); }
+    .kpi-card.kg::before { background:linear-gradient(90deg,var(--g1),var(--g2)); }
+    .kpi-card.kr::before { background:linear-gradient(90deg,var(--r1),var(--r2)); }
+    .kpi-card.ka::before { background:linear-gradient(90deg,var(--a1),var(--a2)); }
+    .kpi-card.kc::before { background:linear-gradient(90deg,var(--c1),var(--c2)); }
+
     .kpi-icon {
-      width: 36px; height: 36px;
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px;
-      margin-bottom: 10px;
+      width:38px; height:38px; border-radius:11px;
+      display:flex; align-items:center; justify-content:center;
+      font-size:18px; margin-bottom:12px;
     }
-    .kpi-label { font-size: 11px; color: var(--text2); font-weight: 600; margin-bottom: 4px; }
-    .kpi-value { font-size: 20px; font-weight: 800; color: var(--text); letter-spacing: -0.5px; }
-    .kpi-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 2px;
-      font-size: 11px;
-      font-weight: 700;
-      padding: 3px 8px;
-      border-radius: 20px;
-      margin-top: 6px;
-    }
-    .badge-green { background: var(--green-bg); color: var(--green); }
-    .badge-red { background: var(--red-bg); color: var(--red); }
-    .badge-blue { background: var(--blue-bg); color: var(--blue); }
-    .badge-purple { background: var(--purple-bg); color: var(--purple); }
-    .badge-yellow { background: var(--yellow-bg); color: #c9921a; }
+    .icon-p { background:linear-gradient(135deg,var(--p1),var(--p2)); box-shadow:0 4px 14px rgba(124,58,237,.38); }
+    .icon-b { background:linear-gradient(135deg,var(--b1),var(--b2)); box-shadow:0 4px 14px rgba(29,78,216,.38); }
+    .icon-g { background:linear-gradient(135deg,var(--g1),var(--g2)); box-shadow:0 4px 14px rgba(5,150,105,.38); }
+    .icon-r { background:linear-gradient(135deg,var(--r1),var(--r2)); box-shadow:0 4px 14px rgba(190,18,60,.38); }
+    .icon-a { background:linear-gradient(135deg,var(--a1),var(--a2)); box-shadow:0 4px 14px rgba(217,119,6,.38); }
+    .icon-c { background:linear-gradient(135deg,var(--c1),var(--c2)); box-shadow:0 4px 14px rgba(8,145,178,.38); }
 
-    /* ── CHART CARD ── */
+    .kpi-lbl { font-size:10px; color:var(--txt3); font-weight:600; letter-spacing:.1px; margin-bottom:5px; }
+    .kpi-val { font-size:21px; font-weight:900; color:var(--txt); letter-spacing:-1px; margin-bottom:4px; }
+    .kpi-sub { font-size:10px; color:var(--txt3); font-weight:500; }
+
+    /* ─── CONVERSION CARD ─── */
+    .conv-card {
+      background:var(--glass); border:1px solid var(--border);
+      border-radius:var(--rs); padding:18px; margin-bottom:10px;
+      backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+    }
+    .conv-top {
+      display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:14px;
+    }
+    .conv-title { font-size:14px; font-weight:700; color:var(--txt); margin-bottom:2px; }
+    .conv-sub   { font-size:11px; color:var(--txt2); }
+    .conv-pct   { font-size:30px; font-weight:900; letter-spacing:-1.5px; color:var(--p2); line-height:1; }
+    .conv-pct.ft-color { color:var(--b2); }
+
+    .track {
+      height:7px; background:rgba(255,255,255,.07); border-radius:99px;
+      overflow:hidden; margin-bottom:11px;
+    }
+    .track-fill {
+      height:100%; border-radius:99px;
+      background:linear-gradient(90deg,var(--p1),var(--p2));
+      transition:width 1.3s cubic-bezier(.16,1,.3,1);
+    }
+    .track-fill.ft { background:linear-gradient(90deg,var(--b1),var(--b2)); }
+    .conv-row {
+      display:flex; justify-content:space-between;
+      font-size:11px; color:var(--txt2);
+    }
+    .conv-row strong { color:var(--txt); font-weight:700; }
+
+    /* ─── CHART CARD ─── */
     .chart-card {
-      margin: 0 20px;
-      background: var(--surface);
-      border-radius: var(--radius-sm);
-      padding: 18px;
-      box-shadow: var(--shadow-sm);
-      border: 1px solid var(--border);
+      background:var(--glass); border:1px solid var(--border);
+      border-radius:var(--rs); padding:18px; margin-bottom:10px;
+      backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
     }
-    .chart-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 14px;
+    .chart-hdr {
+      display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:16px;
     }
-    .chart-title { font-size: 14px; font-weight: 700; color: var(--text); }
-    .chart-legend {
-      display: flex;
-      gap: 12px;
+    .chart-title-txt { font-size:14px; font-weight:700; color:var(--txt); }
+    .chart-sub-txt   { font-size:11px; color:var(--txt2); margin-top:2px; }
+    .chart-leg { display:flex; flex-direction:column; gap:5px; align-items:flex-end; }
+    .leg-row {
+      display:flex; align-items:center; gap:5px;
+      font-size:10px; color:var(--txt2); font-weight:600;
     }
-    .legend-item {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      font-size: 10px;
-      color: var(--text2);
-      font-weight: 600;
-    }
-    .legend-dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
+    .leg-dot {
+      width:7px; height:7px; border-radius:50%;
     }
 
-    /* ── STAT ROW ── */
-    .stat-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 0;
-      border-bottom: 1px solid var(--border);
+    /* ─── SUMMARY CARD ─── */
+    .sum-card {
+      background:var(--glass); border:1px solid var(--border);
+      border-radius:var(--rs); padding:18px; margin-bottom:16px;
+      backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
     }
-    .stat-row:last-child { border-bottom: none; }
-    .stat-left { display: flex; align-items: center; gap: 12px; }
-    .stat-icon-wrap {
-      width: 38px; height: 38px;
-      border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px;
+    .sum-card-title { font-size:14px; font-weight:700; color:var(--txt); margin-bottom:14px; }
+    .sum-row {
+      display:flex; align-items:center; justify-content:space-between;
+      padding:11px 0; border-bottom:1px solid var(--border);
     }
-    .stat-name { font-size: 13px; font-weight: 700; color: var(--text); }
-    .stat-sub { font-size: 11px; color: var(--text2); }
-    .stat-value { font-size: 15px; font-weight: 800; color: var(--text); }
-    .stat-change { font-size: 11px; font-weight: 700; text-align: right; }
+    .sum-row:last-child { border-bottom:none; padding-bottom:0; }
+    .sum-left { display:flex; align-items:center; gap:12px; }
+    .sum-icon {
+      width:38px; height:38px; border-radius:12px; flex-shrink:0;
+      display:flex; align-items:center; justify-content:center; font-size:16px;
+    }
+    .sum-name { font-size:13px; font-weight:700; color:var(--txt); }
+    .sum-desc { font-size:10px; color:var(--txt2); margin-top:1px; }
+    .sum-right { text-align:right; }
+    .sum-val  { font-size:15px; font-weight:800; color:var(--txt); letter-spacing:-.4px; }
+    .sum-note { font-size:10px; font-weight:600; margin-top:2px; }
+    .note-p { color:var(--p2); }
+    .note-b { color:var(--b2); }
+    .note-g { color:var(--g2); }
 
-    /* ── PAGES ── */
-    .page { display: none; padding-bottom: 20px; }
-    .page.active { display: block; }
-
-    /* ── LOADING ── */
+    /* ─── LOADING / ERROR ─── */
     .loading {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 60vh;
-      gap: 16px;
+      display:flex; flex-direction:column; align-items:center;
+      justify-content:center; height:72vh; gap:18px;
     }
     .spinner {
-      width: 44px; height: 44px;
-      border: 3px solid var(--border);
-      border-top-color: var(--purple);
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
+      width:50px; height:50px;
+      border:3px solid rgba(124,58,237,.2); border-top-color:var(--p1);
+      border-radius:50%; animation:spin .85s linear infinite;
     }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .loading-text { font-size: 14px; color: var(--text2); font-weight: 600; }
+    @keyframes spin { to { transform:rotate(360deg); } }
+    .loading-txt { font-size:13px; color:var(--txt2); font-weight:600; }
 
     .error-box {
-      margin: 20px;
-      background: var(--red-bg);
-      border: 1px solid var(--red);
-      border-radius: var(--radius-sm);
-      padding: 16px;
-      font-size: 13px;
-      color: var(--red);
+      margin:20px;
+      background:rgba(190,18,60,.1); border:1px solid rgba(190,18,60,.28);
+      border-radius:var(--rs); padding:20px;
+      font-size:13px; color:var(--r2); line-height:1.5;
     }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <div class="header">
-    <div class="header-top">
-      <div>
-        <div class="header-greeting">Buenos días 👋</div>
-        <div class="header-title">Dr. John Bareño</div>
-      </div>
-      <div class="header-right">
-        <div class="sync-pill">
-          <div class="sync-dot"></div>
-          En vivo
+<!-- ═══ HERO HEADER ═══ -->
+<div class="hero-header" id="hero-header">
+  <div class="orb orb-a"></div>
+  <div class="orb orb-b"></div>
+  <div class="orb orb-c"></div>
+
+  <div class="hdr-row1">
+    <div class="avatar" id="avatar">JB</div>
+    <div class="hdr-meta">
+      <div class="hdr-greeting" id="greeting">Buenos días</div>
+      <div class="hdr-name">Dr. John Bareño</div>
+    </div>
+    <div class="live-badge">
+      <div class="live-dot"></div>
+      En vivo
+    </div>
+  </div>
+
+  <div class="hdr-date" id="hdr-date">—</div>
+  <div class="hdr-updated">Actualizado: <span id="updated-at">—</span></div>
+
+  <div class="hdr-controls">
+    <div class="pill-toggle" id="period-toggle">
+      <button class="pill-btn active" onclick="switchPeriod('hoy')">Hoy</button>
+      <button class="pill-btn" onclick="switchPeriod('mes')">Este mes</button>
+    </div>
+    <div class="tab-pills">
+      <button class="tab-pill active" id="tab-clinica" onclick="switchTab('clinica')">
+        <span class="tab-pill-icon">🏥</span> Clínica
+      </button>
+      <button class="tab-pill ft-tab" id="tab-facetech" onclick="switchTab('facetech')">
+        <span class="tab-pill-icon">🎤</span> FaceTech
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ LOADING ═══ -->
+<div class="loading" id="loading">
+  <div class="spinner"></div>
+  <div class="loading-txt">Cargando métricas…</div>
+</div>
+
+<!-- ═══ APP ═══ -->
+<div id="app" style="display:none">
+
+  <!-- ─── CLÍNICA ─── -->
+  <div class="page active" id="page-clinica">
+
+    <!-- Revenue hero -->
+    <div class="rev-card">
+      <div class="rev-eyebrow">💰 Ingresos Totales · Clínica</div>
+      <div class="rev-amount" id="c-ingresos">$0</div>
+      <div class="rev-caption">citas + procedimientos</div>
+      <div class="rev-pills">
+        <div class="rev-pill">
+          <div class="rev-pill-val" id="c-citas-pill">0</div>
+          <div class="rev-pill-lbl">Citas</div>
+        </div>
+        <div class="rev-pill">
+          <div class="rev-pill-val" id="c-procs-pill">0</div>
+          <div class="rev-pill-lbl">Procedimientos</div>
+        </div>
+        <div class="rev-pill">
+          <div class="rev-pill-val" id="c-roas-pill">0x</div>
+          <div class="rev-pill-lbl">ROAS</div>
         </div>
       </div>
     </div>
-    <div class="updated-text">Actualizado: <span id="updated-at">—</span></div>
-  </div>
 
-  <!-- LOADING -->
-  <div class="loading" id="loading">
-    <div class="spinner"></div>
-    <div class="loading-text">Cargando métricas...</div>
-  </div>
-
-  <!-- APP -->
-  <div id="app" style="display:none">
-
-    <!-- PERIOD BAR -->
-    <div class="period-bar">
-      <div class="period-title" id="period-label">Hoy</div>
-      <div class="period-toggle">
-        <button class="period-btn active" onclick="switchPeriod('hoy')">Hoy</button>
-        <button class="period-btn" onclick="switchPeriod('mes')">Mes</button>
+    <!-- Chips row -->
+    <div class="chips-wrap">
+      <div class="chips-row">
+        <div class="chip cr">
+          <div class="chip-lbl">💸 Gasto Meta</div>
+          <div class="chip-val" id="c-chip-gasto">$0</div>
+        </div>
+        <div class="chip cb">
+          <div class="chip-lbl">🎯 Costo / Cita</div>
+          <div class="chip-val" id="c-chip-cita">$0</div>
+        </div>
+        <div class="chip cg">
+          <div class="chip-lbl">📊 Utilidad</div>
+          <div class="chip-val" id="c-chip-util">$0</div>
+        </div>
+        <div class="chip cp">
+          <div class="chip-lbl">📣 % Publicidad</div>
+          <div class="chip-val" id="c-chip-pct">0%</div>
+        </div>
       </div>
     </div>
 
-    <!-- ═══════════ PÁGINA CLÍNICA ═══════════ -->
-    <div class="page active" id="page-clinica">
+    <!-- KPI grid -->
+    <div class="sec-lbl" style="margin-top:4px">Métricas clave</div>
+    <div class="kpi-grid">
+      <div class="kpi-card kp">
+        <div class="kpi-icon icon-p">💸</div>
+        <div class="kpi-lbl">Gasto Meta</div>
+        <div class="kpi-val" id="c-gasto">$0</div>
+        <div class="kpi-sub" id="c-pct-pub">0% de ingresos</div>
+      </div>
+      <div class="kpi-card kb">
+        <div class="kpi-icon icon-b">🎯</div>
+        <div class="kpi-lbl">Costo por Cita</div>
+        <div class="kpi-val" id="c-costo-cita">$0</div>
+        <div class="kpi-sub">Meta ÷ citas</div>
+      </div>
+      <div class="kpi-card kg">
+        <div class="kpi-icon icon-g">💊</div>
+        <div class="kpi-lbl">Ing. Procedimientos</div>
+        <div class="kpi-val" id="c-ing-procs">$0</div>
+        <div class="kpi-sub" id="c-procs-sub2">0 realizados</div>
+      </div>
+      <div class="kpi-card kr">
+        <div class="kpi-icon icon-r">📊</div>
+        <div class="kpi-lbl">Utilidad Bruta</div>
+        <div class="kpi-val" id="c-utilidad">$0</div>
+        <div class="kpi-sub">ingresos − gasto</div>
+      </div>
+    </div>
 
-      <!-- Hero card -->
-      <div class="hero-card">
-        <div class="hero-label">💰 Ingresos Totales</div>
-        <div class="hero-value" id="c-ingresos">$0</div>
-        <div class="hero-sub">citas + procedimientos</div>
-        <div class="hero-badges">
-          <div class="hero-badge">🏥 <span id="c-citas-hero">0</span> citas</div>
-          <div class="hero-badge">✂️ <span id="c-procs-hero">0</span> procedimientos</div>
-          <div class="hero-badge">📈 ROAS <span id="c-roas-hero">0x</span></div>
+    <!-- Conversion -->
+    <div class="sec-lbl" style="margin-top:8px">Conversión</div>
+    <div class="conv-card">
+      <div class="conv-top">
+        <div>
+          <div class="conv-title">Tasa de conversión</div>
+          <div class="conv-sub">citas agendadas → procedimientos</div>
+        </div>
+        <div class="conv-pct" id="c-conv">0%</div>
+      </div>
+      <div class="track"><div class="track-fill" id="c-conv-bar" style="width:0%"></div></div>
+      <div class="conv-row">
+        <span><strong id="c-citas2">0</strong> citas agendadas</span>
+        <span><strong id="c-procs2">0</strong> procedimientos</span>
+      </div>
+    </div>
+
+    <!-- Chart -->
+    <div class="sec-lbl">Últimos 7 días</div>
+    <div class="chart-card">
+      <div class="chart-hdr">
+        <div>
+          <div class="chart-title-txt">Ingresos vs Gasto</div>
+          <div class="chart-sub-txt">Evolución semanal</div>
+        </div>
+        <div class="chart-leg">
+          <div class="leg-row"><div class="leg-dot" style="background:var(--p2)"></div>Ingresos</div>
+          <div class="leg-row"><div class="leg-dot" style="background:var(--r2)"></div>Gasto</div>
         </div>
       </div>
+      <canvas id="chart-clinica" height="160"></canvas>
+    </div>
 
-      <!-- KPIs -->
-      <div class="section-title">Publicidad</div>
-      <div class="kpi-grid">
-        <div class="kpi-card">
-          <div class="kpi-icon" style="background:var(--red-bg)">💸</div>
-          <div class="kpi-label">Gasto Meta</div>
-          <div class="kpi-value" id="c-gasto">$0</div>
-          <span class="kpi-badge badge-red" id="c-pct-pub">0% ing.</span>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-icon" style="background:var(--blue-bg)">🎯</div>
-          <div class="kpi-label">Costo por Cita</div>
-          <div class="kpi-value" id="c-costo-cita">$0</div>
-          <span class="kpi-badge badge-blue">Meta / citas</span>
-        </div>
-      </div>
-
-      <div class="section-title">Conversión</div>
-      <div class="kpi-grid">
-        <div class="kpi-card">
-          <div class="kpi-icon" style="background:var(--purple-bg)">📅</div>
-          <div class="kpi-label">Citas Agendadas</div>
-          <div class="kpi-value" id="c-citas">0</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-icon" style="background:var(--green-bg)">✅</div>
-          <div class="kpi-label">Conversión</div>
-          <div class="kpi-value" id="c-conv">0%</div>
-          <span class="kpi-badge badge-green">cita → proc.</span>
-        </div>
-      </div>
-
-      <div class="section-title">Finanzas</div>
-      <div class="kpi-grid">
-        <div class="kpi-card">
-          <div class="kpi-icon" style="background:var(--purple-bg)">💊</div>
-          <div class="kpi-label">Ing. Procedimientos</div>
-          <div class="kpi-value" id="c-ing-procs">$0</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-icon" style="background:var(--green-bg)">📊</div>
-          <div class="kpi-label">Utilidad Bruta</div>
-          <div class="kpi-value" id="c-utilidad">$0</div>
-        </div>
-      </div>
-
-      <!-- Chart -->
-      <div class="section-title">Últimos 7 días</div>
-      <div class="chart-card">
-        <div class="chart-header">
-          <div class="chart-title">Ingresos vs Gasto</div>
-          <div class="chart-legend">
-            <div class="legend-item"><div class="legend-dot" style="background:var(--purple)"></div>Ingresos</div>
-            <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div>Gasto</div>
-          </div>
-        </div>
-        <canvas id="chart-clinica" height="150"></canvas>
-      </div>
-
-      <!-- Stats detalle -->
-      <div class="section-title">Resumen</div>
-      <div class="chart-card">
-        <div class="stat-row">
-          <div class="stat-left">
-            <div class="stat-icon-wrap" style="background:var(--purple-bg)">🏥</div>
-            <div>
-              <div class="stat-name">Ing. Citas</div>
-              <div class="stat-sub">precio fijo × citas</div>
-            </div>
-          </div>
+    <!-- Summary -->
+    <div class="sec-lbl">Resumen financiero</div>
+    <div class="sum-card">
+      <div class="sum-row">
+        <div class="sum-left">
+          <div class="sum-icon" style="background:linear-gradient(135deg,var(--p1),var(--p2))">🏥</div>
           <div>
-            <div class="stat-value" id="c-ing-citas">$0</div>
+            <div class="sum-name">Ingresos Citas</div>
+            <div class="sum-desc">precio fijo × citas</div>
           </div>
         </div>
-        <div class="stat-row">
-          <div class="stat-left">
-            <div class="stat-icon-wrap" style="background:var(--green-bg)">✂️</div>
-            <div>
-              <div class="stat-name">Procedimientos</div>
-              <div class="stat-sub" id="c-procs-sub">0 realizados</div>
-            </div>
-          </div>
+        <div class="sum-right">
+          <div class="sum-val" id="c-ing-citas">$0</div>
+        </div>
+      </div>
+      <div class="sum-row">
+        <div class="sum-left">
+          <div class="sum-icon" style="background:linear-gradient(135deg,var(--g1),var(--g2))">✂️</div>
           <div>
-            <div class="stat-value" id="c-ing-procs2">$0</div>
+            <div class="sum-name">Ing. Procedimientos</div>
+            <div class="sum-desc" id="c-procs-sub">0 realizados</div>
           </div>
         </div>
-        <div class="stat-row">
-          <div class="stat-left">
-            <div class="stat-icon-wrap" style="background:var(--red-bg)">📣</div>
-            <div>
-              <div class="stat-name">Gasto Publicidad</div>
-              <div class="stat-sub">Meta Ads clínica</div>
-            </div>
-          </div>
+        <div class="sum-right">
+          <div class="sum-val" id="c-ing-procs2">$0</div>
+        </div>
+      </div>
+      <div class="sum-row">
+        <div class="sum-left">
+          <div class="sum-icon" style="background:linear-gradient(135deg,var(--r1),var(--r2))">📣</div>
           <div>
-            <div class="stat-value" id="c-gasto2">$0</div>
-            <div class="stat-change" id="c-roas-badge" style="color:var(--purple)">ROAS 0x</div>
+            <div class="sum-name">Gasto Publicidad</div>
+            <div class="sum-desc">Meta Ads clínica</div>
           </div>
         </div>
-      </div>
-
-    </div><!-- /page-clinica -->
-
-    <!-- ═══════════ PÁGINA FACETECH ═══════════ -->
-    <div class="page" id="page-facetech">
-
-      <!-- Hero card -->
-      <div class="hero-card" style="background: linear-gradient(135deg, #0984e3 0%, #74b9ff 100%)">
-        <div class="hero-label">🎤 FaceTech — Ingresos</div>
-        <div class="hero-value" id="f-ingresos">$0</div>
-        <div class="hero-sub" id="f-ticket-hero">tickets × valor</div>
-        <div class="hero-badges">
-          <div class="hero-badge">👥 <span id="f-leads-hero">0</span> leads</div>
-          <div class="hero-badge">🎟️ <span id="f-compras-hero">0</span> compras</div>
-          <div class="hero-badge">📈 ROAS <span id="f-roas-hero">0x</span></div>
+        <div class="sum-right">
+          <div class="sum-val" id="c-gasto2">$0</div>
+          <div class="sum-note note-p" id="c-roas-badge">ROAS 0x</div>
         </div>
       </div>
+    </div>
 
-      <!-- KPIs -->
-      <div class="section-title">Leads</div>
-      <div class="kpi-grid">
-        <div class="kpi-card">
-          <div class="kpi-icon" style="background:var(--blue-bg)">👥</div>
-          <div class="kpi-label">Leads</div>
-          <div class="kpi-value" id="f-leads">0</div>
+  </div><!-- /clinica -->
+
+  <!-- ─── FACETECH ─── -->
+  <div class="page" id="page-facetech">
+
+    <!-- Revenue hero -->
+    <div class="rev-card ft">
+      <div class="rev-eyebrow">🎤 Ingresos Totales · FaceTech</div>
+      <div class="rev-amount" id="f-ingresos">$0</div>
+      <div class="rev-caption" id="f-caption">tickets × valor</div>
+      <div class="rev-pills">
+        <div class="rev-pill">
+          <div class="rev-pill-val" id="f-leads-pill">0</div>
+          <div class="rev-pill-lbl">Leads</div>
         </div>
-        <div class="kpi-card">
-          <div class="kpi-icon" style="background:var(--purple-bg)">💵</div>
-          <div class="kpi-label">Costo por Lead</div>
-          <div class="kpi-value" id="f-cpl">$0</div>
+        <div class="rev-pill">
+          <div class="rev-pill-val" id="f-compras-pill">0</div>
+          <div class="rev-pill-lbl">Compras</div>
+        </div>
+        <div class="rev-pill">
+          <div class="rev-pill-val" id="f-roas-pill">0x</div>
+          <div class="rev-pill-lbl">ROAS</div>
         </div>
       </div>
+    </div>
 
-      <div class="section-title">Ventas</div>
-      <div class="kpi-grid">
-        <div class="kpi-card">
-          <div class="kpi-icon" style="background:var(--green-bg)">🎟️</div>
-          <div class="kpi-label">Compras</div>
-          <div class="kpi-value" id="f-compras">0</div>
-          <span class="kpi-badge badge-green" id="f-conv">0% conv.</span>
+    <!-- Chips row -->
+    <div class="chips-wrap">
+      <div class="chips-row">
+        <div class="chip cr">
+          <div class="chip-lbl">💸 Gasto Meta</div>
+          <div class="chip-val" id="f-chip-gasto">$0</div>
         </div>
-        <div class="kpi-card">
-          <div class="kpi-icon" style="background:var(--yellow-bg)">🏷️</div>
-          <div class="kpi-label">Costo / Compra</div>
-          <div class="kpi-value" id="f-cpc">$0</div>
+        <div class="chip cb">
+          <div class="chip-lbl">👤 Costo / Lead</div>
+          <div class="chip-val" id="f-chip-cpl">$0</div>
+        </div>
+        <div class="chip ca">
+          <div class="chip-lbl">🎟️ Costo / Compra</div>
+          <div class="chip-val" id="f-chip-cpc">$0</div>
+        </div>
+        <div class="chip cg">
+          <div class="chip-lbl">📊 Utilidad</div>
+          <div class="chip-val" id="f-chip-util">$0</div>
         </div>
       </div>
+    </div>
 
-      <div class="section-title">Finanzas</div>
-      <div class="kpi-grid">
-        <div class="kpi-card">
-          <div class="kpi-icon" style="background:var(--red-bg)">💸</div>
-          <div class="kpi-label">Gasto Meta</div>
-          <div class="kpi-value" id="f-gasto">$0</div>
+    <!-- KPI grid -->
+    <div class="sec-lbl" style="margin-top:4px">Métricas clave</div>
+    <div class="kpi-grid">
+      <div class="kpi-card kb">
+        <div class="kpi-icon icon-b">👥</div>
+        <div class="kpi-lbl">Leads</div>
+        <div class="kpi-val" id="f-leads">0</div>
+        <div class="kpi-sub">generados</div>
+      </div>
+      <div class="kpi-card kc">
+        <div class="kpi-icon icon-c">💵</div>
+        <div class="kpi-lbl">Costo / Lead</div>
+        <div class="kpi-val" id="f-cpl">$0</div>
+        <div class="kpi-sub">Meta ÷ leads</div>
+      </div>
+      <div class="kpi-card kg">
+        <div class="kpi-icon icon-g">🎟️</div>
+        <div class="kpi-lbl">Compras</div>
+        <div class="kpi-val" id="f-compras">0</div>
+        <div class="kpi-sub" id="f-conv-sub">0% conversión</div>
+      </div>
+      <div class="kpi-card ka">
+        <div class="kpi-icon icon-a">🏷️</div>
+        <div class="kpi-lbl">Costo / Compra</div>
+        <div class="kpi-val" id="f-cpc">$0</div>
+        <div class="kpi-sub">Meta ÷ compras</div>
+      </div>
+    </div>
+
+    <!-- Conversion -->
+    <div class="sec-lbl" style="margin-top:8px">Conversión</div>
+    <div class="conv-card">
+      <div class="conv-top">
+        <div>
+          <div class="conv-title">Tasa de conversión</div>
+          <div class="conv-sub">leads → compras</div>
         </div>
-        <div class="kpi-card">
-          <div class="kpi-icon" style="background:var(--green-bg)">📊</div>
-          <div class="kpi-label">Utilidad Bruta</div>
-          <div class="kpi-value" id="f-utilidad">$0</div>
+        <div class="conv-pct ft-color" id="f-conv">0%</div>
+      </div>
+      <div class="track"><div class="track-fill ft" id="f-conv-bar" style="width:0%"></div></div>
+      <div class="conv-row">
+        <span><strong id="f-leads2">0</strong> leads</span>
+        <span><strong id="f-compras2">0</strong> compras</span>
+      </div>
+    </div>
+
+    <!-- Chart -->
+    <div class="sec-lbl">Últimos 7 días</div>
+    <div class="chart-card">
+      <div class="chart-hdr">
+        <div>
+          <div class="chart-title-txt">Ingresos vs Gasto</div>
+          <div class="chart-sub-txt">Evolución semanal</div>
+        </div>
+        <div class="chart-leg">
+          <div class="leg-row"><div class="leg-dot" style="background:var(--b2)"></div>Ingresos</div>
+          <div class="leg-row"><div class="leg-dot" style="background:var(--r2)"></div>Gasto</div>
         </div>
       </div>
+      <canvas id="chart-facetech" height="160"></canvas>
+    </div>
 
-      <!-- Chart -->
-      <div class="section-title">Últimos 7 días</div>
-      <div class="chart-card">
-        <div class="chart-header">
-          <div class="chart-title">Ingresos vs Gasto</div>
-          <div class="chart-legend">
-            <div class="legend-item"><div class="legend-dot" style="background:var(--blue)"></div>Ingresos</div>
-            <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div>Gasto</div>
-          </div>
-        </div>
-        <canvas id="chart-facetech" height="150"></canvas>
-      </div>
-
-      <!-- Stats detalle -->
-      <div class="section-title">Resumen</div>
-      <div class="chart-card">
-        <div class="stat-row">
-          <div class="stat-left">
-            <div class="stat-icon-wrap" style="background:var(--blue-bg)">🎤</div>
-            <div>
-              <div class="stat-name">Ticket Promedio</div>
-              <div class="stat-sub">valor por compra</div>
-            </div>
-          </div>
-          <div class="stat-value" id="f-ticket">$0</div>
-        </div>
-        <div class="stat-row">
-          <div class="stat-left">
-            <div class="stat-icon-wrap" style="background:var(--green-bg)">✅</div>
-            <div>
-              <div class="stat-name">Tasa Conversión</div>
-              <div class="stat-sub">leads → compras</div>
-            </div>
-          </div>
+    <!-- Summary -->
+    <div class="sec-lbl">Resumen</div>
+    <div class="sum-card">
+      <div class="sum-row">
+        <div class="sum-left">
+          <div class="sum-icon" style="background:linear-gradient(135deg,var(--b1),var(--b2))">🎤</div>
           <div>
-            <div class="stat-value" id="f-conv2">0%</div>
+            <div class="sum-name">Ticket Promedio</div>
+            <div class="sum-desc">valor por compra</div>
           </div>
         </div>
-        <div class="stat-row">
-          <div class="stat-left">
-            <div class="stat-icon-wrap" style="background:var(--purple-bg)">📈</div>
-            <div>
-              <div class="stat-name">ROAS</div>
-              <div class="stat-sub">retorno vs inversión</div>
-            </div>
-          </div>
-          <div class="stat-value" id="f-roas" style="color:var(--purple)">0x</div>
+        <div class="sum-right">
+          <div class="sum-val" id="f-ticket">$0</div>
         </div>
       </div>
+      <div class="sum-row">
+        <div class="sum-left">
+          <div class="sum-icon" style="background:linear-gradient(135deg,var(--g1),var(--g2))">✅</div>
+          <div>
+            <div class="sum-name">Tasa Conversión</div>
+            <div class="sum-desc">leads → compras</div>
+          </div>
+        </div>
+        <div class="sum-right">
+          <div class="sum-val" id="f-conv2">0%</div>
+        </div>
+      </div>
+      <div class="sum-row">
+        <div class="sum-left">
+          <div class="sum-icon" style="background:linear-gradient(135deg,var(--r1),var(--r2))">📣</div>
+          <div>
+            <div class="sum-name">Gasto Publicidad</div>
+            <div class="sum-desc">Meta Ads FaceTech</div>
+          </div>
+        </div>
+        <div class="sum-right">
+          <div class="sum-val" id="f-gasto">$0</div>
+          <div class="sum-note note-b" id="f-roas-badge">ROAS 0x</div>
+        </div>
+      </div>
+      <div class="sum-row">
+        <div class="sum-left">
+          <div class="sum-icon" style="background:linear-gradient(135deg,var(--p1),var(--p2))">📈</div>
+          <div>
+            <div class="sum-name">Utilidad Bruta</div>
+            <div class="sum-desc">ingresos − gasto</div>
+          </div>
+        </div>
+        <div class="sum-right">
+          <div class="sum-val" id="f-utilidad">$0</div>
+        </div>
+      </div>
+    </div>
 
-    </div><!-- /page-facetech -->
+  </div><!-- /facetech -->
 
-  </div><!-- /app -->
-
-  <!-- BOTTOM NAV -->
-  <nav class="bottom-nav">
-    <button class="nav-item active" onclick="switchTab('clinica')">
-      <div class="nav-icon">🏥</div>
-      Clínica
-    </button>
-    <button class="nav-item" onclick="switchTab('facetech')">
-      <div class="nav-icon">🎤</div>
-      FaceTech
-    </button>
-  </nav>
+</div><!-- /app -->
 
 <script>
-let DATA = null;
-let currentTab = 'clinica';
-let currentPeriod = 'hoy';
-let chartClinica = null;
-let chartFacetech = null;
+/* ── State ── */
+let DATA = null, currentTab = 'clinica', currentPeriod = 'hoy';
+let chartC = null, chartF = null;
 
+/* ── Formatters ── */
 const COP = v => {
-  if (!v || v === 0) return '$0';
-  if (v >= 1_000_000) return '$' + (v/1_000_000).toFixed(1) + 'M';
-  if (v >= 1_000) return '$' + Math.round(v/1_000) + 'K';
+  if (!v) return '$0';
+  if (v >= 1e9) return '$' + (v/1e9).toFixed(2) + 'B';
+  if (v >= 1e6) return '$' + (v/1e6).toFixed(2) + 'M';
+  if (v >= 1e3) return '$' + Math.round(v/1e3) + 'K';
   return '$' + Math.round(v).toLocaleString('es-CO');
 };
-const PCT = v => (v||0).toFixed(1) + '%';
-const NUM = v => (v||0).toLocaleString('es-CO');
+const PCT  = v => (v||0).toFixed(1) + '%';
+const NUM  = v => (v||0).toLocaleString('es-CO');
 const ROAS = v => (v||0).toFixed(2) + 'x';
+const set  = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
 
-function set(id, val) { const el=document.getElementById(id); if(el) el.textContent=val; }
-function setColor(id, positive) {
-  const el = document.getElementById(id);
-  if (el) el.style.color = positive ? 'var(--green)' : 'var(--red)';
-}
-
+/* ── Render Clínica ── */
 function renderClinica(d) {
-  set('c-ingresos', COP(d.ingresos_totales));
-  set('c-citas-hero', NUM(d.citas_agendadas));
-  set('c-procs-hero', NUM(d.procedimientos_vendidos));
-  set('c-roas-hero', ROAS(d.roas));
-  set('c-gasto', COP(d.gasto_meta));
-  set('c-gasto2', COP(d.gasto_meta));
-  set('c-pct-pub', PCT(d.porcentaje_publicidad) + ' ing.');
-  set('c-costo-cita', COP(d.costo_por_cita));
-  set('c-citas', NUM(d.citas_agendadas));
-  set('c-conv', PCT(d.tasa_conversion));
-  set('c-ing-procs', COP(d.ingresos_procedimientos));
-  set('c-ing-procs2', COP(d.ingresos_procedimientos));
-  set('c-ing-citas', COP(d.ingresos_citas));
-  set('c-procs-sub', NUM(d.procedimientos_vendidos) + ' realizados');
-  set('c-utilidad', COP(d.utilidad_bruta));
-  set('c-roas-badge', 'ROAS ' + ROAS(d.roas));
-  setColor('c-utilidad', d.utilidad_bruta >= 0);
+  set('c-ingresos',    COP(d.ingresos_totales));
+  set('c-citas-pill',  NUM(d.citas_agendadas));
+  set('c-procs-pill',  NUM(d.procedimientos_vendidos));
+  set('c-roas-pill',   ROAS(d.roas));
+  set('c-chip-gasto',  COP(d.gasto_meta));
+  set('c-chip-cita',   COP(d.costo_por_cita));
+  set('c-chip-util',   COP(d.utilidad_bruta));
+  set('c-chip-pct',    PCT(d.porcentaje_publicidad));
+  set('c-gasto',       COP(d.gasto_meta));
+  set('c-pct-pub',     PCT(d.porcentaje_publicidad) + ' de ingresos');
+  set('c-costo-cita',  COP(d.costo_por_cita));
+  set('c-ing-procs',   COP(d.ingresos_procedimientos));
+  set('c-procs-sub2',  NUM(d.procedimientos_vendidos) + ' realizados');
+  set('c-utilidad',    COP(d.utilidad_bruta));
+  set('c-conv',        PCT(d.tasa_conversion));
+  set('c-citas2',      NUM(d.citas_agendadas));
+  set('c-procs2',      NUM(d.procedimientos_vendidos));
+  set('c-ing-citas',   COP(d.ingresos_citas));
+  set('c-procs-sub',   NUM(d.procedimientos_vendidos) + ' realizados');
+  set('c-ing-procs2',  COP(d.ingresos_procedimientos));
+  set('c-gasto2',      COP(d.gasto_meta));
+  set('c-roas-badge',  'ROAS ' + ROAS(d.roas));
+
+  /* progress bar */
+  const pct = Math.min(d.tasa_conversion || 0, 100);
+  const bar = document.getElementById('c-conv-bar');
+  if (bar) setTimeout(() => bar.style.width = pct + '%', 80);
+
+  /* utilidad color */
+  const uel = document.getElementById('c-utilidad');
+  if (uel) uel.style.color = d.utilidad_bruta >= 0 ? 'var(--g2)' : 'var(--r2)';
 }
 
+/* ── Render FaceTech ── */
 function renderFacetech(d) {
-  set('f-ingresos', COP(d.ingresos));
-  set('f-leads-hero', NUM(d.leads));
-  set('f-compras-hero', NUM(d.compras));
-  set('f-roas-hero', ROAS(d.roas));
-  set('f-ticket-hero', NUM(d.compras) + ' tickets × ' + COP(d.valor_ticket));
-  set('f-leads', NUM(d.leads));
-  set('f-cpl', COP(d.costo_por_lead));
-  set('f-compras', NUM(d.compras));
-  set('f-conv', PCT(d.tasa_conversion) + ' conv.');
-  set('f-conv2', PCT(d.tasa_conversion));
-  set('f-cpc', COP(d.costo_por_compra));
-  set('f-gasto', COP(d.gasto_meta));
-  set('f-utilidad', COP(d.utilidad_bruta));
-  set('f-ticket', COP(d.valor_ticket));
-  set('f-roas', ROAS(d.roas));
-  setColor('f-utilidad', d.utilidad_bruta >= 0);
+  set('f-ingresos',    COP(d.ingresos));
+  set('f-leads-pill',  NUM(d.leads));
+  set('f-compras-pill',NUM(d.compras));
+  set('f-roas-pill',   ROAS(d.roas));
+  set('f-caption',     NUM(d.compras) + ' tickets × ' + COP(d.valor_ticket));
+  set('f-chip-gasto',  COP(d.gasto_meta));
+  set('f-chip-cpl',    COP(d.costo_por_lead));
+  set('f-chip-cpc',    COP(d.costo_por_compra));
+  set('f-chip-util',   COP(d.utilidad_bruta));
+  set('f-leads',       NUM(d.leads));
+  set('f-cpl',         COP(d.costo_por_lead));
+  set('f-compras',     NUM(d.compras));
+  set('f-conv-sub',    PCT(d.tasa_conversion) + ' conversión');
+  set('f-cpc',         COP(d.costo_por_compra));
+  set('f-conv',        PCT(d.tasa_conversion));
+  set('f-leads2',      NUM(d.leads));
+  set('f-compras2',    NUM(d.compras));
+  set('f-ticket',      COP(d.valor_ticket));
+  set('f-conv2',       PCT(d.tasa_conversion));
+  set('f-gasto',       COP(d.gasto_meta));
+  set('f-roas-badge',  'ROAS ' + ROAS(d.roas));
+  set('f-utilidad',    COP(d.utilidad_bruta));
+
+  const pct = Math.min(d.tasa_conversion || 0, 100);
+  const bar = document.getElementById('f-conv-bar');
+  if (bar) setTimeout(() => bar.style.width = pct + '%', 80);
+
+  const uel = document.getElementById('f-utilidad');
+  if (uel) uel.style.color = d.utilidad_bruta >= 0 ? 'var(--g2)' : 'var(--r2)';
+}
+
+/* ── Charts ── */
+function buildGradient(ctx, h, c1, c2) {
+  const g = ctx.createLinearGradient(0, 0, 0, h);
+  g.addColorStop(0, c1);
+  g.addColorStop(1, c2);
+  return g;
 }
 
 function renderCharts(chart) {
-  const makeChart = (id, ingData, gastoData, colorIng) => {
-    const ctx = document.getElementById(id).getContext('2d');
+  Chart.defaults.color = '#94a3b8';
+  Chart.defaults.font.family = "-apple-system,'SF Pro Display',sans-serif";
+
+  const makeChart = (id, ingData, gastoData, inColor1, inColor2) => {
+    const canvas = document.getElementById(id);
+    const ctx = canvas.getContext('2d');
+    const h = canvas.offsetHeight || 160;
+    const ingGrad  = buildGradient(ctx, h, inColor1 + '55', inColor1 + '10');
+    const gasGrad  = buildGradient(ctx, h, '#fb718555', '#fb718510');
     return new Chart(ctx, {
       type: 'bar',
       data: {
@@ -689,18 +883,18 @@ function renderCharts(chart) {
           {
             label: 'Ingresos',
             data: ingData,
-            backgroundColor: colorIng + '20',
-            borderColor: colorIng,
-            borderWidth: 2,
+            backgroundColor: ingGrad,
+            borderColor: inColor1,
+            borderWidth: 1.5,
             borderRadius: 8,
             borderSkipped: false,
           },
           {
             label: 'Gasto',
             data: gastoData,
-            backgroundColor: '#e1705520',
-            borderColor: '#e17055',
-            borderWidth: 2,
+            backgroundColor: gasGrad,
+            borderColor: '#fb7185',
+            borderWidth: 1.5,
             borderRadius: 8,
             borderSkipped: false,
           },
@@ -709,23 +903,32 @@ function renderCharts(chart) {
       options: {
         responsive: true,
         maintainAspectRatio: false,
+        animation: { duration: 900, easing: 'easeOutQuart' },
         plugins: {
           legend: { display: false },
           tooltip: {
-            backgroundColor: '#2d3436',
-            cornerRadius: 10,
-            callbacks: { label: ctx => ' ' + COP(ctx.raw) },
+            backgroundColor: '#0d1120',
+            borderColor: 'rgba(255,255,255,.1)',
+            borderWidth: 1,
+            cornerRadius: 12,
+            padding: 12,
+            callbacks: { label: c => '  ' + COP(c.raw) },
           },
         },
         scales: {
           x: {
-            ticks: { color: '#b2bec3', font: { size: 10, weight: '600' } },
+            ticks: { color: '#475569', font: { size: 10, weight: '600' } },
             grid: { display: false },
             border: { display: false },
           },
           y: {
-            ticks: { color: '#b2bec3', font: { size: 10 }, callback: v => COP(v) },
-            grid: { color: '#f1f3f8' },
+            ticks: {
+              color: '#475569',
+              font: { size: 10 },
+              callback: v => COP(v),
+              maxTicksLimit: 5,
+            },
+            grid: { color: 'rgba(255,255,255,.05)' },
             border: { display: false },
           },
         },
@@ -733,69 +936,77 @@ function renderCharts(chart) {
     });
   };
 
-  if (chartClinica) chartClinica.destroy();
-  if (chartFacetech) chartFacetech.destroy();
-  chartClinica = makeChart('chart-clinica', chart.clinica_ingresos, chart.clinica_gasto, '#6c5ce7');
-  chartFacetech = makeChart('chart-facetech', chart.facetech_ingresos, chart.facetech_gasto, '#0984e3');
+  if (chartC) chartC.destroy();
+  if (chartF) chartF.destroy();
+  chartC = makeChart('chart-clinica', chart.clinica_ingresos, chart.clinica_gasto, '#a855f7', '#7c3aed');
+  chartF = makeChart('chart-facetech', chart.facetech_ingresos, chart.facetech_gasto, '#60a5fa', '#2563eb');
 }
 
-function renderAll() {
-  if (!DATA) return;
-  const p = currentPeriod;
-  renderClinica(DATA.clinica[p]);
-  renderFacetech(DATA.facetech[p]);
-
-  const now = new Date();
-  const label = p === 'hoy'
-    ? 'Hoy, ' + now.toLocaleDateString('es-CO', { day:'numeric', month:'short' })
-    : now.toLocaleDateString('es-CO', { month:'long', year:'numeric' });
-  set('period-label', label.charAt(0).toUpperCase() + label.slice(1));
+/* ── Switch period ── */
+function switchPeriod(p) {
+  currentPeriod = p;
+  document.querySelectorAll('.pill-btn').forEach((el, i) => {
+    el.classList.toggle('active', (i===0&&p==='hoy')||(i===1&&p==='mes'));
+  });
+  if (DATA) {
+    renderClinica(DATA.clinica[p]);
+    renderFacetech(DATA.facetech[p]);
+  }
 }
 
+/* ── Switch tab ── */
 function switchTab(tab) {
   currentTab = tab;
-  document.querySelectorAll('.nav-item').forEach((el, i) => {
-    el.classList.toggle('active', (i===0 && tab==='clinica') || (i===1 && tab==='facetech'));
-  });
-  document.getElementById('page-clinica').classList.toggle('active', tab==='clinica');
-  document.getElementById('page-facetech').classList.toggle('active', tab==='facetech');
+  const isFt = tab === 'facetech';
+
+  /* hero header theme */
+  const hero = document.getElementById('hero-header');
+  hero.classList.toggle('ft', isFt);
+  const av = document.getElementById('avatar');
+  av.classList.toggle('ft', isFt);
+
+  /* tab pills */
+  document.getElementById('tab-clinica').classList.toggle('active', !isFt);
+  document.getElementById('tab-facetech').classList.toggle('active', isFt);
+
+  /* pages */
+  document.getElementById('page-clinica').classList.toggle('active', !isFt);
+  document.getElementById('page-facetech').classList.toggle('active', isFt);
 }
 
-function switchPeriod(period) {
-  currentPeriod = period;
-  document.querySelectorAll('.period-btn').forEach((el,i) => {
-    el.classList.toggle('active', (i===0&&period==='hoy')||(i===1&&period==='mes'));
-  });
-  renderAll();
+/* ── Header date ── */
+function setDate() {
+  const now  = new Date();
+  const h    = now.getHours();
+  const days = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+  const mths = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+  set('hdr-date', `${days[now.getDay()]}, ${now.getDate()} de ${mths[now.getMonth()]} ${now.getFullYear()}`);
+  set('greeting', h < 12 ? 'Buenos días' : h < 19 ? 'Buenas tardes' : 'Buenas noches');
 }
 
-// Saludo dinámico
-function updateGreeting() {
-  const h = new Date().getHours();
-  const g = h < 12 ? 'Buenos días 👋' : h < 18 ? 'Buenas tardes 👋' : 'Buenas noches 👋';
-  const el = document.querySelector('.header-greeting');
-  if (el) el.textContent = g;
-}
-
+/* ── Load data ── */
 async function loadData() {
   try {
     const res = await fetch('data.json?t=' + Date.now());
     if (!res.ok) throw new Error('HTTP ' + res.status);
     DATA = await res.json();
     set('updated-at', DATA.updated_at || '—');
-    updateGreeting();
-    renderAll();
+    setDate();
+    renderClinica(DATA.clinica[currentPeriod]);
+    renderFacetech(DATA.facetech[currentPeriod]);
     renderCharts(DATA.chart);
     document.getElementById('loading').style.display = 'none';
     document.getElementById('app').style.display = 'block';
   } catch(e) {
-    document.getElementById('loading').innerHTML = `
-      <div class="error-box">⚠️ Error cargando datos.<br><small>${e.message}</small><br><br>
-      <small>Corre main.py al menos una vez para generar data.json</small></div>`;
+    document.getElementById('loading').innerHTML =
+      `<div class="error-box">⚠️ Error cargando datos.<br>
+       <small style="opacity:.7">${e.message}</small><br><br>
+       <small style="opacity:.6">Ejecuta main.py para generar data.json</small></div>`;
   }
 }
 
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
+setDate();
 loadData();
 setInterval(loadData, 30 * 60 * 1000);
 </script>
