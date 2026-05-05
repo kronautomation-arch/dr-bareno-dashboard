@@ -389,25 +389,54 @@
     }
     .conv-row strong { color:var(--txt); font-weight:700; }
 
-    /* ─── CHART CARD ─── */
+    /* ─── CHARTS GRID ─── */
+    .charts-grid {
+      display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px;
+    }
+    @media(max-width:520px) { .charts-grid { grid-template-columns:1fr; } }
+
     .chart-card {
       background:var(--glass); border:1px solid var(--border);
-      border-radius:var(--rs); padding:18px; margin-bottom:10px;
+      border-radius:var(--rs); padding:16px;
       backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
     }
     .chart-hdr {
-      display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:16px;
+      display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:14px;
     }
-    .chart-title-txt { font-size:14px; font-weight:700; color:var(--txt); }
-    .chart-sub-txt   { font-size:11px; color:var(--txt2); margin-top:2px; }
-    .chart-leg { display:flex; flex-direction:column; gap:5px; align-items:flex-end; }
+    .chart-title-txt { font-size:13px; font-weight:700; color:var(--txt); }
+    .chart-sub-txt   { font-size:10px; color:var(--txt2); margin-top:2px; }
+    .chart-leg { display:flex; flex-direction:column; gap:4px; align-items:flex-end; }
     .leg-row {
       display:flex; align-items:center; gap:5px;
       font-size:10px; color:var(--txt2); font-weight:600;
     }
-    .leg-dot {
-      width:7px; height:7px; border-radius:50%;
+    .leg-dot { width:7px; height:7px; border-radius:50%; }
+
+    /* ─── DONUT ─── */
+    .donut-wrap {
+      display:flex; align-items:center; gap:14px;
     }
+    .donut-canvas-wrap {
+      position:relative; flex-shrink:0; width:110px; height:110px;
+    }
+    .donut-center {
+      position:absolute; inset:0;
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      pointer-events:none;
+    }
+    .donut-center-val {
+      font-size:13px; font-weight:800; color:var(--txt); letter-spacing:-.5px; line-height:1;
+    }
+    .donut-center-lbl { font-size:9px; color:var(--txt3); margin-top:2px; font-weight:600; }
+    .donut-legend { flex:1; display:flex; flex-direction:column; gap:7px; }
+    .donut-leg-row {
+      display:flex; align-items:center; gap:7px;
+    }
+    .donut-leg-dot {
+      width:8px; height:8px; border-radius:50%; flex-shrink:0;
+    }
+    .donut-leg-name { font-size:10px; color:var(--txt2); flex:1; font-weight:500; }
+    .donut-leg-pct  { font-size:11px; font-weight:800; color:var(--txt); }
 
     /* ─── SUMMARY CARD ─── */
     .sum-card {
@@ -613,20 +642,40 @@
       </div>
     </div>
 
-    <!-- Chart -->
-    <div class="sec-lbl">Últimos 7 días</div>
-    <div class="chart-card">
-      <div class="chart-hdr">
-        <div>
-          <div class="chart-title-txt">Ingresos vs Gasto</div>
-          <div class="chart-sub-txt">Evolución semanal</div>
+    <!-- Charts 2-col -->
+    <div class="sec-lbl">Análisis visual</div>
+    <div class="charts-grid">
+      <div class="chart-card">
+        <div class="chart-hdr">
+          <div>
+            <div class="chart-title-txt">Ingresos vs Gasto</div>
+            <div class="chart-sub-txt">Últimos 7 días</div>
+          </div>
+          <div class="chart-leg">
+            <div class="leg-row"><div class="leg-dot" style="background:var(--p2)"></div>Ingresos</div>
+            <div class="leg-row"><div class="leg-dot" style="background:var(--r2)"></div>Gasto</div>
+          </div>
         </div>
-        <div class="chart-leg">
-          <div class="leg-row"><div class="leg-dot" style="background:var(--p2)"></div>Ingresos</div>
-          <div class="leg-row"><div class="leg-dot" style="background:var(--r2)"></div>Gasto</div>
+        <canvas id="chart-clinica" height="150"></canvas>
+      </div>
+      <div class="chart-card">
+        <div class="chart-hdr">
+          <div>
+            <div class="chart-title-txt">Desglose de ingresos</div>
+            <div class="chart-sub-txt">Distribución del período</div>
+          </div>
+        </div>
+        <div class="donut-wrap">
+          <div class="donut-canvas-wrap">
+            <canvas id="donut-clinica" width="110" height="110"></canvas>
+            <div class="donut-center">
+              <div class="donut-center-val" id="donut-c-val">$0</div>
+              <div class="donut-center-lbl">Total</div>
+            </div>
+          </div>
+          <div class="donut-legend" id="donut-c-legend"></div>
         </div>
       </div>
-      <canvas id="chart-clinica" height="160"></canvas>
     </div>
 
     <!-- Summary -->
@@ -765,20 +814,40 @@
       </div>
     </div>
 
-    <!-- Chart -->
-    <div class="sec-lbl">Últimos 7 días</div>
-    <div class="chart-card">
-      <div class="chart-hdr">
-        <div>
-          <div class="chart-title-txt">Ingresos vs Gasto</div>
-          <div class="chart-sub-txt">Evolución semanal</div>
+    <!-- Charts 2-col -->
+    <div class="sec-lbl">Análisis visual</div>
+    <div class="charts-grid">
+      <div class="chart-card">
+        <div class="chart-hdr">
+          <div>
+            <div class="chart-title-txt">Ingresos vs Gasto</div>
+            <div class="chart-sub-txt">Últimos 7 días</div>
+          </div>
+          <div class="chart-leg">
+            <div class="leg-row"><div class="leg-dot" style="background:var(--b2)"></div>Ingresos</div>
+            <div class="leg-row"><div class="leg-dot" style="background:var(--r2)"></div>Gasto</div>
+          </div>
         </div>
-        <div class="chart-leg">
-          <div class="leg-row"><div class="leg-dot" style="background:var(--b2)"></div>Ingresos</div>
-          <div class="leg-row"><div class="leg-dot" style="background:var(--r2)"></div>Gasto</div>
+        <canvas id="chart-facetech" height="150"></canvas>
+      </div>
+      <div class="chart-card">
+        <div class="chart-hdr">
+          <div>
+            <div class="chart-title-txt">Desglose de ingresos</div>
+            <div class="chart-sub-txt">Distribución del período</div>
+          </div>
+        </div>
+        <div class="donut-wrap">
+          <div class="donut-canvas-wrap">
+            <canvas id="donut-facetech" width="110" height="110"></canvas>
+            <div class="donut-center">
+              <div class="donut-center-val" id="donut-f-val">$0</div>
+              <div class="donut-center-lbl">Total</div>
+            </div>
+          </div>
+          <div class="donut-legend" id="donut-f-legend"></div>
         </div>
       </div>
-      <canvas id="chart-facetech" height="160"></canvas>
     </div>
 
     <!-- Summary -->
@@ -842,7 +911,7 @@
 <script>
 /* ── State ── */
 let DATA = null, currentTab = 'clinica', currentPeriod = 'hoy';
-let chartC = null, chartF = null;
+let chartC = null, chartF = null, donutC = null, donutF = null;
 
 /* ── Formatters ── */
 const COP = v => {
@@ -856,6 +925,55 @@ const PCT  = v => (v||0).toFixed(1) + '%';
 const NUM  = v => (v||0).toLocaleString('es-CO');
 const ROAS = v => (v||0).toFixed(2) + 'x';
 const set  = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+
+/* ── Donut helper ── */
+function buildDonut(canvasId, legendId, centerValId, labels, values, colors) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return null;
+  const ctx = canvas.getContext('2d');
+  const total = values.reduce((a,b) => a+b, 0);
+  set(centerValId, COP(total));
+
+  const chart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels,
+      datasets: [{
+        data: values.map(v => v || 0.001),
+        backgroundColor: colors,
+        borderWidth: 0,
+        hoverOffset: 6,
+      }]
+    },
+    options: {
+      responsive: false,
+      cutout: '68%',
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#0d1120',
+          borderColor: 'rgba(255,255,255,.1)',
+          borderWidth: 1,
+          cornerRadius: 10,
+          callbacks: { label: c => '  ' + COP(c.raw) }
+        }
+      }
+    }
+  });
+
+  const leg = document.getElementById(legendId);
+  if (leg) {
+    leg.innerHTML = labels.map((l, i) => {
+      const pct = total ? ((values[i]/total)*100).toFixed(1) : '0.0';
+      return `<div class="donut-leg-row">
+        <div class="donut-leg-dot" style="background:${colors[i]}"></div>
+        <span class="donut-leg-name">${l}</span>
+        <span class="donut-leg-pct">${pct}%</span>
+      </div>`;
+    }).join('');
+  }
+  return chart;
+}
 
 /* ── Render Clínica ── */
 function renderClinica(d) {
@@ -890,6 +1008,15 @@ function renderClinica(d) {
   /* utilidad color */
   const uel = document.getElementById('c-utilidad');
   if (uel) uel.style.color = d.utilidad_bruta >= 0 ? 'var(--g2)' : 'var(--r2)';
+
+  /* donut */
+  if (donutC) donutC.destroy();
+  donutC = buildDonut(
+    'donut-clinica', 'donut-c-legend', 'donut-c-val',
+    ['Ing. Citas', 'Ing. Procedimientos', 'Gasto Meta'],
+    [d.ingresos_citas, d.ingresos_procedimientos, d.gasto_meta],
+    ['#a855f7', '#34d399', '#fb7185']
+  );
 }
 
 /* ── Render FaceTech ── */
@@ -923,6 +1050,15 @@ function renderFacetech(d) {
 
   const uel = document.getElementById('f-utilidad');
   if (uel) uel.style.color = d.utilidad_bruta >= 0 ? 'var(--g2)' : 'var(--r2)';
+
+  /* donut */
+  if (donutF) donutF.destroy();
+  donutF = buildDonut(
+    'donut-facetech', 'donut-f-legend', 'donut-f-val',
+    ['Ingresos', 'Gasto Meta', 'Utilidad'],
+    [d.ingresos, d.gasto_meta, Math.max(d.utilidad_bruta, 0)],
+    ['#60a5fa', '#fb7185', '#34d399']
+  );
 }
 
 /* ── Charts ── */
