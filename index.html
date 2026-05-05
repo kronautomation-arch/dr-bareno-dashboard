@@ -681,6 +681,18 @@
           <div class="chip-lbl">💡 CPM</div>
           <div class="chip-val" id="c-cpm">—</div>
         </div>
+        <div class="chip cb">
+          <div class="chip-lbl">💬 Conversaciones</div>
+          <div class="chip-val" id="c-clicks">—</div>
+        </div>
+        <div class="chip cg">
+          <div class="chip-lbl">📊 Conv. → Cita</div>
+          <div class="chip-val" id="c-conv-click-cita">—</div>
+        </div>
+        <div class="chip cp">
+          <div class="chip-lbl">📊 Conv. → Proc.</div>
+          <div class="chip-val" id="c-conv-cita-proc">—</div>
+        </div>
       </div>
     </div>
     <div class="concl-card">
@@ -885,6 +897,18 @@
         <div class="chip cr">
           <div class="chip-lbl">💡 CPM</div>
           <div class="chip-val" id="f-cpm">—</div>
+        </div>
+        <div class="chip cb">
+          <div class="chip-lbl">💬 Conversaciones</div>
+          <div class="chip-val" id="f-clicks">—</div>
+        </div>
+        <div class="chip cg">
+          <div class="chip-lbl">📊 Conv. → Lead</div>
+          <div class="chip-val" id="f-conv-click-lead">—</div>
+        </div>
+        <div class="chip cp">
+          <div class="chip-lbl">📊 Conv. → Compra</div>
+          <div class="chip-val" id="f-conv-lead-compra">—</div>
         </div>
       </div>
     </div>
@@ -1246,13 +1270,21 @@ function renderCharts(chart) {
 }
 
 /* ── Alcance & Conclusiones ── */
-function renderAlcanceClinica(ins, conclusiones) {
-  ins = ins || {};
+function renderAlcanceClinica(ins, conclusiones, kpis) {
+  ins  = ins  || {};
+  kpis = kpis || {};
   set('c-reach',       (ins.reach||0).toLocaleString('es-CO'));
   set('c-impressions', (ins.impressions||0).toLocaleString('es-CO'));
   set('c-freq',        ((ins.frequency||0).toFixed(1)) + 'x');
   set('c-ctr',         ((ins.ctr||0).toFixed(2)) + '%');
   set('c-cpm',         COP(ins.cpm||0));
+
+  const clicks = ins.clicks || 0;
+  const citas  = kpis.citas_agendadas || 0;
+  const procs  = kpis.procedimientos_vendidos || 0;
+  set('c-clicks',          clicks.toLocaleString('es-CO'));
+  set('c-conv-click-cita', clicks > 0 ? ((citas / clicks) * 100).toFixed(1) + '%' : '—');
+  set('c-conv-cita-proc',  citas  > 0 ? ((procs / citas)  * 100).toFixed(1) + '%' : '—');
 
   const body = document.getElementById('c-concl-body');
   if (!body) return;
@@ -1265,13 +1297,21 @@ function renderAlcanceClinica(ins, conclusiones) {
   }
 }
 
-function renderAlcanceFacetech(ins, conclusiones) {
-  ins = ins || {};
+function renderAlcanceFacetech(ins, conclusiones, kpis) {
+  ins  = ins  || {};
+  kpis = kpis || {};
   set('f-reach',       (ins.reach||0).toLocaleString('es-CO'));
   set('f-impressions', (ins.impressions||0).toLocaleString('es-CO'));
   set('f-freq',        ((ins.frequency||0).toFixed(1)) + 'x');
   set('f-ctr',         ((ins.ctr||0).toFixed(2)) + '%');
   set('f-cpm',         COP(ins.cpm||0));
+
+  const clicks  = ins.clicks || 0;
+  const leads   = kpis.leads   || 0;
+  const compras = kpis.compras || 0;
+  set('f-clicks',           clicks.toLocaleString('es-CO'));
+  set('f-conv-click-lead',  clicks > 0 ? ((leads   / clicks) * 100).toFixed(1) + '%' : '—');
+  set('f-conv-lead-compra', leads  > 0 ? ((compras / leads)  * 100).toFixed(1) + '%' : '—');
 
   const body = document.getElementById('f-concl-body');
   if (!body) return;
@@ -1298,15 +1338,19 @@ function switchPeriod(p) {
   const key    = PERIOD_DATA[p]    || 'mes';
   const alcKey = PERIOD_ALCANCE[p] || 'mes';
   if (DATA) {
-    renderClinica(DATA.clinica[key] || DATA.clinica.hoy);
-    renderFacetech(DATA.facetech[key] || DATA.facetech.hoy);
+    const ckpis = DATA.clinica[key]   || DATA.clinica.hoy;
+    const fkpis = DATA.facetech[key]  || DATA.facetech.hoy;
+    renderClinica(ckpis);
+    renderFacetech(fkpis);
     renderAlcanceClinica(
       DATA.alcance?.clinica?.[alcKey],
-      DATA.conclusiones?.clinica?.[alcKey]
+      DATA.conclusiones?.clinica?.[alcKey],
+      ckpis
     );
     renderAlcanceFacetech(
       DATA.alcance?.facetech?.[alcKey],
-      DATA.conclusiones?.facetech?.[alcKey]
+      DATA.conclusiones?.facetech?.[alcKey],
+      fkpis
     );
   }
 }
@@ -1448,16 +1492,20 @@ async function loadData() {
     set('updated-at', DATA.updated_at || '—');
     setDate();
     const alcKey = PERIOD_ALCANCE[currentPeriod] || 'hoy';
-    renderClinica(DATA.clinica[currentPeriod]);
-    renderFacetech(DATA.facetech[currentPeriod]);
+    const ckpis  = DATA.clinica[currentPeriod]  || DATA.clinica.hoy;
+    const fkpis  = DATA.facetech[currentPeriod] || DATA.facetech.hoy;
+    renderClinica(ckpis);
+    renderFacetech(fkpis);
     renderCharts(DATA.chart);
     renderAlcanceClinica(
       DATA.alcance?.clinica?.[alcKey],
-      DATA.conclusiones?.clinica?.[alcKey]
+      DATA.conclusiones?.clinica?.[alcKey],
+      ckpis
     );
     renderAlcanceFacetech(
       DATA.alcance?.facetech?.[alcKey],
-      DATA.conclusiones?.facetech?.[alcKey]
+      DATA.conclusiones?.facetech?.[alcKey],
+      fkpis
     );
     document.getElementById('loading').style.display = 'none';
     document.getElementById('app').style.display = 'block';
