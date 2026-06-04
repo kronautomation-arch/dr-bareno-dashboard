@@ -721,10 +721,31 @@ Responde SOLO con el JSON, sin texto adicional.`;
     toast('Configuración guardada ✓');
   }
 
+  /* ─────────────────────────────────────────────────
+     CONFIG — carga token Apify desde Supabase secret
+  ───────────────────────────────────────────────── */
+  async function fetchConfig() {
+    if (apifyToken) return;
+    try {
+      const session = await _sb.auth.getSession();
+      const tok = session.data?.session?.access_token || SUPABASE_ANON_KEY;
+      const res = await fetch(SUPABASE_FN_URL, {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${tok}`, 'Content-Type': 'application/json', apikey: SUPABASE_ANON_KEY },
+        body: JSON.stringify({ action: 'get_config' }),
+      });
+      if (res.ok) {
+        const { apify_token } = await res.json();
+        if (apify_token) { apifyToken = apify_token; localStorage.setItem('vl_apify_token', apify_token); }
+      }
+    } catch (e) { console.warn('[VL] fetchConfig:', e); }
+  }
+
   /* ═══════════════════════════════════════════════
      INIT
   ═══════════════════════════════════════════════ */
   async function init() {
+    await fetchConfig();
     if (!apifyToken) {
       const notice = $('vl-config-notice');
       if (notice) notice.style.display = 'flex';
