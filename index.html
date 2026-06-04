@@ -1371,7 +1371,14 @@
         </div>
         <div class="vl-config-field">
           <label>Sitio Web Dr. Bareño</label>
-          <input class="vl-input" id="config-dr-website" type="url" placeholder="https://drjohnbareno.com">
+          <input class="vl-input" id="config-dr-website" type="url" placeholder="https://www.johnbareno.com">
+        </div>
+        <div class="vl-config-field">
+          <label>Instagram Session Cookie (para bypass anti-scraping)</label>
+          <input class="vl-input" id="config-ig-cookie" type="password" placeholder="sessionid=xxxxx...">
+          <div style="margin-top:4px;font-size:11px;color:var(--txt3);">
+            En Chrome: DevTools (F12) → Application → Cookies → instagram.com → copia el valor de <b>sessionid</b>
+          </div>
         </div>
       </div>
       <div style="display:flex;gap:8px;margin-top:16px;">
@@ -1379,7 +1386,7 @@
         <button class="vl-btn-secondary" onclick="VL.closeConfigModal()">Cancelar</button>
       </div>
       <div style="margin-top:12px;font-size:11px;color:var(--txt3);">
-        El token de Apify se guarda solo en este dispositivo (localStorage). La API key de Claude está segura en el servidor.
+        Los tokens se guardan solo en este dispositivo. La API key de Claude está segura en el servidor.
       </div>
     </div>
   </div>

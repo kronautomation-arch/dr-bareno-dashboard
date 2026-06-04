@@ -6,7 +6,7 @@
 const VL = (() => {
   /* ── Constantes ── */
   const APIFY_BASE = 'https://api.apify.com/v2';
-  const APIFY_IG_ACTOR = 'apify~instagram-scraper';
+  const APIFY_IG_ACTOR = 'apify~instagram-reel-scraper';
   const APIFY_WEB_ACTOR = 'apify~website-content-crawler';
   const SUPABASE_FN_URL = `${SUPABASE_URL}/functions/v1/generate-script`;
 
@@ -24,6 +24,7 @@ const VL = (() => {
 
   /* ── Estado ── */
   let apifyToken = localStorage.getItem('vl_apify_token') || '';
+  let igCookie   = localStorage.getItem('vl_ig_cookie')   || '';
   let drHandle   = localStorage.getItem('vl_dr_handle')   || 'drjohnbareno';
   let drWebsite  = localStorage.getItem('vl_dr_website')  || 'https://www.johnbareno.com';
 
@@ -66,13 +67,24 @@ const VL = (() => {
   /* ─────────────────────────────────────────────────
      APIFY — scraping
   ───────────────────────────────────────────────── */
+  function buildApifyInput(base) {
+    if (!igCookie) return base;
+    const cookieVal = igCookie.replace(/^sessionid=/, '');
+    return {
+      ...base,
+      loginCookies: [{ name: 'sessionid', value: cookieVal, domain: '.instagram.com', path: '/' }],
+    };
+  }
+
   async function apifyRun(actorId, input) {
     if (!apifyToken) throw new Error('Falta el Apify API token. Configura en ⚙️');
+
+    const finalInput = actorId.includes('instagram') ? buildApifyInput(input) : input;
 
     const res = await fetch(`${APIFY_BASE}/acts/${actorId}/runs`, {
       method: 'POST',
       headers: { Authorization: `Bearer ${apifyToken}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify(input),
+      body: JSON.stringify(finalInput),
     });
     if (!res.ok) throw new Error(`Apify error ${res.status}: ${await res.text()}`);
     const { data } = await res.json();
@@ -129,14 +141,14 @@ const VL = (() => {
     if (!posts.length) return;
     const rows = posts.map(p => ({
       competitor_id: competitorId,
-      apify_post_id: p.shortCode || p.id,
-      post_url:      p.url || `https://instagram.com/p/${p.shortCode}`,
-      thumbnail_url: p.displayUrl || p.thumbnailUrl || null,
-      caption:       (p.caption || '').slice(0, 2000),
-      likes:         p.likesCount || 0,
-      views:         p.videoViewCount || 0,
-      comments:      p.commentsCount || 0,
-      posted_at:     p.timestamp ? new Date(p.timestamp).toISOString() : null,
+      apify_post_id: p.shortCode || p.id || p.postId,
+      post_url:      p.url || p.postUrl || `https://instagram.com/p/${p.shortCode || p.id}`,
+      thumbnail_url: p.displayUrl || p.thumbnailUrl || p.imageUrl || p.previewImageUrl || null,
+      caption:       (p.caption || p.text || p.description || '').slice(0, 2000),
+      likes:         p.likesCount || p.likes || p.likeCount || 0,
+      views:         p.videoViewCount || p.videoPlayCount || p.playsCount || p.views || 0,
+      comments:      p.commentsCount || p.comments || p.commentCount || 0,
+      posted_at:     p.timestamp ? new Date(p.timestamp).toISOString() : p.takenAt ? new Date(p.takenAt * 1000).toISOString() : null,
     }));
     const { error } = await _sb.from('bareno_viral_posts').upsert(rows, { onConflict: 'apify_post_id' });
     if (error) throw error;
@@ -319,10 +331,8 @@ const VL = (() => {
 
     try {
       const runId = await apifyRun(APIFY_IG_ACTOR, {
-        usernames: [handle],
-        resultsType: 'posts',
+        directUrls: [`https://www.instagram.com/${handle}/reels/`],
         resultsLimit: 30,
-        addParentData: false,
       });
 
       const datasetId = await apifyPoll(runId, status => {
@@ -536,15 +546,14 @@ const VL = (() => {
 
     try {
       const runId = await apifyRun(APIFY_IG_ACTOR, {
-        usernames: [drHandle],
-        resultsType: 'posts',
+        directUrls: [`https://www.instagram.com/${drHandle}/reels/`],
         resultsLimit: 20,
       });
       const datasetId = await apifyPoll(runId);
       const items = await apifyItems(datasetId);
 
-      const bio = items[0]?.biography || items[0]?.description || '';
-      const captions = items.map(p => p.caption || '').filter(Boolean).slice(0, 15).join('\n\n---\n\n');
+      const bio = items[0]?.ownerBio || items[0]?.biography || '';
+      const captions = items.map(p => p.caption || p.text || '').filter(Boolean).slice(0, 15).join('\n\n---\n\n');
 
       const dna = await extractDNAWithClaude(bio, captions, '');
       await dbSaveDNA({
@@ -703,6 +712,7 @@ Responde SOLO con el JSON, sin texto adicional.`;
     $('config-apify-token').value = apifyToken;
     $('config-dr-handle').value   = drHandle;
     $('config-dr-website').value  = drWebsite;
+    if ($('config-ig-cookie')) $('config-ig-cookie').value = igCookie;
     $('vl-config-modal').classList.add('open');
   }
 
@@ -714,9 +724,11 @@ Responde SOLO con el JSON, sin texto adicional.`;
     apifyToken = ($('config-apify-token').value || '').trim();
     drHandle   = ($('config-dr-handle').value || 'drjohnbareno').replace(/^@/, '').trim();
     drWebsite  = ($('config-dr-website').value || '').trim();
+    igCookie   = ($('config-ig-cookie')?.value || '').trim();
     localStorage.setItem('vl_apify_token', apifyToken);
     localStorage.setItem('vl_dr_handle',   drHandle);
     localStorage.setItem('vl_dr_website',  drWebsite);
+    localStorage.setItem('vl_ig_cookie',   igCookie);
     closeConfigModal();
     toast('Configuración guardada ✓');
   }
