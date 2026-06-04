@@ -5,10 +5,11 @@
 
 const VL = (() => {
   /* ── Constantes ── */
-  const APIFY_BASE = 'https://api.apify.com/v2';
-  const APIFY_IG_ACTOR = 'apify~instagram-reel-scraper';
-  const APIFY_WEB_ACTOR = 'apify~website-content-crawler';
-  const SUPABASE_FN_URL = `${SUPABASE_URL}/functions/v1/generate-script`;
+  const SUPABASE_FN_URL      = `${SUPABASE_URL}/functions/v1/generate-script`;
+  const SUPABASE_SCRAPE_URL  = `${SUPABASE_URL}/functions/v1/scrape-instagram`;
+  // Legacy Apify (kept for website scraping)
+  const APIFY_BASE       = 'https://api.apify.com/v2';
+  const APIFY_WEB_ACTOR  = 'apify~website-content-crawler';
 
   const SURGERY_TYPES = [
     'Lifting Endoscópico',
@@ -361,31 +362,44 @@ const VL = (() => {
   }
 
   async function scrapeCompetitor(competitorId, handle) {
-    if (!apifyToken) { openConfigModal(); return; }
     const progress = $('vl-scrape-progress');
     const label    = $('vl-scrape-label');
     if (progress) progress.style.display = 'flex';
     if (label)    label.textContent = `Scrapeando @${handle}...`;
 
     try {
-      const runId = await apifyRun(APIFY_IG_ACTOR, {
-        directUrls: [`https://www.instagram.com/${handle}/reels/`],
-        resultsLimit: 30,
+      const session = await _sb.auth.getSession();
+      const tok = session.data?.session?.access_token || SUPABASE_ANON_KEY;
+
+      const res = await fetch(SUPABASE_SCRAPE_URL, {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${tok}`, 'Content-Type': 'application/json', apikey: SUPABASE_ANON_KEY },
+        body: JSON.stringify({ username: handle, sessionid: igCookie || undefined }),
       });
 
-      const datasetId = await apifyPoll(runId, status => {
-        if (label) label.textContent = `@${handle} — ${status}...`;
-      });
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.error || `Error ${res.status}`);
+      }
 
-      const items = await apifyItems(datasetId);
-      if (!items.length) { toast(`@${handle}: no se encontraron posts`, true); return; }
+      const data = await res.json();
+      if (data.error) throw new Error(data.error);
 
-      await dbSavePosts(competitorId, handle, items);
+      const posts = data.posts || [];
+      if (!posts.length) { toast(`@${handle}: sin posts encontrados`, true); return; }
+
+      await dbSavePosts(competitorId, handle, posts);
+
+      // Update follower count
+      if (data.followers) {
+        await _sb.from('bareno_competitors').update({ follower_count: data.followers, last_scraped_at: new Date().toISOString() }).eq('id', competitorId);
+      }
+
       competitors = await dbGetCompetitors();
       selectedCompetitorId = competitorId;
       renderCompetitorList();
       await loadPosts(competitorId);
-      toast(`@${handle}: ${items.length} posts actualizados ✓`);
+      toast(`@${handle}: ${posts.length} posts actualizados ✓`);
     } catch(e) {
       toast(e.message, true);
     } finally {
