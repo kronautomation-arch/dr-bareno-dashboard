@@ -1266,7 +1266,29 @@
 
     <!-- ── COMPETIDORES ── -->
     <div class="vl-sub-section" id="vl-sub-competidores">
-      <div class="vl-section-title">Añadir competidor</div>
+
+      <!-- MODO MANUAL — siempre visible y funcional -->
+      <div style="background:rgba(217,119,6,.08);border:1px solid rgba(217,119,6,.25);border-radius:var(--r);padding:16px;margin-bottom:18px;">
+        <div style="font-size:13px;font-weight:800;color:var(--a2);margin-bottom:10px;">⚡ Generador rápido de guión</div>
+        <div style="font-size:12px;color:var(--txt2);margin-bottom:10px;">Pega el caption de cualquier video viral de Instagram → elige la cirugía → genera el guión</div>
+        <textarea id="vl-manual-caption"
+          style="width:100%;min-height:90px;padding:10px 12px;border-radius:var(--rx);background:var(--glass);border:1px solid var(--border);color:var(--txt);font-size:13px;resize:vertical;font-family:inherit;"
+          placeholder="Pega aquí el caption del video viral del competidor..."></textarea>
+        <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;align-items:center;">
+          <select id="vl-manual-surgery" class="vl-select" style="flex:1;margin-bottom:0;min-width:180px;"></select>
+          <button class="vl-btn-primary" onclick="VL.generateFromManual()">🤖 Generar guión</button>
+        </div>
+        <div id="vl-manual-result" style="display:none;margin-top:14px;">
+          <div style="font-size:12px;font-weight:700;color:var(--a2);margin-bottom:6px;">GUIÓN GENERADO</div>
+          <pre id="vl-manual-script" style="font-size:13px;color:var(--txt);line-height:1.6;white-space:pre-wrap;font-family:inherit;background:var(--glass);border:1px solid rgba(217,119,6,.2);border-radius:var(--rx);padding:12px;"></pre>
+          <div style="display:flex;gap:8px;margin-top:10px;">
+            <button class="vl-btn-primary" onclick="VL.saveManualScript()">💾 Guardar guión</button>
+            <button class="vl-btn-secondary" onclick="navigator.clipboard.writeText(document.getElementById('vl-manual-script').textContent).then(()=>{this.textContent='✓';setTimeout(()=>{this.textContent='📋 Copiar'},1500)})">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="vl-section-title" style="color:var(--txt3);">Auto-scraping (próximamente)</div>
       <div class="vl-add-row">
         <input class="vl-input" id="vl-new-handle" type="text" placeholder="@handle_instagram"
           onkeydown="if(event.key==='Enter') VL.addCompetitor()">
@@ -1278,10 +1300,8 @@
         <span id="vl-scrape-label">Scrapeando...</span>
       </div>
 
-      <div class="vl-section-title">Cuentas guardadas</div>
       <div id="vl-competitor-list"></div>
-
-      <div class="vl-posts-title" id="vl-posts-title">Videos virales</div>
+      <div class="vl-posts-title" id="vl-posts-title"></div>
       <div id="vl-posts-container"></div>
     </div>
 

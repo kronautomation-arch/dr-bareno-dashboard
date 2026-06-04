@@ -249,6 +249,44 @@ const VL = (() => {
   }
 
   /* ═══════════════════════════════════════════════
+     MODO MANUAL
+  ═══════════════════════════════════════════════ */
+  let lastManualScript = '';
+
+  async function generateFromManual() {
+    const caption = ($('vl-manual-caption')?.value || '').trim();
+    const surgeryType = $('vl-manual-surgery')?.value;
+    if (!caption) return toast('Pega el caption del video viral primero', true);
+    if (!surgeryType) return toast('Elige el tipo de cirugía', true);
+
+    const btn = document.querySelector('[onclick="VL.generateFromManual()"]');
+    if (btn) { btn.disabled = true; btn.textContent = '⏳ Generando...'; }
+    $('vl-manual-result').style.display = 'none';
+
+    try {
+      dnaData = dnaData || await dbGetDNA();
+      const script = await callGenerateScript(dnaData, caption, surgeryType);
+      lastManualScript = script;
+      $('vl-manual-script').textContent = script;
+      $('vl-manual-result').style.display = 'block';
+    } catch(e) {
+      toast(e.message, true);
+    } finally {
+      if (btn) { btn.disabled = false; btn.textContent = '🤖 Generar guión'; }
+    }
+  }
+
+  async function saveManualScript() {
+    if (!lastManualScript) return;
+    const surgeryType = $('vl-manual-surgery')?.value || 'General';
+    const caption = ($('vl-manual-caption')?.value || '').trim();
+    try {
+      await dbSaveScript(null, 'manual', surgeryType, caption, lastManualScript);
+      toast('Guión guardado ✓');
+    } catch(e) { toast(e.message, true); }
+  }
+
+  /* ═══════════════════════════════════════════════
      COMPETIDORES
   ═══════════════════════════════════════════════ */
   async function loadCompetitors() {
@@ -763,6 +801,12 @@ Responde SOLO con el JSON, sin texto adicional.`;
       if (notice) notice.style.display = 'flex';
     }
 
+    // Init manual mode surgery selector
+    const manualSel = $('vl-manual-surgery');
+    if (manualSel) {
+      manualSel.innerHTML = SURGERY_TYPES.map(t => `<option value="${t}">${t}</option>`).join('');
+    }
+
     switchSubTab('competidores');
 
     $('vl-btn-competidores')?.addEventListener('click', async () => {
@@ -790,6 +834,8 @@ Responde SOLO con el JSON, sin texto adicional.`;
   return {
     init,
     switchSubTab,
+    generateFromManual,
+    saveManualScript,
     addCompetitor,
     deleteCompetitor,
     scrapeCompetitor,
