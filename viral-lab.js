@@ -5,8 +5,9 @@
 
 const VL = (() => {
   /* ── Constantes ── */
-  const SUPABASE_FN_URL      = `${SUPABASE_URL}/functions/v1/generate-script`;
-  const SUPABASE_SCRAPE_URL  = `${SUPABASE_URL}/functions/v1/scrape-instagram`;
+  const SUPABASE_FN_URL         = `${SUPABASE_URL}/functions/v1/generate-script`;
+  const SUPABASE_SCRAPE_URL     = `${SUPABASE_URL}/functions/v1/scrape-instagram`;
+  const SUPABASE_TRANSCRIBE_URL = `${SUPABASE_URL}/functions/v1/transcribe-video`;
   // Legacy Apify (kept for website scraping)
   const APIFY_BASE       = 'https://api.apify.com/v2';
   const APIFY_WEB_ACTOR  = 'apify~website-content-crawler';
@@ -142,14 +143,16 @@ const VL = (() => {
     if (!posts.length) return;
     const rows = posts.map(p => ({
       competitor_id: competitorId,
-      apify_post_id: p.shortCode || p.id || p.postId,
-      post_url:      p.url || p.postUrl || `https://instagram.com/p/${p.shortCode || p.id}`,
-      thumbnail_url: p.displayUrl || p.thumbnailUrl || p.imageUrl || p.previewImageUrl || null,
+      apify_post_id: p.apify_post_id || p.shortCode || p.id || p.postId,
+      post_url:      p.post_url || p.url || p.postUrl || `https://instagram.com/p/${p.apify_post_id || p.shortCode}`,
+      thumbnail_url: p.thumbnail_url || p.displayUrl || p.thumbnailUrl || p.imageUrl || null,
       caption:       (p.caption || p.text || p.description || '').slice(0, 2000),
-      likes:         p.likesCount || p.likes || p.likeCount || 0,
-      views:         p.videoViewCount || p.videoPlayCount || p.playsCount || p.views || 0,
-      comments:      p.commentsCount || p.comments || p.commentCount || 0,
-      posted_at:     p.timestamp ? new Date(p.timestamp).toISOString() : p.takenAt ? new Date(p.takenAt * 1000).toISOString() : null,
+      likes:         p.likes || p.likesCount || p.likeCount || 0,
+      views:         p.views || p.videoViewCount || p.videoPlayCount || p.playsCount || 0,
+      comments:      p.comments || p.commentsCount || p.commentCount || 0,
+      posted_at:     p.posted_at || (p.timestamp ? new Date(p.timestamp).toISOString() : p.takenAt ? new Date(p.takenAt * 1000).toISOString() : null),
+      video_url:     p.video_url || null,
+      is_video:      p.is_video || false,
     }));
     const { error } = await _sb.from('bareno_viral_posts').upsert(rows, { onConflict: 'apify_post_id' });
     if (error) throw error;
@@ -470,6 +473,17 @@ const VL = (() => {
     selectedPostId = null;
   }
 
+  async function transcribeVideo(videoUrl) {
+    const res = await fetch(SUPABASE_TRANSCRIBE_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ video_url: videoUrl, sessionid: igCookie || undefined }),
+    });
+    const data = await res.json();
+    if (data.error) throw new Error(data.error);
+    return data.transcription || '';
+  }
+
   async function generateScript() {
     if (!selectedPostId) return;
     const post = viralPosts.find(p => p.id === selectedPostId);
@@ -478,13 +492,34 @@ const VL = (() => {
     const surgeryType = $('modal-surgery-select').value;
     const btn = $('modal-generate-btn');
     btn.disabled = true;
-    btn.textContent = '⏳ Generando...';
     $('modal-script-section').style.display = 'none';
     $('modal-save-btn').style.display = 'none';
+    $('modal-copy-btn').style.display = 'none';
 
+    let viralContent = post.caption || '';
+
+    // Step 1: transcribe video if available
+    if (post.video_url && post.is_video) {
+      btn.textContent = '🎵 Transcribiendo audio...';
+      try {
+        const transcription = await transcribeVideo(post.video_url);
+        if (transcription) {
+          viralContent = transcription;
+          const statusEl = $('modal-transcription-status');
+          if (statusEl) { statusEl.textContent = `✓ Transcripción: ${transcription.slice(0, 80)}...`; statusEl.style.display = 'block'; }
+        }
+      } catch(e) {
+        // Fallback to caption if transcription fails
+        const statusEl = $('modal-transcription-status');
+        if (statusEl) { statusEl.textContent = `⚠️ Transcripción no disponible, usando caption`; statusEl.style.display = 'block'; }
+      }
+    }
+
+    // Step 2: generate script with Claude
+    btn.textContent = '🤖 Generando guión...';
     try {
       dnaData = dnaData || await dbGetDNA();
-      const script = await callGenerateScript(dnaData, post.caption, surgeryType);
+      const script = await callGenerateScript(dnaData, viralContent, surgeryType);
       $('modal-script-output').textContent = script;
       $('modal-script-section').style.display = 'block';
       $('modal-save-btn').style.display = 'inline-flex';
