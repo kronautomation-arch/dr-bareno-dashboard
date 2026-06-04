@@ -25,7 +25,7 @@ const VL = (() => {
   /* ── Estado ── */
   let apifyToken = localStorage.getItem('vl_apify_token') || '';
   let drHandle   = localStorage.getItem('vl_dr_handle')   || 'drjohnbareno';
-  let drWebsite  = localStorage.getItem('vl_dr_website')  || 'https://drjohnbareno.com';
+  let drWebsite  = localStorage.getItem('vl_dr_website')  || 'https://www.johnbareno.com';
 
   let currentSubTab    = 'competidores';
   let selectedCompetitorId = null;
