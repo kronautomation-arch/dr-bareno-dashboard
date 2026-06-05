@@ -47,6 +47,7 @@ const VL = (() => {
   const dateStr  = iso => iso ? new Date(iso).toLocaleDateString('es-CO', {day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit'}) : '—';
 
   function toast(msg, isError = false) {
+    if (isError) console.error('[VL toast]', msg, new Error().stack);
     const el = document.createElement('div');
     el.className = 'vl-toast' + (isError ? ' vl-toast-err' : '');
     el.textContent = msg;
