@@ -335,8 +335,10 @@ const VL = (() => {
 
   async function addCompetitor() {
     const input = $('vl-new-handle');
-    const handle = (input?.value || '').replace(/^@/, '').trim();
+    const handle = (input?.value || '').replace(/^@/, '').trim().toLowerCase();
     if (!handle) return toast('Escribe un @handle', true);
+    if (handle.includes('@') || handle.includes('.') || handle.includes(' '))
+      return toast('Escribe solo el handle de Instagram, sin @ ni dominio (ej: drhugoaguilarvilla)', true);
 
     try {
       const comp = await dbUpsertCompetitor(handle);
