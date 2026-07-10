@@ -1,19 +1,19 @@
 {
-  "updated_at": "2026-07-10 12:37",
+  "updated_at": "2026-07-10 13:00",
   "today": "2026-07-10",
   "precio_cita": 200000.0,
   "clinica": {
     "hoy": {
-      "citas_agendadas": 0,
-      "procedimientos_vendidos": 0,
-      "tasa_conversion": 0.0,
-      "ingresos_citas": 0.0,
-      "ingresos_procedimientos": 0,
-      "ingresos_totales": 0.0,
+      "citas_agendadas": 2,
+      "procedimientos_vendidos": 400000,
+      "tasa_conversion": 20000000.0,
+      "ingresos_citas": 400000.0,
+      "ingresos_procedimientos": 25000000.0,
+      "ingresos_totales": 25400000.0,
       "gasto_meta": 0.0,
       "costo_por_cita": 0,
       "porcentaje_publicidad": 0.0,
-      "utilidad_bruta": 0.0,
+      "utilidad_bruta": 25400000.0,
       "roas": 0.0
     },
     "ayer": {
@@ -21,7 +21,7 @@
       "procedimientos_vendidos": 0,
       "tasa_conversion": 0.0,
       "ingresos_citas": 0.0,
-      "ingresos_procedimientos": 0,
+      "ingresos_procedimientos": 0.0,
       "ingresos_totales": 0.0,
       "gasto_meta": 0.0,
       "costo_por_cita": 0,
@@ -30,30 +30,30 @@
       "roas": 0.0
     },
     "semana": {
-      "citas_agendadas": 0,
-      "procedimientos_vendidos": 0,
-      "tasa_conversion": 0.0,
-      "ingresos_citas": 0.0,
-      "ingresos_procedimientos": 0,
-      "ingresos_totales": 0.0,
+      "citas_agendadas": 2,
+      "procedimientos_vendidos": 400000,
+      "tasa_conversion": 20000000.0,
+      "ingresos_citas": 400000.0,
+      "ingresos_procedimientos": 25000000.0,
+      "ingresos_totales": 25400000.0,
       "gasto_meta": 267327.0,
-      "costo_por_cita": 0,
-      "porcentaje_publicidad": 0.0,
-      "utilidad_bruta": -267327.0,
-      "roas": 0.0
+      "costo_por_cita": 133664,
+      "porcentaje_publicidad": 1.1,
+      "utilidad_bruta": 25132673.0,
+      "roas": 95.01
     },
     "mes": {
-      "citas_agendadas": 0,
-      "procedimientos_vendidos": 0,
-      "tasa_conversion": 0.0,
-      "ingresos_citas": 0.0,
-      "ingresos_procedimientos": 0,
-      "ingresos_totales": 0.0,
+      "citas_agendadas": 2,
+      "procedimientos_vendidos": 400000,
+      "tasa_conversion": 20000000.0,
+      "ingresos_citas": 400000.0,
+      "ingresos_procedimientos": 25000000.0,
+      "ingresos_totales": 25400000.0,
       "gasto_meta": 426204.0,
-      "costo_por_cita": 0,
-      "porcentaje_publicidad": 0.0,
-      "utilidad_bruta": -426204.0,
-      "roas": 0.0
+      "costo_por_cita": 213102,
+      "porcentaje_publicidad": 1.7,
+      "utilidad_bruta": 24973796.0,
+      "roas": 59.6
     }
   },
   "facetech": {
@@ -123,7 +123,7 @@
       0.0,
       0.0,
       0.0,
-      0.0
+      400000.0
     ],
     "clinica_gasto": [
       60237.0,
