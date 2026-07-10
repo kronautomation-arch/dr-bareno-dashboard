@@ -37,6 +37,10 @@ const VL = (() => {
   let viralPosts       = [];
   let scripts          = [];
   let dnaData          = null;
+  let generatedScripts = [];
+  let currentScriptTab = 0;
+  let manualScripts    = [];
+  let currentManualTab = 0;
 
   /* ─────────────────────────────────────────────────
      HELPERS
@@ -64,6 +68,87 @@ const VL = (() => {
         document.execCommand('copy'); ta.remove();
         toast('Copiado ✓');
       }
+    );
+  }
+
+  /* ─────────────────────────────────────────────────
+     CACHE DE CONTENIDO (transcripción / caption)
+  ───────────────────────────────────────────────── */
+  function getCachedContent(postId) {
+    try {
+      const raw = localStorage.getItem(`vl_content_${postId}`);
+      return raw ? JSON.parse(raw) : null;
+    } catch { return null; }
+  }
+
+  function setCachedContent(postId, text, type) {
+    try { localStorage.setItem(`vl_content_${postId}`, JSON.stringify({ text, type })); } catch {}
+  }
+
+  /* ─────────────────────────────────────────────────
+     TABS DE GUIONES
+  ───────────────────────────────────────────────── */
+  function renderScriptTabs(mode) {
+    const scripts   = mode === 'modal' ? generatedScripts : manualScripts;
+    const activeTab = mode === 'modal' ? currentScriptTab : currentManualTab;
+    const tabsId    = mode === 'modal' ? 'modal-script-tabs' : 'vl-manual-tabs';
+    const outputId  = mode === 'modal' ? 'modal-script-output' : 'vl-manual-script';
+    const tabsEl    = $(tabsId);
+    const outputEl  = $(outputId);
+    if (!tabsEl || !outputEl) return;
+    tabsEl.innerHTML = scripts.map((_, i) => `
+      <button class="tab-pill vl-tab ${i === activeTab ? 'active' : ''}"
+        style="padding:4px 10px;font-size:11px;"
+        onclick="VL.switchScriptTab(${i},'${mode}')">Op.${i + 1}</button>
+    `).join('');
+    outputEl.textContent = scripts[activeTab] || '';
+  }
+
+  function switchScriptTab(index, mode = 'modal') {
+    if (mode === 'modal') currentScriptTab = index;
+    else currentManualTab = index;
+    renderScriptTabs(mode);
+  }
+
+  /* ─────────────────────────────────────────────────
+     SECCIÓN FUENTE DEL CONTENIDO (modal)
+  ───────────────────────────────────────────────── */
+  function updateContentSource(text, type, fromCache) {
+    const section = $('modal-content-section');
+    const typeEl  = $('modal-content-type');
+    const textEl  = $('modal-content-text');
+    if (!section) return;
+    section.style.display = 'block';
+    if (typeEl) {
+      typeEl.textContent = type === 'transcription'
+        ? (fromCache ? '🔊 TRANSCRIPCIÓN (desde caché — no se cobró crédito)' : '🔊 TRANSCRIPCIÓN DE AUDIO')
+        : '📝 CAPTION DEL POST';
+    }
+    if (textEl) textEl.textContent = text || '';
+  }
+
+  function toggleContentSource() {
+    const body = $('modal-content-body');
+    const icon = $('modal-content-toggle-icon');
+    if (!body) return;
+    const shown = body.style.display !== 'none';
+    body.style.display = shown ? 'none' : 'block';
+    if (icon) icon.textContent = shown ? '▼' : '▲';
+  }
+
+  function copyContentSource() {
+    const text = $('modal-content-text')?.textContent || '';
+    if (text) copyText(text);
+  }
+
+  function copyActiveScript(mode, btnEl) {
+    const script = mode === 'modal'
+      ? (generatedScripts[currentScriptTab] || $('modal-script-output')?.textContent || '')
+      : (manualScripts[currentManualTab]    || $('vl-manual-script')?.textContent    || '');
+    if (!script) return;
+    navigator.clipboard.writeText(script).then(
+      () => { if (btnEl) { btnEl.textContent = '✓ Copiado'; setTimeout(() => { btnEl.textContent = '📋 Copiar'; }, 1500); } else toast('Copiado ✓'); },
+      () => { copyText(script); }
     );
   }
 
@@ -265,29 +350,37 @@ const VL = (() => {
     if (!surgeryType) return toast('Elige el tipo de cirugía', true);
 
     const btn = document.querySelector('[onclick="VL.generateFromManual()"]');
-    if (btn) { btn.disabled = true; btn.textContent = '⏳ Generando...'; }
+    if (btn) { btn.disabled = true; btn.textContent = '⏳ Generando 5 guiones...'; }
     $('vl-manual-result').style.display = 'none';
+    if ($('vl-manual-tabs')) $('vl-manual-tabs').innerHTML = '';
 
     try {
       dnaData = dnaData || await dbGetDNA();
-      const script = await callGenerateScript(dnaData, caption, surgeryType);
-      lastManualScript = script;
-      $('vl-manual-script').textContent = script;
+      manualScripts = await Promise.all(
+        Array.from({ length: 5 }, () =>
+          callGenerateScript(dnaData, caption, surgeryType)
+            .catch(e => `[Error al generar: ${e.message}]`)
+        )
+      );
+      currentManualTab = 0;
+      lastManualScript = manualScripts[0];
+      renderScriptTabs('manual');
       $('vl-manual-result').style.display = 'block';
     } catch(e) {
       toast(e.message, true);
     } finally {
-      if (btn) { btn.disabled = false; btn.textContent = '🤖 Generar guión'; }
+      if (btn) { btn.disabled = false; btn.textContent = '🤖 Generar 5 guiones'; }
     }
   }
 
   async function saveManualScript() {
-    if (!lastManualScript) return;
+    const script = manualScripts[currentManualTab] || lastManualScript;
+    if (!script) return;
     const surgeryType = $('vl-manual-surgery')?.value || 'General';
     const caption = ($('vl-manual-caption')?.value || '').trim();
     try {
-      await dbSaveScript(null, 'manual', surgeryType, caption, lastManualScript);
-      toast('Guión guardado ✓');
+      await dbSaveScript(null, 'manual', surgeryType, caption, script);
+      toast(`Guión Op.${currentManualTab + 1} guardado ✓`);
     } catch(e) { toast(e.message, true); }
   }
 
@@ -465,8 +558,21 @@ const VL = (() => {
     $('modal-script-output').textContent = '';
     $('modal-script-section').style.display = 'none';
     $('modal-save-btn').style.display = 'none';
+    $('modal-copy-btn').style.display = 'none';
     $('modal-generate-btn').disabled = false;
     $('modal-generate-btn').textContent = '🤖 Procesar con IA';
+    if ($('modal-script-tabs')) $('modal-script-tabs').innerHTML = '';
+    if ($('modal-transcription-status')) $('modal-transcription-status').style.display = 'none';
+
+    // Mostrar fuente del contenido (desde caché o caption)
+    const cached = getCachedContent(postId);
+    if (cached) {
+      updateContentSource(cached.text, cached.type, true);
+    } else {
+      updateContentSource(post.caption || '', 'caption', false);
+    }
+    generatedScripts = [];
+    currentScriptTab = 0;
 
     $('vl-process-modal').classList.add('open');
   }
@@ -498,36 +604,52 @@ const VL = (() => {
     $('modal-script-section').style.display = 'none';
     $('modal-save-btn').style.display = 'none';
     $('modal-copy-btn').style.display = 'none';
+    if ($('modal-script-tabs')) $('modal-script-tabs').innerHTML = '';
 
     let viralContent = post.caption || '';
+    let contentType  = 'caption';
 
-    // Step 1: transcribe video if available
-    if (post.video_url && post.is_video) {
+    // Step 1: usar caché si existe, si no transcribir
+    const cached = getCachedContent(post.id);
+    if (cached) {
+      viralContent = cached.text;
+      contentType  = cached.type;
+      updateContentSource(viralContent, contentType, true);
+    } else if (post.video_url && post.is_video) {
       btn.textContent = '🎵 Transcribiendo audio...';
       try {
         const transcription = await transcribeVideo(post.video_url);
         if (transcription) {
           viralContent = transcription;
-          const statusEl = $('modal-transcription-status');
-          if (statusEl) { statusEl.textContent = `✓ Transcripción: ${transcription.slice(0, 80)}...`; statusEl.style.display = 'block'; }
+          contentType  = 'transcription';
         }
       } catch(e) {
-        // Fallback to caption if transcription fails
         const statusEl = $('modal-transcription-status');
-        if (statusEl) { statusEl.textContent = `⚠️ Transcripción no disponible, usando caption`; statusEl.style.display = 'block'; }
+        if (statusEl) { statusEl.textContent = '⚠️ Transcripción no disponible, usando caption'; statusEl.style.display = 'block'; }
       }
+      setCachedContent(post.id, viralContent, contentType);
+      updateContentSource(viralContent, contentType, false);
+    } else {
+      setCachedContent(post.id, viralContent, 'caption');
+      updateContentSource(viralContent, 'caption', false);
     }
 
-    // Step 2: generate script with Claude
-    btn.textContent = '🤖 Generando guión...';
+    // Step 2: generar 5 guiones en paralelo
+    btn.textContent = '🤖 Generando 5 guiones...';
     try {
       dnaData = dnaData || await dbGetDNA();
-      const script = await callGenerateScript(dnaData, viralContent, surgeryType);
-      $('modal-script-output').textContent = script;
+      generatedScripts = await Promise.all(
+        Array.from({ length: 5 }, () =>
+          callGenerateScript(dnaData, viralContent, surgeryType)
+            .catch(e => `[Error al generar: ${e.message}]`)
+        )
+      );
+      currentScriptTab = 0;
+      renderScriptTabs('modal');
       $('modal-script-section').style.display = 'block';
       $('modal-save-btn').style.display = 'inline-flex';
       $('modal-copy-btn').style.display = 'inline-flex';
-      btn.textContent = '🔄 Regenerar';
+      btn.textContent = '🔄 Regenerar 5';
     } catch(e) {
       toast(e.message, true);
       btn.textContent = '🤖 Procesar con IA';
@@ -542,7 +664,7 @@ const VL = (() => {
     if (!post) return;
 
     const surgeryType = $('modal-surgery-select').value;
-    const script = $('modal-script-output').textContent;
+    const script = generatedScripts[currentScriptTab] || $('modal-script-output').textContent;
     if (!script) return;
 
     const comp = competitors.find(c => c.id === post.competitor_id);
@@ -905,6 +1027,10 @@ Responde SOLO con el JSON, sin texto adicional.`;
     openConfigModal,
     closeConfigModal,
     saveConfig,
+    switchScriptTab,
+    toggleContentSource,
+    copyContentSource,
+    copyActiveScript,
   };
 })();
 

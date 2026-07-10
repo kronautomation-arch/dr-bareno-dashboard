@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demo — Viral Lab Nuevas Features</title>
+<style>
+  :root {
+    --bg:    #070c1a; --bg2: #0d1120;
+    --glass: rgba(255,255,255,0.04); --glass2: rgba(255,255,255,0.07);
+    --border: rgba(255,255,255,0.08); --border2: rgba(255,255,255,0.14);
+    --b1:#1d4ed8;--b2:#60a5fa; --r1:#be123c;--r2:#fb7185;
+    --a1:#d97706;--a2:#fbbf24; --c1:#0891b2;--c2:#67e8f9;
+    --txt:#f1f5f9; --txt2:#94a3b8; --txt3:#475569; --txt4:#1e293b;
+    --r:22px; --rs:16px; --rx:12px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--txt);
+    font-family: -apple-system,'SF Pro Display',BlinkMacSystemFont,'Segoe UI',sans-serif;
+    min-height: 100vh; padding: 24px 16px; }
+
+  h2 { font-size: 14px; color: var(--a2); font-weight: 800; letter-spacing: .06em;
+       text-transform: uppercase; margin: 32px 0 14px; padding-bottom: 8px;
+       border-bottom: 1px solid var(--border2); }
+  h2:first-child { margin-top: 0; }
+
+  .label { font-size: 10px; font-weight: 700; color: var(--txt2); letter-spacing: .1em;
+           text-transform: uppercase; margin-bottom: 6px; }
+
+  /* ── Modal ── */
+  .vl-modal {
+    background: #111827; border-radius: var(--r); padding: 20px 18px 24px;
+    max-width: 420px; margin: 0 auto; border: 1px solid var(--border2);
+  }
+  .vl-modal-handle { width:40px; height:4px; background:var(--border2);
+    border-radius:2px; margin: 0 auto 16px; }
+  .vl-modal-title { font-size:17px; font-weight:800; color:var(--txt);
+    margin-bottom:14px; letter-spacing:-.3px; }
+  .vl-modal-meta { font-size:13px; color:var(--txt2); margin-bottom:4px; }
+  .vl-modal-caption { font-size:13px; color:var(--txt); line-height:1.5;
+    background:var(--glass); border:1px solid var(--border);
+    border-radius:var(--rx); padding:10px 12px; margin:10px 0 14px;
+    max-height:80px; overflow-y:auto; }
+  .vl-modal-label { font-size:11px; font-weight:700; color:var(--txt2);
+    letter-spacing:.06em; text-transform:uppercase; margin-bottom:6px; }
+  .vl-select { width:100%; padding:10px 12px; border-radius:var(--rx);
+    background:var(--glass); border:1px solid var(--border);
+    color:var(--txt); font-size:13px; margin-bottom:12px; }
+
+  /* ── Fuente del contenido ── */
+  #modal-content-section {
+    margin-bottom:12px; border:1px solid var(--border);
+    border-radius:var(--rx); overflow:hidden;
+  }
+  .content-header {
+    display:flex; align-items:center; justify-content:space-between;
+    padding:8px 12px; cursor:pointer; background:var(--glass); user-select:none;
+  }
+  .content-header:hover { background: var(--glass2); }
+  #modal-content-body { display:none; padding:10px 12px; }
+  #modal-content-body.open { display:block; }
+  #modal-content-type { font-size:10px; font-weight:700; color:var(--a2);
+    margin-bottom:6px; letter-spacing:.05em; }
+  #modal-content-text {
+    font-size:11px; color:var(--txt); line-height:1.5; white-space:pre-wrap;
+    font-family:inherit; margin:0 0 8px; max-height:130px; overflow-y:auto;
+    background:none; padding:0;
+  }
+
+  /* ── Botones ── */
+  .vl-modal-actions { display:flex; gap:8px; margin-bottom:14px; }
+  .vl-btn-primary { display:inline-flex; align-items:center; gap:6px;
+    padding:10px 16px; border-radius:var(--rx); background:var(--a1);
+    color:#fff; border:none; font-size:14px; font-weight:700; cursor:pointer;
+    transition:opacity .18s; }
+  .vl-btn-primary:hover { opacity:.85; }
+  .vl-btn-secondary { display:inline-flex; align-items:center; gap:6px;
+    padding:10px 16px; border-radius:var(--rx);
+    background:var(--glass); color:var(--txt2); border:1px solid var(--border);
+    font-size:14px; font-weight:700; cursor:pointer; transition:opacity .18s; }
+  .vl-btn-secondary:hover { opacity:.75; }
+  .vl-btn-sm { padding:5px 10px; border-radius:8px; font-size:12px; font-weight:600;
+    background:var(--glass); border:1px solid var(--border); color:var(--txt2);
+    cursor:pointer; transition:opacity .18s; }
+  .vl-btn-sm:hover { opacity:.75; }
+
+  /* ── Script section ── */
+  .vl-script-section { background:var(--glass); border:1px solid var(--border);
+    border-radius:var(--rx); padding:14px; margin-top:4px; }
+  .vl-script-section-title { font-size:12px; color:var(--a2); font-weight:700; }
+  .tabs-row { display:flex; align-items:center; justify-content:space-between;
+    margin-bottom:10px; flex-wrap:wrap; gap:6px; }
+
+  /* Tab pills reutilizando el estilo existente */
+  .tab-pill { padding:6px 12px; border-radius:20px; font-size:12px; font-weight:700;
+    color:var(--txt3); background:var(--glass); border:1px solid var(--border);
+    cursor:pointer; transition:all .22s; }
+  .tab-pill.vl-tab.active {
+    background:rgba(217,119,6,.18); border-color:rgba(217,119,6,.4); color:var(--a2); }
+  .tab-pill:hover:not(.active) { opacity:.75; }
+
+  .vl-script-pre { font-size:13px; color:var(--txt); line-height:1.6;
+    white-space:pre-wrap; font-family:inherit;
+    background:rgba(0,0,0,.25); border-radius:8px; padding:12px;
+    min-height:80px; margin-bottom:10px; }
+  .vl-modal-save-row { display:flex; gap:8px; margin-top:10px; }
+
+  /* ── Manual mode ── */
+  .manual-box {
+    background:rgba(217,119,6,.08); border:1px solid rgba(217,119,6,.25);
+    border-radius:var(--rx); padding:16px;
+  }
+  textarea { width:100%; min-height:80px; padding:10px 12px;
+    border-radius:var(--rx); background:var(--glass); border:1px solid var(--border);
+    color:var(--txt); font-size:13px; resize:vertical; font-family:inherit; }
+  .row { display:flex; gap:8px; margin-top:10px; flex-wrap:wrap; align-items:center; }
+
+  /* ── Badge de novedad ── */
+  .new-badge { display:inline-block; background:rgba(217,119,6,.2);
+    color:var(--a2); font-size:10px; font-weight:800; padding:2px 7px;
+    border-radius:20px; letter-spacing:.05em; margin-left:8px; vertical-align:middle; }
+</style>
+</head>
+<body>
+
+<h2>🎬 FEATURE 2 — Fuente del contenido (caché de transcripción) <span class="new-badge">NUEVO</span></h2>
+
+<!-- MODAL: post con video transcripto y cacheado -->
+<div class="vl-modal">
+  <div class="vl-modal-handle"></div>
+  <div class="vl-modal-title">🎬 Procesar video viral</div>
+  <div class="vl-modal-meta">@drhugoaguilarvilla</div>
+  <div class="vl-modal-meta">👁 2.1M &nbsp;❤️ 84K &nbsp;💬 1.2K</div>
+  <div class="vl-modal-caption">Fui a donde el mejor cirujano plástico facial de Latinoamérica 🔥 El resultado es INCREÍBLE…</div>
+
+  <div class="vl-modal-label">Tipo de cirugía a destacar</div>
+  <select class="vl-select">
+    <option>Lifting Endoscópico</option>
+    <option>Blefaroplastia Inferior</option>
+    <option selected>Quadfecta</option>
+  </select>
+
+  <!-- ★ NUEVA SECCIÓN: Fuente del contenido -->
+  <div id="modal-content-section">
+    <div class="content-header" onclick="toggleContent()">
+      <span style="font-size:10px;font-weight:700;color:var(--txt2);letter-spacing:.06em;">📄 FUENTE DEL CONTENIDO</span>
+      <span id="toggle-icon" style="font-size:11px;color:var(--a2);">▼ ver</span>
+    </div>
+    <div id="modal-content-body">
+      <div id="modal-content-type">🔊 TRANSCRIPCIÓN DE AUDIO (desde caché — no se cobró crédito)</div>
+      <pre id="modal-content-text">Hoy les traigo algo que cambió mi vida. Tengo 52 años y toda mi vida soñé con recuperar la juventud de mi cara. Fui con el Dr. Hugo Aguilar, y en una sola cirugía me hizo un lifting completo del tercio superior e inferior. Miren el resultado... no parece cirugía, parece que dormí 20 años. El Dr. Aguilar trabaja con técnica endoscópica, sin cicatrices visibles. Ya tengo 3 semanas de recuperación y me siento increíble. Si están pensando en hacerlo, no lo piensen más.</pre>
+      <button class="vl-btn-sm" onclick="alert('Copiado ✓')">📋 Copiar texto</button>
+    </div>
+  </div>
+
+  <div class="vl-modal-actions" style="margin-top:12px;">
+    <button class="vl-btn-primary">🔄 Regenerar 5</button>
+    <button class="vl-btn-secondary">Cancelar</button>
+  </div>
+
+  <!-- ★ NUEVA SECCIÓN: 5 guiones con tabs -->
+  <div class="vl-script-section">
+    <div class="tabs-row">
+      <div class="vl-script-section-title">5 GUIONES GENERADOS</div>
+      <div style="display:flex;gap:4px;flex-wrap:wrap;" id="tab-pills">
+        <button class="tab-pill vl-tab active" onclick="switchTab(0)">Op.1</button>
+        <button class="tab-pill vl-tab" onclick="switchTab(1)">Op.2</button>
+        <button class="tab-pill vl-tab" onclick="switchTab(2)">Op.3</button>
+        <button class="tab-pill vl-tab" onclick="switchTab(3)">Op.4</button>
+        <button class="tab-pill vl-tab" onclick="switchTab(4)">Op.5</button>
+      </div>
+    </div>
+    <pre class="vl-script-pre" id="script-output"></pre>
+    <div class="vl-modal-save-row">
+      <button class="vl-btn-primary" onclick="alert('Guión Op.'+(activeTab+1)+' guardado ✓')">💾 Guardar guión</button>
+      <button class="vl-btn-secondary" id="copy-btn" onclick="copyActive()">📋 Copiar</button>
+    </div>
+  </div>
+</div>
+
+<h2>⚡ FEATURE 1 — Modo manual: 5 guiones <span class="new-badge">NUEVO</span></h2>
+
+<div class="manual-box" style="max-width:420px;margin:0 auto;">
+  <div style="font-size:13px;font-weight:800;color:var(--a2);margin-bottom:10px;">⚡ Generador rápido de guión</div>
+  <textarea>Hoy les traigo algo que me cambió la vida completamente. A mis 52 años decidí hacer el lifting que siempre soñé con el mejor cirujano de Colombia...</textarea>
+  <div class="row">
+    <select class="vl-select" style="flex:1;margin-bottom:0;min-width:160px;">
+      <option>Lifting Endoscópico</option>
+    </select>
+    <button class="vl-btn-primary">🤖 Generar 5 guiones</button>
+  </div>
+
+  <!-- Resultado con 5 tabs -->
+  <div style="margin-top:14px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;flex-wrap:wrap;gap:6px;">
+      <div style="font-size:12px;font-weight:700;color:var(--a2);">5 GUIONES GENERADOS</div>
+      <div style="display:flex;gap:4px;flex-wrap:wrap;" id="manual-tab-pills">
+        <button class="tab-pill vl-tab active" onclick="switchManualTab(0)">Op.1</button>
+        <button class="tab-pill vl-tab" onclick="switchManualTab(1)">Op.2</button>
+        <button class="tab-pill vl-tab" onclick="switchManualTab(2)">Op.3</button>
+        <button class="tab-pill vl-tab" onclick="switchManualTab(3)">Op.4</button>
+        <button class="tab-pill vl-tab" onclick="switchManualTab(4)">Op.5</button>
+      </div>
+    </div>
+    <pre id="manual-script" style="font-size:13px;color:var(--txt);line-height:1.6;white-space:pre-wrap;font-family:inherit;background:var(--glass);border:1px solid rgba(217,119,6,.2);border-radius:var(--rx);padding:12px;min-height:80px;"></pre>
+    <div style="display:flex;gap:8px;margin-top:10px;">
+      <button class="vl-btn-primary" onclick="saveManual()">💾 Guardar guión</button>
+      <button class="vl-btn-secondary" onclick="copyManual(this)">📋 Copiar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const SCRIPTS = [
+  `🎬 GUIÓN 1 — Narrativa emocional
+
+¿Tienes 45, 50 o más años y te ves al espejo sin reconocerte?
+
+Eso le pasó a uno de nuestros pacientes. Llegó sintiéndose invisible.
+Salió sintiéndose invencible.
+
+Con el Lifting Endoscópico del Dr. Bareño:
+✅ Sin cicatrices visibles
+✅ Resultados naturales
+✅ Recuperación en 2-3 semanas
+
+No es magia. Es cirugía facial de alto nivel.
+
+¿Listo para verte como te sientes por dentro?
+👉 Agenda tu valoración hoy.`,
+
+  `🎬 GUIÓN 2 — Antes/Después educativo
+
+Lo que muchos no saben sobre el Lifting Endoscópico:
+
+❌ No es el "lifting de los años 90"
+❌ No te deja cara de susto
+❌ No necesitas semanas hospitalizado
+
+✅ SÍ es técnica endoscópica — incisiones mínimas
+✅ SÍ levanta frente, cejas y párpados en un solo tiempo
+✅ SÍ te da resultados que duran 10-15 años
+
+El Dr. Bareño lo ha hecho cientos de veces.
+El tuyo puede ser el próximo.
+
+DM para agenda tu valoración gratuita 📩`,
+
+  `🎬 GUIÓN 3 — Testimonio en primera persona
+
+"Tenía miedo de parecer operada."
+
+Eso fue lo primero que me dijo María cuando llegó a consulta.
+
+Hoy, 6 semanas después de su Lifting Endoscópico,
+la gente le pregunta si fue de vacaciones.
+
+Nadie adivina que fue cirugía.
+Ese es el estándar del Dr. Bareño.
+
+¿Tienes preguntas? Escríbenos.
+Sin compromiso, sin presión.`,
+
+  `🎬 GUIÓN 4 — Pregunta directa + urgencia
+
+¿Cuánto tiempo más vas a posponer verte increíble?
+
+El Lifting Endoscópico del Dr. Bareño:
+→ Recupera el tercio superior de tu rostro
+→ Elimina la caída de cejas y párpados
+→ Resultado: 10 años menos, aspecto natural
+
+Cupos limitados este mes.
+
+Agenda hoy tu valoración sin costo 👇`,
+
+  `🎬 GUIÓN 5 — Científico/educativo
+
+¿Sabes por qué el lifting tradicional ya no es el estándar?
+
+La técnica endoscópica que usa el Dr. Bareño:
+
+📍 Incisiones dentro del cuero cabelludo — invisibles
+📍 Cámara de 4mm guía cada movimiento
+📍 Reposicionamiento del tejido, no solo estiramiento
+
+El resultado: un rejuvenecimiento que parece natural
+porque respeta tu anatomía.
+
+Ciencia + Arte = Dr. John Bareño 🧬
+
+Consulta inicial gratuita → link en bio`
+];
+
+const MANUAL_SCRIPTS = SCRIPTS.map((s, i) => s.replace(`GUIÓN ${i+1}`, `GUIÓN MANUAL ${i+1}`));
+
+let activeTab = 0;
+let activeManualTab = 0;
+
+function updateScript() {
+  document.getElementById('script-output').textContent = SCRIPTS[activeTab];
+}
+
+function switchTab(i) {
+  activeTab = i;
+  document.querySelectorAll('#tab-pills .tab-pill').forEach((b, idx) =>
+    b.classList.toggle('active', idx === i));
+  updateScript();
+}
+
+function switchManualTab(i) {
+  activeManualTab = i;
+  document.querySelectorAll('#manual-tab-pills .tab-pill').forEach((b, idx) =>
+    b.classList.toggle('active', idx === i));
+  document.getElementById('manual-script').textContent = MANUAL_SCRIPTS[i];
+}
+
+function toggleContent() {
+  const body = document.getElementById('modal-content-body');
+  const icon = document.getElementById('toggle-icon');
+  const open = body.classList.toggle('open');
+  icon.textContent = open ? '▲ ocultar' : '▼ ver';
+}
+
+function copyActive() {
+  const btn = document.getElementById('copy-btn');
+  navigator.clipboard.writeText(SCRIPTS[activeTab]).then(() => {
+    btn.textContent = '✓ Copiado'; setTimeout(() => btn.textContent = '📋 Copiar', 1500);
+  });
+}
+
+function copyManual(btn) {
+  navigator.clipboard.writeText(MANUAL_SCRIPTS[activeManualTab]).then(() => {
+    btn.textContent = '✓ Copiado'; setTimeout(() => btn.textContent = '📋 Copiar', 1500);
+  });
+}
+
+function saveManual() { alert(`Guión Op.${activeManualTab+1} guardado ✓`); }
+
+// Init
+updateScript();
+switchManualTab(0);
+</script>
+</body>
+</html>
