@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-14 08:00",
+  "updated_at": "2026-07-14 13:00",
   "today": "2026-07-14",
   "precio_cita": 200000.0,
   "clinica": {
@@ -23,10 +23,10 @@
       "ingresos_citas": 0.0,
       "ingresos_procedimientos": 0.0,
       "ingresos_totales": 0.0,
-      "gasto_meta": 85147.0,
+      "gasto_meta": 85211.0,
       "costo_por_cita": 0,
       "porcentaje_publicidad": 0.0,
-      "utilidad_bruta": -85147.0,
+      "utilidad_bruta": -85211.0,
       "roas": 0.0
     },
     "semana": {
@@ -36,11 +36,11 @@
       "ingresos_citas": 1800000.0,
       "ingresos_procedimientos": 25000000.0,
       "ingresos_totales": 26800000.0,
-      "gasto_meta": 255269.0,
-      "costo_por_cita": 28363,
+      "gasto_meta": 255333.0,
+      "costo_por_cita": 28370,
       "porcentaje_publicidad": 1.0,
-      "utilidad_bruta": 26544731.0,
-      "roas": 104.99
+      "utilidad_bruta": 26544667.0,
+      "roas": 104.96
     },
     "mes": {
       "citas_agendadas": 22,
@@ -49,10 +49,10 @@
       "ingresos_citas": 4400000.0,
       "ingresos_procedimientos": 25000000.0,
       "ingresos_totales": 29400000.0,
-      "gasto_meta": 571287.0,
-      "costo_por_cita": 25968,
+      "gasto_meta": 571351.0,
+      "costo_por_cita": 25970,
       "porcentaje_publicidad": 1.9,
-      "utilidad_bruta": 28828713.0,
+      "utilidad_bruta": 28828649.0,
       "roas": 51.46
     }
   },
@@ -131,7 +131,7 @@
       0,
       59936.0,
       0,
-      85147.0,
+      85211.0,
       0
     ],
     "facetech_ingresos": [
@@ -166,24 +166,24 @@
         "cpp": 0
       },
       "semana": {
-        "spend": 255269,
-        "reach": 15410,
-        "impressions": 20700,
+        "spend": 255333,
+        "reach": 15412,
+        "impressions": 20708,
         "frequency": 1.34,
-        "clicks": 1653,
+        "clicks": 1654,
         "ctr": 7.99,
-        "cpm": 12332,
-        "cpp": 16565
+        "cpm": 12330,
+        "cpp": 16567
       },
       "mes": {
-        "spend": 571287,
+        "spend": 571351,
         "reach": 26540,
-        "impressions": 46781,
+        "impressions": 46789,
         "frequency": 1.76,
-        "clicks": 3710,
+        "clicks": 3711,
         "ctr": 7.93,
-        "cpm": 12212,
-        "cpp": 21526
+        "cpm": 12211,
+        "cpp": 21528
       }
     },
     "facetech": {
@@ -223,18 +223,18 @@
     "clinica": {
       "hoy": [],
       "semana": [
-        "📣 Esta semana tu clínica llegó a 15.410 personas únicas en la región — excelente alcance de marca.",
-        "👁️ 20.700 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
+        "📣 Esta semana tu clínica llegó a 15.412 personas únicas en la región — excelente alcance de marca.",
+        "👁️ 20.708 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
         "🚀 Con 1.3x de frecuencia, tu anuncio está llegando constantemente a nuevas personas — la audiencia de la clínica sigue creciendo.",
         "🎯 CTR 7.99% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
-        "🖱️ 1.653 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
+        "🖱️ 1.654 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
       ],
       "mes": [
         "📣 Este mes tu clínica llegó a 26.540 personas únicas en la región — excelente alcance de marca.",
-        "👁️ 46.781 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
+        "👁️ 46.789 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
         "🚀 Con 1.8x de frecuencia, tu anuncio está llegando constantemente a nuevas personas — la audiencia de la clínica sigue creciendo.",
         "🎯 CTR 7.93% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
-        "🖱️ 3.710 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
+        "🖱️ 3.711 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
       ]
     },
     "facetech": {
