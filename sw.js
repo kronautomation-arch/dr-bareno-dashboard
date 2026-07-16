@@ -1,4 +1,7 @@
-const CACHE = 'drbareno-v1';
+// Subir la versión en cada cambio de index.html: el fetch handler sirve el HTML
+// desde caché primero, así que sin bump los clientes instalados (PWA en iPhone)
+// se quedan con el JS viejo aunque data.json sí se actualice.
+const CACHE = 'drbareno-v2';
 const STATIC = ['/', '/index.html', '/manifest.json'];
 
 self.addEventListener('install', e => {

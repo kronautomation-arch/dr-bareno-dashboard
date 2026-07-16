@@ -681,6 +681,21 @@
     .note-b { color:var(--b2); }
     .note-g { color:var(--g2); }
 
+    /* periodo activo + aviso de rango */
+    .fb-active {
+      flex-basis:100%; font-size:11px; font-weight:700; color:var(--p2);
+      letter-spacing:.3px; padding:2px 2px 0;
+    }
+    .fb-range-err {
+      flex-basis:100%; display:none; font-size:11px; font-weight:600;
+      color:var(--r2); padding:2px 2px 0;
+    }
+    .alcance-nota {
+      font-size:10.5px; line-height:1.5; color:var(--txt2);
+      background:rgba(255,255,255,.04); border:1px solid var(--border);
+      border-radius:10px; padding:9px 11px; margin-top:10px;
+    }
+
     /* desglose de procedimientos */
     .dsg-row {
       display:flex; align-items:center; justify-content:space-between; gap:10px;
@@ -814,6 +829,8 @@
     <div class="fb-sep"></div>
     <button class="fb-apply" onclick="applyRange()">Aplicar</button>
   </div>
+  <div class="fb-range-err" id="fb-range-err"></div>
+  <div class="fb-active" id="fb-active-lbl"></div>
 </div>
 
 <!-- ═══ LOADING ═══ -->
@@ -1472,7 +1489,7 @@
 
 <script>
 /* ── State ── */
-let DATA = null, currentTab = 'clinica', currentPeriod = 'hoy';
+let DATA = null, currentTab = 'clinica', currentPeriod = 'hoy', currentRange = null;
 let chartC = null, chartF = null, donutC = null, donutF = null;
 
 /* ── Formatters ── */
@@ -1771,7 +1788,13 @@ function renderAlcanceClinica(ins, conclusiones, kpis) {
       `<div class="concl-item">${txt}</div>`
     ).join('');
   } else {
-    body.innerHTML = '<div class="concl-empty">Ingresa datos en Google Sheets para activar el análisis automático.</div>';
+    // En rango custom no hay conclusiones: se generan en backend a partir del
+    // alcance, que no existe para rangos arbitrarios. Decirlo, en vez de sugerir
+    // que faltan datos en el Sheet.
+    body.innerHTML = currentPeriod === 'rango'
+      ? '<div class="concl-empty">El análisis automático está disponible en Hoy / Ayer / Semana / Mes / Todo. '
+        + 'Las cifras de arriba sí corresponden al rango elegido.</div>'
+      : '<div class="concl-empty">Ingresa datos en Google Sheets para activar el análisis automático.</div>';
   }
 }
 
@@ -1798,39 +1821,267 @@ function renderAlcanceFacetech(ins, conclusiones, kpis) {
       `<div class="concl-item">${txt}</div>`
     ).join('');
   } else {
-    body.innerHTML = '<div class="concl-empty">Ingresa datos en Google Sheets para activar el análisis automático.</div>';
+    // En rango custom no hay conclusiones: se generan en backend a partir del
+    // alcance, que no existe para rangos arbitrarios. Decirlo, en vez de sugerir
+    // que faltan datos en el Sheet.
+    body.innerHTML = currentPeriod === 'rango'
+      ? '<div class="concl-empty">El análisis automático está disponible en Hoy / Ayer / Semana / Mes / Todo. '
+        + 'Las cifras de arriba sí corresponden al rango elegido.</div>'
+      : '<div class="concl-empty">Ingresa datos en Google Sheets para activar el análisis automático.</div>';
   }
+}
+
+/* ── Rango de fechas custom ──
+   El dashboard es estático (GitHub Pages, sin backend), así que un rango
+   arbitrario se calcula aquí a partir de DATA.daily. Espeja la lógica de
+   tools/metrics/calculator.py — si cambia allá, cambia acá.            */
+const inRange = (f, a, b) => f >= a && f <= b;
+
+function kpisClinicaRango(desde, hasta) {
+  const dd = DATA.daily || {};
+  const cRows = (dd.clinica || []).filter(r => inRange(r.fecha, desde, hasta));
+  const pRows = (dd.procedimientos || []).filter(r => inRange(r.fecha, desde, hasta));
+  const precio = DATA.precio_cita || 0;
+
+  const citas = cRows.reduce((s, r) => s + (r.citas_agendadas || 0), 0);
+  const ingresosCitas = cRows.reduce(
+    (s, r) => s + (r.tiene_total ? r.total_facturado : (r.citas_agendadas || 0) * precio), 0);
+
+  const facturados = pRows.filter(r => r.valor > 0);
+  const ingresosProcs = facturados.reduce((s, r) => s + r.valor, 0);
+  const ingresos = ingresosCitas + ingresosProcs;
+
+  const gasto = Object.entries(dd.meta_clinica || {})
+    .filter(([f]) => inRange(f, desde, hasta))
+    .reduce((s, [, v]) => s + (v.spend || 0), 0);
+
+  const porTipo = {};
+  facturados.forEach(r => {
+    porTipo[r.tipo] = porTipo[r.tipo] || { tipo: r.tipo, cantidad: 0, valor: 0 };
+    porTipo[r.tipo].cantidad++;
+    porTipo[r.tipo].valor += r.valor;
+  });
+
+  const div = (a, b) => (b ? a / b : 0);
+  return {
+    citas_agendadas: citas,
+    procedimientos_vendidos: facturados.length,
+    procedimientos_agendados: pRows.length - facturados.length,
+    tasa_conversion: +(div(facturados.length, citas) * 100).toFixed(1),
+    ingresos_citas: ingresosCitas,
+    ingresos_procedimientos: ingresosProcs,
+    ingresos_totales: ingresos,
+    desglose_procedimientos: Object.values(porTipo).sort((a, b) => b.valor - a.valor),
+    gasto_meta: gasto,
+    costo_por_cita: Math.round(div(gasto, citas)),
+    porcentaje_publicidad: +(div(gasto, ingresos) * 100).toFixed(1),
+    utilidad_bruta: ingresos - gasto,
+    roas: +div(ingresos, gasto).toFixed(2),
+  };
+}
+
+function kpisFacetechRango(desde, hasta) {
+  const dd = DATA.daily || {};
+  const rows = (dd.facetech || []).filter(r => inRange(r.fecha, desde, hasta));
+  const leads = rows.reduce((s, r) => s + (r.leads || 0), 0);
+  const compras = rows.reduce((s, r) => s + (r.compras || 0), 0);
+  const ticket = (rows.find(r => r.valor_ticket > 0) || {}).valor_ticket || 0;
+  const ingresos = compras * ticket;
+
+  const gasto = Object.entries(dd.meta_facetech || {})
+    .filter(([f]) => inRange(f, desde, hasta))
+    .reduce((s, [, v]) => s + (v.spend || 0), 0);
+
+  const div = (a, b) => (b ? a / b : 0);
+  return {
+    leads, compras, valor_ticket: ticket,
+    tasa_conversion: +(div(compras, leads) * 100).toFixed(1),
+    ingresos,
+    gasto_meta: gasto,
+    costo_por_lead: Math.round(div(gasto, leads)),
+    costo_por_compra: Math.round(div(gasto, compras)),
+    utilidad_bruta: ingresos - gasto,
+    roas: +div(ingresos, gasto).toFixed(2),
+  };
+}
+
+/* Alcance de un rango custom: sólo métricas aditivas.
+   'reach'/'frequency' se omiten — Meta deduplica personas únicas dentro del
+   rango consultado, así que sumar días daría un número inflado. */
+function alcanceRango(mapa, desde, hasta) {
+  const dias = Object.entries(mapa || {}).filter(([f]) => inRange(f, desde, hasta));
+  const spend = dias.reduce((s, [, v]) => s + (v.spend || 0), 0);
+  const impressions = dias.reduce((s, [, v]) => s + (v.impressions || 0), 0);
+  const clicks = dias.reduce((s, [, v]) => s + (v.clicks || 0), 0);
+  return {
+    spend, impressions, clicks,
+    reach: 0, frequency: 0, cpp: 0,
+    ctr: impressions ? +((clicks / impressions) * 100).toFixed(2) : 0,
+    cpm: impressions ? Math.round((spend / impressions) * 1000) : 0,
+    _sin_alcance: true,
+  };
+}
+
+/* Serie de la gráfica para un rango arbitrario, con la misma forma que DATA.chart.
+   Sin esto la gráfica seguiría mostrando los últimos 7 días bajo un encabezado
+   de otro periodo. Si el rango es largo se agrupa por mes para que sea legible. */
+function chartRango(desde, hasta) {
+  const dd = DATA.daily || {};
+  const precio = DATA.precio_cita || 0;
+  const dias = [];
+  for (let d = new Date(desde + 'T00:00:00'), fin = new Date(hasta + 'T00:00:00'); d <= fin;
+       d.setDate(d.getDate() + 1)) {
+    dias.push(d.toISOString().split('T')[0]);
+  }
+  if (!dias.length) return { labels: [], clinica_ingresos: [], clinica_gasto: [],
+                             facetech_ingresos: [], facetech_gasto: [] };
+
+  const ingDia = f => {
+    const c = (dd.clinica || []).filter(r => r.fecha === f);
+    const citas = c.reduce((s, r) => s + (r.tiene_total ? r.total_facturado
+                                                        : (r.citas_agendadas || 0) * precio), 0);
+    const procs = (dd.procedimientos || [])
+      .filter(r => r.fecha === f && r.valor > 0).reduce((s, r) => s + r.valor, 0);
+    return citas + procs;
+  };
+  const ftDia = f => {
+    const rows = (dd.facetech || []).filter(r => r.fecha === f);
+    const ticket = (rows.find(r => r.valor_ticket > 0) || {}).valor_ticket || 0;
+    return rows.reduce((s, r) => s + (r.compras || 0), 0) * ticket;
+  };
+  const gastoDia = (mapa, f) => (mapa || {})[f]?.spend || 0;
+
+  // Más de ~62 días en barras diarias es ilegible en móvil: se agrupa por mes.
+  if (dias.length > 62) {
+    const meses = {};
+    dias.forEach(f => {
+      const k = f.slice(0, 7);
+      meses[k] = meses[k] || { ci: 0, cg: 0, fi: 0, fg: 0 };
+      meses[k].ci += ingDia(f);
+      meses[k].cg += gastoDia(dd.meta_clinica, f);
+      meses[k].fi += ftDia(f);
+      meses[k].fg += gastoDia(dd.meta_facetech, f);
+    });
+    const keys = Object.keys(meses).sort();
+    return {
+      agrupado: true,
+      labels: keys,
+      clinica_ingresos: keys.map(k => meses[k].ci),
+      clinica_gasto: keys.map(k => meses[k].cg),
+      facetech_ingresos: keys.map(k => meses[k].fi),
+      facetech_gasto: keys.map(k => meses[k].fg),
+    };
+  }
+  return {
+    agrupado: false,
+    labels: dias.map(f => f.slice(5)),
+    clinica_ingresos: dias.map(ingDia),
+    clinica_gasto: dias.map(f => gastoDia(dd.meta_clinica, f)),
+    facetech_ingresos: dias.map(ftDia),
+    facetech_gasto: dias.map(f => gastoDia(dd.meta_facetech, f)),
+  };
 }
 
 /* ── Switch period ── */
 const PERIOD_IDX    = { hoy:0, ayer:1, semana:2, mes:3, todo:4 };
-const PERIOD_DATA   = { hoy:'hoy', ayer:'ayer', semana:'semana', mes:'mes', todo:'mes' };
-const PERIOD_ALCANCE = { hoy:'hoy', ayer:'hoy', semana:'semana', mes:'mes', todo:'mes' };
+const PERIOD_DATA   = { hoy:'hoy', ayer:'ayer', semana:'semana', mes:'mes', todo:'todo' };
+const PERIOD_ALCANCE = { hoy:'hoy', ayer:'ayer', semana:'semana', mes:'mes', todo:'todo' };
 
-function switchPeriod(p) {
+/* Oculta los chips que no se pueden calcular por suma de días y avisa por qué. */
+function setAlcanceParcial(parcial, desde, hasta) {
+  ['c-reach', 'c-freq', 'f-reach', 'f-freq'].forEach(id => {
+    const chip = document.getElementById(id)?.closest('.chip');
+    if (chip) chip.style.display = parcial ? 'none' : '';
+  });
+  document.querySelectorAll('.alcance-nota').forEach(n => n.remove());
+  if (!parcial) return;
+  document.querySelectorAll('.alcance-chips').forEach(wrap => {
+    const nota = document.createElement('div');
+    nota.className = 'alcance-nota';
+    nota.textContent = `ℹ️ Impresiones, clics y CTR son exactos para ${fmtFecha(desde)} → ${fmtFecha(hasta)}. `
+      + 'El alcance en personas únicas sólo está disponible en Hoy / Ayer / Semana / Mes / Todo, '
+      + 'porque Meta no permite sumarlo por días sin contar repetidos.';
+    wrap.appendChild(nota);
+  });
+}
+
+const fmtFecha = f => {
+  if (!f) return '';
+  const [y, m, d] = f.split('-');
+  return `${d}/${m}/${y.slice(2)}`;
+};
+
+function switchPeriod(p, range) {
   currentPeriod = p;
+  currentRange = (p === 'rango') ? range : null;
+
   document.querySelectorAll('.fb-btn').forEach(el => el.classList.remove('active'));
   const btns = document.querySelectorAll('.fb-btn');
   const idx  = PERIOD_IDX[p];
   if (idx !== undefined && btns[idx]) btns[idx].classList.add('active');
-  const key    = PERIOD_DATA[p]    || 'mes';
-  const alcKey = PERIOD_ALCANCE[p] || 'mes';
-  if (DATA) {
-    const ckpis = DATA.clinica[key]   || DATA.clinica.hoy;
-    const fkpis = DATA.facetech[key]  || DATA.facetech.hoy;
-    renderClinica(ckpis);
-    renderFacetech(fkpis);
-    renderAlcanceClinica(
-      DATA.alcance?.clinica?.[alcKey],
-      DATA.conclusiones?.clinica?.[alcKey],
-      ckpis
-    );
-    renderAlcanceFacetech(
-      DATA.alcance?.facetech?.[alcKey],
-      DATA.conclusiones?.facetech?.[alcKey],
-      fkpis
-    );
+  if (!DATA) return;
+
+  let ckpis, fkpis, calc, falc, cconc, fconc, parcial = false;
+
+  if (p === 'rango' && currentRange) {
+    // Rango arbitrario: se calcula sobre DATA.daily, sin alcance de personas únicas.
+    const { desde, hasta } = currentRange;
+    ckpis = kpisClinicaRango(desde, hasta);
+    fkpis = kpisFacetechRango(desde, hasta);
+    calc  = alcanceRango(DATA.daily?.meta_clinica, desde, hasta);
+    falc  = alcanceRango(DATA.daily?.meta_facetech, desde, hasta);
+    cconc = fconc = null;   // las conclusiones se generan en backend a partir del alcance
+    parcial = true;
+  } else {
+    const key    = PERIOD_DATA[p]    || 'mes';
+    const alcKey = PERIOD_ALCANCE[p] || 'mes';
+    ckpis = DATA.clinica[key]  || DATA.clinica.hoy;
+    fkpis = DATA.facetech[key] || DATA.facetech.hoy;
+    calc  = DATA.alcance?.clinica?.[alcKey];
+    falc  = DATA.alcance?.facetech?.[alcKey];
+    cconc = DATA.conclusiones?.clinica?.[alcKey];
+    fconc = DATA.conclusiones?.facetech?.[alcKey];
   }
+
+  renderClinica(ckpis);
+  renderFacetech(fkpis);
+  setAlcanceParcial(parcial, currentRange?.desde, currentRange?.hasta);
+  renderAlcanceClinica(calc, cconc, ckpis);
+  renderAlcanceFacetech(falc, fconc, fkpis);
+  renderCharts(chartDelPeriodo());
+  updateRangeLabel();
+}
+
+/* La gráfica debe cubrir el periodo elegido; DATA.chart sólo trae los últimos 7 días. */
+function chartDelPeriodo() {
+  const hoy = new Date().toISOString().split('T')[0];
+  let desde, hasta = hoy, sub;
+  if (currentPeriod === 'rango' && currentRange) {
+    ({ desde, hasta } = currentRange);
+    sub = `${fmtFecha(desde)} → ${fmtFecha(hasta)}`;
+  } else if (currentPeriod === 'todo') {
+    desde = DATA.first_date; sub = 'Todo el histórico';
+  } else {
+    document.querySelectorAll('.chart-sub-txt').forEach(e => e.textContent = 'Últimos 7 días');
+    return DATA.chart;
+  }
+  const serie = chartRango(desde, hasta);
+  if (serie.agrupado) sub += ' · por mes';   // sólo si de verdad se agrupó
+  document.querySelectorAll('.chart-sub-txt').forEach(e => e.textContent = sub);
+  return serie;
+}
+
+/* Etiqueta de qué periodo se está viendo, para que el número nunca quede sin contexto. */
+function updateRangeLabel() {
+  const el = document.getElementById('fb-active-lbl');
+  if (!el) return;
+  const txt = {
+    hoy: 'Hoy', ayer: 'Ayer', semana: 'Últimos 7 días', mes: 'Este mes',
+    todo: DATA?.first_date ? `Todo · desde ${fmtFecha(DATA.first_date)}` : 'Todo',
+  }[currentPeriod];
+  el.textContent = txt || (currentRange
+    ? `${fmtFecha(currentRange.desde)} → ${fmtFecha(currentRange.hasta)}`
+    : '');
 }
 
 /* ── Month picker ── */
@@ -1874,7 +2125,18 @@ function toggleMesPicker() {
     b.onclick = () => {
       document.getElementById('fb-mes-label').textContent = m.slice(0,3);
       picker.remove();
-      switchPeriod('mes');
+      // Antes esto sólo cambiaba la etiqueta y volvía a mostrar el mes actual.
+      // Ahora arma el rango real del mes elegido, con tope en hoy.
+      const y = now.getFullYear();
+      const desde = `${y}-${String(i + 1).padStart(2, '0')}-01`;
+      const ultimo = new Date(y, i + 1, 0).getDate();
+      let hasta = `${y}-${String(i + 1).padStart(2, '0')}-${String(ultimo).padStart(2, '0')}`;
+      const hoy = new Date().toISOString().split('T')[0];
+      if (hasta > hoy) hasta = hoy;
+      document.getElementById('range-start').value = desde;
+      document.getElementById('range-end').value = hasta;
+      if (i === cur) switchPeriod('mes');            // mes actual = bucket exacto con alcance
+      else switchPeriod('rango', { desde, hasta });
     };
     picker.appendChild(b);
   });
@@ -1929,20 +2191,22 @@ function switchTab(tab) {
 
 /* ── Range apply ── */
 function applyRange() {
-  const s = document.getElementById('range-start').value;
-  const e = document.getElementById('range-end').value;
-  if (!s || !e) return;
-  const today = new Date().toISOString().split('T')[0];
-  const yesterday = new Date(Date.now()-86400000).toISOString().split('T')[0];
-  // Map to closest available period
-  if (s === today && e === today)           switchPeriod('hoy');
-  else if (s === yesterday && e === yesterday) switchPeriod('ayer');
-  else {
-    // Determine if range fits within week or month
-    const diffDays = (new Date(e) - new Date(s)) / 86400000;
-    if (diffDays <= 7) switchPeriod('semana');
-    else               switchPeriod('mes');
+  let s = document.getElementById('range-start').value;
+  let e = document.getElementById('range-end').value;
+  const err = document.getElementById('fb-range-err');
+  const fail = msg => { if (err) { err.textContent = msg; err.style.display = 'block'; } };
+  if (err) { err.textContent = ''; err.style.display = 'none'; }
+
+  if (!s || !e) return fail('Elige las dos fechas.');
+  if (s > e) { [s, e] = [e, s];  // invertidas: se corrigen en vez de mostrar 0
+    document.getElementById('range-start').value = s;
+    document.getElementById('range-end').value = e;
   }
+  const hoy = new Date().toISOString().split('T')[0];
+  if (s > hoy) return fail('La fecha inicial es futura, todavía no hay datos.');
+  if (e > hoy) { e = hoy; document.getElementById('range-end').value = e; }
+
+  switchPeriod('rango', { desde: s, hasta: e });
 }
 
 /* ── Init date inputs ── */
@@ -1978,22 +2242,8 @@ async function loadData() {
     DATA = await res.json();
     set('updated-at', DATA.updated_at || '—');
     setDate();
-    const alcKey = PERIOD_ALCANCE[currentPeriod] || 'hoy';
-    const ckpis  = DATA.clinica[currentPeriod]  || DATA.clinica.hoy;
-    const fkpis  = DATA.facetech[currentPeriod] || DATA.facetech.hoy;
-    renderClinica(ckpis);
-    renderFacetech(fkpis);
-    renderCharts(DATA.chart);
-    renderAlcanceClinica(
-      DATA.alcance?.clinica?.[alcKey],
-      DATA.conclusiones?.clinica?.[alcKey],
-      ckpis
-    );
-    renderAlcanceFacetech(
-      DATA.alcance?.facetech?.[alcKey],
-      DATA.conclusiones?.facetech?.[alcKey],
-      fkpis
-    );
+    // Un solo camino de render: switchPeriod ya arma KPIs, alcance, gráfica y etiqueta.
+    switchPeriod(currentPeriod, currentRange);
     document.getElementById('loading').style.display = 'none';
     document.getElementById('app').style.display = 'block';
     if (typeof mountLogoutButton === 'function') mountLogoutButton();
