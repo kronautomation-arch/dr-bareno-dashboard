@@ -681,6 +681,33 @@
     .note-b { color:var(--b2); }
     .note-g { color:var(--g2); }
 
+    /* desglose de procedimientos */
+    .dsg-row {
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      padding:10px 0; border-bottom:1px solid var(--border);
+    }
+    .dsg-row:last-child { border-bottom:none; padding-bottom:0; }
+    .dsg-left { display:flex; align-items:center; gap:10px; min-width:0; }
+    .dsg-qty {
+      flex-shrink:0; min-width:24px; height:24px; padding:0 6px; border-radius:8px;
+      background:linear-gradient(135deg,var(--g1),var(--g2));
+      display:flex; align-items:center; justify-content:center;
+      font-size:11px; font-weight:800; color:#fff;
+    }
+    .dsg-name {
+      font-size:12.5px; font-weight:600; color:var(--txt);
+      overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+    }
+    .dsg-val { flex-shrink:0; font-size:13px; font-weight:800; color:var(--txt); letter-spacing:-.3px; }
+    .dsg-empty { font-size:12px; color:var(--txt2); text-align:center; padding:14px 0; }
+    .dsg-foot {
+      display:flex; align-items:center; justify-content:space-between;
+      margin-top:12px; padding-top:12px; border-top:1px solid var(--border);
+    }
+    .dsg-foot-lbl { font-size:11px; font-weight:700; color:var(--txt2); text-transform:uppercase; letter-spacing:.4px; }
+    .dsg-foot-val { font-size:16px; font-weight:800; color:var(--g2); letter-spacing:-.4px; }
+    .dsg-pend { font-size:10.5px; color:var(--txt2); margin-top:9px; text-align:center; }
+
     /* ─── LOADING / ERROR ─── */
     .loading {
       display:flex; flex-direction:column; align-items:center;
@@ -969,6 +996,17 @@
           <div class="donut-legend" id="donut-c-legend"></div>
         </div>
       </div>
+    </div>
+
+    <!-- Desglose de procedimientos -->
+    <div class="sec-lbl">Desglose de procedimientos</div>
+    <div class="sum-card">
+      <div id="c-desglose"></div>
+      <div class="dsg-foot">
+        <div class="dsg-foot-lbl">Total facturado</div>
+        <div class="dsg-foot-val" id="c-desglose-total">$0</div>
+      </div>
+      <div class="dsg-pend" id="c-desglose-pend"></div>
     </div>
 
     <!-- Summary -->
@@ -1499,6 +1537,41 @@ function buildDonut(canvasId, legendId, centerValId, labels, values, colors) {
   return chart;
 }
 
+/* ── Desglose de procedimientos ── */
+// 'tipo' es texto libre que el cliente escribe en el Google Sheet: escapar antes de innerHTML.
+function esc(s) {
+  const div = document.createElement('div');
+  div.textContent = s == null ? '' : String(s);
+  return div.innerHTML;
+}
+
+function renderDesglose(d) {
+  const cont = document.getElementById('c-desglose');
+  if (!cont) return;
+  const items = d.desglose_procedimientos || [];
+
+  cont.innerHTML = items.length
+    ? items.map(it => `
+      <div class="dsg-row">
+        <div class="dsg-left">
+          <div class="dsg-qty">${NUM(it.cantidad)}</div>
+          <div class="dsg-name" title="${esc(it.tipo)}">${esc(it.tipo)}</div>
+        </div>
+        <div class="dsg-val">${COP(it.valor)}</div>
+      </div>`).join('')
+    : '<div class="dsg-empty">Sin procedimientos facturados en este periodo</div>';
+
+  set('c-desglose-total', COP(d.ingresos_procedimientos));
+
+  const pend = d.procedimientos_agendados || 0;
+  const pendEl = document.getElementById('c-desglose-pend');
+  if (pendEl) {
+    pendEl.textContent = pend
+      ? `+ ${pend} ${pend === 1 ? 'cirugía agendada' : 'cirugías agendadas'} sin valor registrado aún`
+      : '';
+  }
+}
+
 /* ── Render Clínica ── */
 function renderClinica(d) {
   set('c-ingresos',    COP(d.ingresos_totales));
@@ -1523,6 +1596,9 @@ function renderClinica(d) {
   set('c-ing-procs2',  COP(d.ingresos_procedimientos));
   set('c-gasto2',      COP(d.gasto_meta));
   set('c-roas-badge',  'ROAS ' + ROAS(d.roas));
+
+  /* desglose de procedimientos */
+  renderDesglose(d);
 
   /* progress bar */
   const pct = Math.min(d.tasa_conversion || 0, 100);
