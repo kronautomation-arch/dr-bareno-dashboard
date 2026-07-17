@@ -1,16 +1,16 @@
 {
-  "updated_at": "2026-07-16 19:03",
-  "today": "2026-07-16",
+  "updated_at": "2026-07-17 08:00",
+  "today": "2026-07-17",
   "precio_cita": 200000.0,
   "first_date": "2026-05-04",
   "clinica": {
     "hoy": {
       "citas_agendadas": 0,
       "procedimientos_vendidos": 0,
-      "procedimientos_agendados": 0,
+      "procedimientos_agendados": 1,
       "tasa_conversion": 0.0,
       "ingresos_citas": 0.0,
-      "ingresos_procedimientos": 0,
+      "ingresos_procedimientos": 0.0,
       "ingresos_totales": 0.0,
       "desglose_procedimientos": [],
       "gasto_meta": 0.0,
@@ -28,26 +28,26 @@
       "ingresos_procedimientos": 0,
       "ingresos_totales": 0.0,
       "desglose_procedimientos": [],
-      "gasto_meta": 117946.0,
+      "gasto_meta": 0.0,
       "costo_por_cita": 0,
       "porcentaje_publicidad": 0.0,
-      "utilidad_bruta": -117946.0,
+      "utilidad_bruta": 0.0,
       "roas": 0.0
     },
     "semana": {
-      "citas_agendadas": 8,
+      "citas_agendadas": 2,
       "procedimientos_vendidos": 0,
       "procedimientos_agendados": 1,
       "tasa_conversion": 0.0,
-      "ingresos_citas": 1600000.0,
+      "ingresos_citas": 400000.0,
       "ingresos_procedimientos": 0.0,
-      "ingresos_totales": 1600000.0,
+      "ingresos_totales": 400000.0,
       "desglose_procedimientos": [],
       "gasto_meta": 263289.0,
-      "costo_por_cita": 32911,
-      "porcentaje_publicidad": 16.5,
-      "utilidad_bruta": 1336711.0,
-      "roas": 6.08
+      "costo_por_cita": 131644,
+      "porcentaje_publicidad": 65.8,
+      "utilidad_bruta": 136711.0,
+      "roas": 1.52
     },
     "mes": {
       "citas_agendadas": 23,
@@ -78,7 +78,7 @@
     "todo": {
       "citas_agendadas": 104,
       "procedimientos_vendidos": 9,
-      "procedimientos_agendados": 0,
+      "procedimientos_agendados": 1,
       "tasa_conversion": 8.7,
       "ingresos_citas": 20800000.0,
       "ingresos_procedimientos": 133000000.0,
@@ -191,30 +191,30 @@
   },
   "chart": {
     "labels": [
-      "07-10",
       "07-11",
       "07-12",
       "07-13",
       "07-14",
       "07-15",
-      "07-16"
+      "07-16",
+      "07-17"
     ],
     "clinica_ingresos": [
-      1200000.0,
       0.0,
       0.0,
       0.0,
       400000.0,
       0.0,
+      0.0,
       0.0
     ],
     "clinica_gasto": [
-      0,
       59936.0,
       0,
       85407.0,
       0,
       117946.0,
+      0,
       0
     ],
     "facetech_ingresos": [
@@ -581,6 +581,11 @@
         "fecha": "2026-07-07",
         "tipo": "Blefaro 4 parpados",
         "valor": 13000000.0
+      },
+      {
+        "fecha": "2026-07-17",
+        "tipo": "Blefar 4 lifting tercio",
+        "valor": 0.0
       }
     ],
     "facetech": [],
@@ -792,14 +797,14 @@
         "cpp": 0
       },
       "ayer": {
-        "spend": 117946,
-        "reach": 11143,
-        "impressions": 12936,
-        "frequency": 1.16,
-        "clicks": 799,
-        "ctr": 6.18,
-        "cpm": 9118,
-        "cpp": 10585
+        "spend": 0,
+        "reach": 0,
+        "impressions": 0,
+        "frequency": 0,
+        "clicks": 0,
+        "ctr": 0,
+        "cpm": 0,
+        "cpp": 0
       },
       "semana": {
         "spend": 263289,
@@ -888,13 +893,7 @@
   "conclusiones": {
     "clinica": {
       "hoy": [],
-      "ayer": [
-        "📣 Ayer tu clínica llegó a 11.143 personas únicas en la región — excelente alcance de marca.",
-        "👁️ 12.936 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
-        "🚀 Con 1.2x de frecuencia, tu anuncio está llegando constantemente a nuevas personas — la audiencia de la clínica sigue creciendo.",
-        "🎯 CTR 6.18% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
-        "🖱️ 799 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
-      ],
+      "ayer": [],
       "semana": [
         "📣 Esta semana tu clínica llegó a 18.409 personas únicas en la región — excelente alcance de marca.",
         "👁️ 23.873 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
