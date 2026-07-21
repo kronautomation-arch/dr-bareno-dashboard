@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-21 08:00",
+  "updated_at": "2026-07-21 13:00",
   "today": "2026-07-21",
   "precio_cita": 200000.0,
   "first_date": "2026-05-04",
@@ -28,36 +28,47 @@
       "ingresos_procedimientos": 0,
       "ingresos_totales": 0.0,
       "desglose_procedimientos": [],
-      "gasto_meta": 87193.0,
+      "gasto_meta": 87286.0,
       "costo_por_cita": 0,
       "porcentaje_publicidad": 0.0,
-      "utilidad_bruta": -87193.0,
+      "utilidad_bruta": -87286.0,
       "roas": 0.0
     },
     "semana": {
       "citas_agendadas": 0,
-      "procedimientos_vendidos": 0,
-      "procedimientos_agendados": 1,
+      "procedimientos_vendidos": 1,
+      "procedimientos_agendados": 0,
       "tasa_conversion": 0.0,
       "ingresos_citas": 0.0,
-      "ingresos_procedimientos": 0.0,
-      "ingresos_totales": 0.0,
-      "desglose_procedimientos": [],
-      "gasto_meta": 266335.0,
+      "ingresos_procedimientos": 33000000.0,
+      "ingresos_totales": 33000000.0,
+      "desglose_procedimientos": [
+        {
+          "tipo": "Blefar 4 lifting tercio",
+          "cantidad": 1,
+          "valor": 33000000.0
+        }
+      ],
+      "gasto_meta": 266428.0,
       "costo_por_cita": 0,
-      "porcentaje_publicidad": 0.0,
-      "utilidad_bruta": -266335.0,
-      "roas": 0.0
+      "porcentaje_publicidad": 0.8,
+      "utilidad_bruta": 32733572.0,
+      "roas": 123.86
     },
     "mes": {
       "citas_agendadas": 23,
-      "procedimientos_vendidos": 2,
-      "procedimientos_agendados": 1,
-      "tasa_conversion": 8.7,
+      "procedimientos_vendidos": 3,
+      "procedimientos_agendados": 0,
+      "tasa_conversion": 13.0,
       "ingresos_citas": 4600000.0,
-      "ingresos_procedimientos": 26000000.0,
-      "ingresos_totales": 30600000.0,
+      "ingresos_procedimientos": 59000000.0,
+      "ingresos_totales": 63600000.0,
       "desglose_procedimientos": [
+        {
+          "tipo": "Blefar 4 lifting tercio",
+          "cantidad": 1,
+          "valor": 33000000.0
+        },
         {
           "tipo": "Blefaro 4 parpa",
           "cantidad": 1,
@@ -69,25 +80,30 @@
           "valor": 13000000.0
         }
       ],
-      "gasto_meta": 837882.0,
-      "costo_por_cita": 36430,
-      "porcentaje_publicidad": 2.7,
-      "utilidad_bruta": 29762118.0,
-      "roas": 36.52
+      "gasto_meta": 837975.0,
+      "costo_por_cita": 36434,
+      "porcentaje_publicidad": 1.3,
+      "utilidad_bruta": 62762025.0,
+      "roas": 75.9
     },
     "todo": {
       "citas_agendadas": 104,
-      "procedimientos_vendidos": 9,
-      "procedimientos_agendados": 1,
-      "tasa_conversion": 8.7,
+      "procedimientos_vendidos": 10,
+      "procedimientos_agendados": 0,
+      "tasa_conversion": 9.6,
       "ingresos_citas": 20800000.0,
-      "ingresos_procedimientos": 133000000.0,
-      "ingresos_totales": 153800000.0,
+      "ingresos_procedimientos": 166000000.0,
+      "ingresos_totales": 186800000.0,
       "desglose_procedimientos": [
         {
           "tipo": "Blefaro 4 full face",
           "cantidad": 1,
           "valor": 35000000.0
+        },
+        {
+          "tipo": "Blefar 4 lifting tercio",
+          "cantidad": 1,
+          "valor": 33000000.0
         },
         {
           "tipo": "Blefaro 4 parpa",
@@ -120,11 +136,11 @@
           "valor": 7000000.0
         }
       ],
-      "gasto_meta": 3191208,
-      "costo_por_cita": 30685,
-      "porcentaje_publicidad": 2.1,
-      "utilidad_bruta": 150608792.0,
-      "roas": 48.19
+      "gasto_meta": 3191301,
+      "costo_por_cita": 30686,
+      "porcentaje_publicidad": 1.7,
+      "utilidad_bruta": 183608699.0,
+      "roas": 58.53
     }
   },
   "facetech": {
@@ -202,7 +218,7 @@
     "clinica_ingresos": [
       0.0,
       0.0,
-      0.0,
+      33000000.0,
       0.0,
       0.0,
       0.0,
@@ -214,7 +230,7 @@
       0,
       61155.0,
       0,
-      87193.0,
+      87286.0,
       0
     ],
     "facetech_ingresos": [
@@ -585,7 +601,7 @@
       {
         "fecha": "2026-07-17",
         "tipo": "Blefar 4 lifting tercio",
-        "valor": 0.0
+        "valor": 33000000.0
       }
     ],
     "facetech": [],
@@ -776,8 +792,8 @@
         "clicks": 333
       },
       "2026-07-20": {
-        "spend": 87193,
-        "impressions": 6256,
+        "spend": 87286,
+        "impressions": 6263,
         "clicks": 525
       }
     },
@@ -807,44 +823,44 @@
         "cpp": 0
       },
       "ayer": {
-        "spend": 87193,
-        "reach": 5117,
-        "impressions": 6256,
+        "spend": 87286,
+        "reach": 5121,
+        "impressions": 6263,
         "frequency": 1.22,
         "clicks": 525,
-        "ctr": 8.39,
-        "cpm": 13938,
-        "cpp": 17040
+        "ctr": 8.38,
+        "cpm": 13937,
+        "cpp": 17045
       },
       "semana": {
-        "spend": 266335,
+        "spend": 266428,
         "reach": 16518,
-        "impressions": 22773,
+        "impressions": 22780,
         "frequency": 1.38,
         "clicks": 1657,
-        "ctr": 7.28,
-        "cpm": 11695,
-        "cpp": 16124
+        "ctr": 7.27,
+        "cpm": 11696,
+        "cpp": 16130
       },
       "mes": {
-        "spend": 837882,
+        "spend": 837975,
         "reach": 35888,
-        "impressions": 69564,
+        "impressions": 69571,
         "frequency": 1.94,
         "clicks": 5368,
         "ctr": 7.72,
         "cpm": 12045,
-        "cpp": 23347
+        "cpp": 23350
       },
       "todo": {
-        "spend": 3191208,
+        "spend": 3191301,
         "reach": 81326,
-        "impressions": 230375,
+        "impressions": 230382,
         "frequency": 2.83,
         "clicks": 16748,
         "ctr": 7.27,
         "cpm": 13852,
-        "cpp": 39240
+        "cpp": 39241
       }
     },
     "facetech": {
@@ -904,29 +920,29 @@
     "clinica": {
       "hoy": [],
       "ayer": [
-        "📣 Ayer tu clínica llegó a 5.117 personas únicas en la región — excelente alcance de marca.",
-        "👁️ 6.256 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
+        "📣 Ayer tu clínica llegó a 5.121 personas únicas en la región — excelente alcance de marca.",
+        "👁️ 6.263 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
         "🚀 Con 1.2x de frecuencia, tu anuncio está llegando constantemente a nuevas personas — la audiencia de la clínica sigue creciendo.",
-        "🎯 CTR 8.39% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
+        "🎯 CTR 8.38% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
         "🖱️ 525 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
       ],
       "semana": [
         "📣 Esta semana tu clínica llegó a 16.518 personas únicas en la región — excelente alcance de marca.",
-        "👁️ 22.773 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
+        "👁️ 22.780 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
         "🚀 Con 1.4x de frecuencia, tu anuncio está llegando constantemente a nuevas personas — la audiencia de la clínica sigue creciendo.",
-        "🎯 CTR 7.28% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
+        "🎯 CTR 7.27% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
         "🖱️ 1.657 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
       ],
       "mes": [
         "📣 Este mes tu clínica llegó a 35.888 personas únicas en la región — excelente alcance de marca.",
-        "👁️ 69.564 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
+        "👁️ 69.571 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
         "🚀 Con 1.9x de frecuencia, tu anuncio está llegando constantemente a nuevas personas — la audiencia de la clínica sigue creciendo.",
         "🎯 CTR 7.72% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
         "🖱️ 5.368 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
       ],
       "todo": [
         "📣 Desde el inicio tu clínica llegó a 81.326 personas únicas en la región — excelente alcance de marca.",
-        "👁️ 230.375 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
+        "👁️ 230.382 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
         "✅ Frecuencia 2.8x — nivel óptimo de recordación. Tu marca está perfectamente posicionada en la mente de los pacientes.",
         "🎯 CTR 7.27% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
         "🖱️ 16.748 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
