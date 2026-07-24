@@ -1,22 +1,22 @@
 {
-  "updated_at": "2026-07-24 08:00",
+  "updated_at": "2026-07-24 13:00",
   "today": "2026-07-24",
   "precio_cita": 200000.0,
   "first_date": "2026-05-04",
   "clinica": {
     "hoy": {
-      "citas_agendadas": 0,
+      "citas_agendadas": 2,
       "procedimientos_vendidos": 0,
       "procedimientos_agendados": 0,
       "tasa_conversion": 0.0,
-      "ingresos_citas": 0.0,
+      "ingresos_citas": 400000.0,
       "ingresos_procedimientos": 0,
-      "ingresos_totales": 0.0,
+      "ingresos_totales": 400000.0,
       "desglose_procedimientos": [],
       "gasto_meta": 0.0,
       "costo_por_cita": 0,
       "porcentaje_publicidad": 0.0,
-      "utilidad_bruta": 0.0,
+      "utilidad_bruta": 400000.0,
       "roas": 0.0
     },
     "ayer": {
@@ -41,13 +41,13 @@
       "roas": 0.0
     },
     "semana": {
-      "citas_agendadas": 11,
+      "citas_agendadas": 13,
       "procedimientos_vendidos": 1,
       "procedimientos_agendados": 0,
-      "tasa_conversion": 9.1,
-      "ingresos_citas": 2200000.0,
+      "tasa_conversion": 7.7,
+      "ingresos_citas": 2600000.0,
       "ingresos_procedimientos": 18000000.0,
-      "ingresos_totales": 20200000.0,
+      "ingresos_totales": 20600000.0,
       "desglose_procedimientos": [
         {
           "tipo": "Blefaro 4 y tercio medio",
@@ -56,19 +56,19 @@
         }
       ],
       "gasto_meta": 263093.0,
-      "costo_por_cita": 23918,
+      "costo_por_cita": 20238,
       "porcentaje_publicidad": 1.3,
-      "utilidad_bruta": 19936907.0,
-      "roas": 76.78
+      "utilidad_bruta": 20336907.0,
+      "roas": 78.3
     },
     "mes": {
-      "citas_agendadas": 34,
+      "citas_agendadas": 36,
       "procedimientos_vendidos": 4,
       "procedimientos_agendados": 0,
-      "tasa_conversion": 11.8,
-      "ingresos_citas": 6800000.0,
+      "tasa_conversion": 11.1,
+      "ingresos_citas": 7200000.0,
       "ingresos_procedimientos": 77000000.0,
-      "ingresos_totales": 83800000.0,
+      "ingresos_totales": 84200000.0,
       "desglose_procedimientos": [
         {
           "tipo": "Blefar 4 lifting tercio",
@@ -92,19 +92,19 @@
         }
       ],
       "gasto_meta": 952627.0,
-      "costo_por_cita": 28018,
+      "costo_por_cita": 26462,
       "porcentaje_publicidad": 1.1,
-      "utilidad_bruta": 82847373.0,
-      "roas": 87.97
+      "utilidad_bruta": 83247373.0,
+      "roas": 88.39
     },
     "todo": {
-      "citas_agendadas": 115,
+      "citas_agendadas": 117,
       "procedimientos_vendidos": 11,
       "procedimientos_agendados": 0,
-      "tasa_conversion": 9.6,
-      "ingresos_citas": 23000000.0,
+      "tasa_conversion": 9.4,
+      "ingresos_citas": 23400000.0,
       "ingresos_procedimientos": 184000000.0,
-      "ingresos_totales": 207000000.0,
+      "ingresos_totales": 207400000.0,
       "desglose_procedimientos": [
         {
           "tipo": "Blefaro 4 full face",
@@ -153,10 +153,10 @@
         }
       ],
       "gasto_meta": 3305953,
-      "costo_por_cita": 28747,
+      "costo_por_cita": 28256,
       "porcentaje_publicidad": 1.6,
-      "utilidad_bruta": 203694047.0,
-      "roas": 62.61
+      "utilidad_bruta": 204094047.0,
+      "roas": 62.74
     }
   },
   "facetech": {
@@ -238,7 +238,7 @@
       800000.0,
       1000000.0,
       18400000.0,
-      0.0
+      400000.0
     ],
     "clinica_gasto": [
       61155.0,
@@ -587,6 +587,15 @@
       },
       {
         "fecha": "2026-07-23",
+        "citas_agendadas": 2,
+        "procedimientos_vendidos": 0,
+        "citas_virtual": 0,
+        "citas_presencial": 2,
+        "total_facturado": 400000.0,
+        "tiene_total": true
+      },
+      {
+        "fecha": "2026-07-24",
         "citas_agendadas": 2,
         "procedimientos_vendidos": 0,
         "citas_virtual": 0,
