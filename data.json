@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-07-26 19:00",
-  "today": "2026-07-26",
+  "updated_at": "2026-07-27 08:00",
+  "today": "2026-07-27",
   "precio_cita": 200000.0,
   "first_date": "2026-05-04",
   "clinica": {
@@ -13,10 +13,10 @@
       "ingresos_procedimientos": 0,
       "ingresos_totales": 0.0,
       "desglose_procedimientos": [],
-      "gasto_meta": 0.0,
+      "gasto_meta": 9852.0,
       "costo_por_cita": 0,
       "porcentaje_publicidad": 0.0,
-      "utilidad_bruta": 0.0,
+      "utilidad_bruta": -9852.0,
       "roas": 0.0
     },
     "ayer": {
@@ -28,10 +28,10 @@
       "ingresos_procedimientos": 0,
       "ingresos_totales": 0.0,
       "desglose_procedimientos": [],
-      "gasto_meta": 64029.0,
+      "gasto_meta": 0.0,
       "costo_por_cita": 0,
       "porcentaje_publicidad": 0.0,
-      "utilidad_bruta": -64029.0,
+      "utilidad_bruta": 0.0,
       "roas": 0.0
     },
     "semana": {
@@ -49,11 +49,11 @@
           "valor": 18000000.0
         }
       ],
-      "gasto_meta": 265967.0,
-      "costo_por_cita": 20459,
-      "porcentaje_publicidad": 1.3,
-      "utilidad_bruta": 20334033.0,
-      "roas": 77.45
+      "gasto_meta": 188571.0,
+      "costo_por_cita": 14505,
+      "porcentaje_publicidad": 0.9,
+      "utilidad_bruta": 20411429.0,
+      "roas": 109.24
     },
     "mes": {
       "citas_agendadas": 36,
@@ -85,11 +85,11 @@
           "valor": 13000000.0
         }
       ],
-      "gasto_meta": 1016656.0,
-      "costo_por_cita": 28240,
+      "gasto_meta": 1026556.0,
+      "costo_por_cita": 28515,
       "porcentaje_publicidad": 1.2,
-      "utilidad_bruta": 83183344.0,
-      "roas": 82.82
+      "utilidad_bruta": 83173444.0,
+      "roas": 82.02
     },
     "todo": {
       "citas_agendadas": 117,
@@ -146,11 +146,11 @@
           "valor": 7000000.0
         }
       ],
-      "gasto_meta": 3369982,
-      "costo_por_cita": 28803,
+      "gasto_meta": 3379882,
+      "costo_por_cita": 28888,
       "porcentaje_publicidad": 1.6,
-      "utilidad_bruta": 204030018.0,
-      "roas": 61.54
+      "utilidad_bruta": 204020118.0,
+      "roas": 61.36
     }
   },
   "facetech": {
@@ -217,31 +217,31 @@
   },
   "chart": {
     "labels": [
-      "07-20",
       "07-21",
       "07-22",
       "07-23",
       "07-24",
       "07-25",
-      "07-26"
+      "07-26",
+      "07-27"
     ],
     "clinica_ingresos": [
-      0.0,
       800000.0,
       1000000.0,
       18400000.0,
       400000.0,
       0.0,
+      0.0,
       0.0
     ],
     "clinica_gasto": [
-      87296.0,
       0,
       114642.0,
       0,
       0,
-      64029.0,
-      0
+      64077.0,
+      0,
+      9852.0
     ],
     "facetech_ingresos": [
       0,
@@ -853,9 +853,14 @@
         "clicks": 671
       },
       "2026-07-25": {
-        "spend": 64029,
-        "impressions": 4047,
+        "spend": 64077,
+        "impressions": 4048,
         "clicks": 370
+      },
+      "2026-07-27": {
+        "spend": 9852,
+        "impressions": 554,
+        "clicks": 47
       }
     },
     "meta_facetech": {
@@ -874,6 +879,16 @@
   "alcance": {
     "clinica": {
       "hoy": {
+        "spend": 9852,
+        "reach": 448,
+        "impressions": 554,
+        "frequency": 1.24,
+        "clicks": 47,
+        "ctr": 8.48,
+        "cpm": 17783,
+        "cpp": 21991
+      },
+      "ayer": {
         "spend": 0,
         "reach": 0,
         "impressions": 0,
@@ -883,45 +898,35 @@
         "cpm": 0,
         "cpp": 0
       },
-      "ayer": {
-        "spend": 64029,
-        "reach": 3539,
-        "impressions": 4047,
-        "frequency": 1.14,
-        "clicks": 370,
-        "ctr": 9.14,
-        "cpm": 15821,
-        "cpp": 18092
-      },
       "semana": {
-        "spend": 265967,
-        "reach": 13870,
-        "impressions": 19591,
-        "frequency": 1.41,
-        "clicks": 1566,
-        "ctr": 7.99,
-        "cpm": 13576,
-        "cpp": 19176
+        "spend": 188571,
+        "reach": 10997,
+        "impressions": 13882,
+        "frequency": 1.26,
+        "clicks": 1088,
+        "ctr": 7.84,
+        "cpm": 13584,
+        "cpp": 17147
       },
       "mes": {
-        "spend": 1016656,
-        "reach": 40652,
-        "impressions": 82899,
+        "spend": 1026556,
+        "reach": 40832,
+        "impressions": 83454,
         "frequency": 2.04,
-        "clicks": 6409,
-        "ctr": 7.73,
-        "cpm": 12264,
-        "cpp": 25009
+        "clicks": 6456,
+        "ctr": 7.74,
+        "cpm": 12301,
+        "cpp": 25141
       },
       "todo": {
-        "spend": 3369982,
-        "reach": 83761,
-        "impressions": 243710,
+        "spend": 3379882,
+        "reach": 83798,
+        "impressions": 244265,
         "frequency": 2.91,
-        "clicks": 17789,
+        "clicks": 17836,
         "ctr": 7.3,
-        "cpm": 13828,
-        "cpp": 40233
+        "cpm": 13837,
+        "cpp": 40334
       }
     },
     "facetech": {
@@ -979,34 +984,34 @@
   },
   "conclusiones": {
     "clinica": {
-      "hoy": [],
-      "ayer": [
-        "📣 Ayer tu clínica llegó a 3.539 personas únicas en la región — excelente alcance de marca.",
-        "👁️ 4.047 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
-        "🚀 Con 1.1x de frecuencia, tu anuncio está llegando constantemente a nuevas personas — la audiencia de la clínica sigue creciendo.",
-        "🎯 CTR 9.14% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
-        "🖱️ 370 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
+      "hoy": [
+        "📣 Hoy tu clínica llegó a 448 personas únicas en la región — excelente alcance de marca.",
+        "👁️ 554 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
+        "🚀 Con 1.2x de frecuencia, tu anuncio está llegando constantemente a nuevas personas — la audiencia de la clínica sigue creciendo.",
+        "🎯 CTR 8.48% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
+        "🖱️ 47 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
       ],
+      "ayer": [],
       "semana": [
-        "📣 Esta semana tu clínica llegó a 13.870 personas únicas en la región — excelente alcance de marca.",
-        "👁️ 19.591 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
-        "🚀 Con 1.4x de frecuencia, tu anuncio está llegando constantemente a nuevas personas — la audiencia de la clínica sigue creciendo.",
-        "🎯 CTR 7.99% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
-        "🖱️ 1.566 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
+        "📣 Esta semana tu clínica llegó a 10.997 personas únicas en la región — excelente alcance de marca.",
+        "👁️ 13.882 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
+        "🚀 Con 1.3x de frecuencia, tu anuncio está llegando constantemente a nuevas personas — la audiencia de la clínica sigue creciendo.",
+        "🎯 CTR 7.84% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
+        "🖱️ 1.088 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
       ],
       "mes": [
-        "📣 Este mes tu clínica llegó a 40.652 personas únicas en la región — excelente alcance de marca.",
-        "👁️ 82.899 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
+        "📣 Este mes tu clínica llegó a 40.832 personas únicas en la región — excelente alcance de marca.",
+        "👁️ 83.454 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
         "✅ Frecuencia 2.0x — nivel óptimo de recordación. Tu marca está perfectamente posicionada en la mente de los pacientes.",
-        "🎯 CTR 7.73% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
-        "🖱️ 6.409 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
+        "🎯 CTR 7.74% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
+        "🖱️ 6.456 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
       ],
       "todo": [
-        "📣 Desde el inicio tu clínica llegó a 83.761 personas únicas en la región — excelente alcance de marca.",
-        "👁️ 243.710 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
+        "📣 Desde el inicio tu clínica llegó a 83.798 personas únicas en la región — excelente alcance de marca.",
+        "👁️ 244.265 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
         "✅ Frecuencia 2.9x — nivel óptimo de recordación. Tu marca está perfectamente posicionada en la mente de los pacientes.",
         "🎯 CTR 7.30% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
-        "🖱️ 17.789 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
+        "🖱️ 17.836 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
       ]
     },
     "facetech": {
