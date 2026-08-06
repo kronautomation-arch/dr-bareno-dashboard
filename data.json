@@ -1,59 +1,53 @@
 {
-  "updated_at": "2026-08-05 19:00",
-  "today": "2026-08-05",
+  "updated_at": "2026-08-06 08:00",
+  "today": "2026-08-06",
   "precio_cita": 200000.0,
   "first_date": "2026-05-04",
   "clinica": {
     "hoy": {
       "citas_agendadas": 0,
-      "procedimientos_vendidos": 1,
+      "procedimientos_vendidos": 0,
       "procedimientos_agendados": 0,
       "tasa_conversion": 0.0,
       "ingresos_citas": 0.0,
-      "ingresos_procedimientos": 12000000.0,
-      "ingresos_totales": 12000000.0,
-      "desglose_procedimientos": [
-        {
-          "tipo": "Sin especificar",
-          "cantidad": 1,
-          "valor": 12000000.0
-        }
-      ],
-      "gasto_meta": 96564.0,
-      "costo_por_cita": 0,
-      "porcentaje_publicidad": 0.8,
-      "utilidad_bruta": 11903436.0,
-      "roas": 124.27
-    },
-    "ayer": {
-      "citas_agendadas": 3,
-      "procedimientos_vendidos": 1,
-      "procedimientos_agendados": 0,
-      "tasa_conversion": 33.3,
-      "ingresos_citas": 600000.0,
-      "ingresos_procedimientos": 5500000.0,
-      "ingresos_totales": 6100000.0,
-      "desglose_procedimientos": [
-        {
-          "tipo": "Blefaro superior",
-          "cantidad": 1,
-          "valor": 5500000.0
-        }
-      ],
+      "ingresos_procedimientos": 0,
+      "ingresos_totales": 0.0,
+      "desglose_procedimientos": [],
       "gasto_meta": 0.0,
       "costo_por_cita": 0,
       "porcentaje_publicidad": 0.0,
-      "utilidad_bruta": 6100000.0,
+      "utilidad_bruta": 0.0,
       "roas": 0.0
     },
+    "ayer": {
+      "citas_agendadas": 4,
+      "procedimientos_vendidos": 1,
+      "procedimientos_agendados": 0,
+      "tasa_conversion": 25.0,
+      "ingresos_citas": 800000.0,
+      "ingresos_procedimientos": 12000000.0,
+      "ingresos_totales": 12800000.0,
+      "desglose_procedimientos": [
+        {
+          "tipo": "Sin especificar",
+          "cantidad": 1,
+          "valor": 12000000.0
+        }
+      ],
+      "gasto_meta": 101260.0,
+      "costo_por_cita": 25315,
+      "porcentaje_publicidad": 0.8,
+      "utilidad_bruta": 12698740.0,
+      "roas": 126.41
+    },
     "semana": {
-      "citas_agendadas": 6,
+      "citas_agendadas": 10,
       "procedimientos_vendidos": 2,
       "procedimientos_agendados": 0,
-      "tasa_conversion": 33.3,
-      "ingresos_citas": 1200000.0,
+      "tasa_conversion": 20.0,
+      "ingresos_citas": 2000000.0,
       "ingresos_procedimientos": 17500000.0,
-      "ingresos_totales": 18700000.0,
+      "ingresos_totales": 19500000.0,
       "desglose_procedimientos": [
         {
           "tipo": "Sin especificar",
@@ -66,20 +60,20 @@
           "valor": 5500000.0
         }
       ],
-      "gasto_meta": 245319.0,
-      "costo_por_cita": 40886,
+      "gasto_meta": 250015.0,
+      "costo_por_cita": 25002,
       "porcentaje_publicidad": 1.3,
-      "utilidad_bruta": 18454681.0,
-      "roas": 76.23
+      "utilidad_bruta": 19249985.0,
+      "roas": 78.0
     },
     "mes": {
-      "citas_agendadas": 6,
+      "citas_agendadas": 10,
       "procedimientos_vendidos": 2,
       "procedimientos_agendados": 0,
-      "tasa_conversion": 33.3,
-      "ingresos_citas": 1200000.0,
+      "tasa_conversion": 20.0,
+      "ingresos_citas": 2000000.0,
       "ingresos_procedimientos": 17500000.0,
-      "ingresos_totales": 18700000.0,
+      "ingresos_totales": 19500000.0,
       "desglose_procedimientos": [
         {
           "tipo": "Sin especificar",
@@ -92,20 +86,20 @@
           "valor": 5500000.0
         }
       ],
-      "gasto_meta": 245319.0,
-      "costo_por_cita": 40886,
+      "gasto_meta": 250015.0,
+      "costo_por_cita": 25002,
       "porcentaje_publicidad": 1.3,
-      "utilidad_bruta": 18454681.0,
-      "roas": 76.23
+      "utilidad_bruta": 19249985.0,
+      "roas": 78.0
     },
     "todo": {
-      "citas_agendadas": 135,
+      "citas_agendadas": 139,
       "procedimientos_vendidos": 13,
       "procedimientos_agendados": 0,
-      "tasa_conversion": 9.6,
-      "ingresos_citas": 26600000.0,
+      "tasa_conversion": 9.4,
+      "ingresos_citas": 27400000.0,
       "ingresos_procedimientos": 201500000.0,
-      "ingresos_totales": 228100000.0,
+      "ingresos_totales": 228900000.0,
       "desglose_procedimientos": [
         {
           "tipo": "Blefaro 4 full face",
@@ -153,11 +147,11 @@
           "valor": 8000000.0
         }
       ],
-      "gasto_meta": 3805854,
-      "costo_por_cita": 28192,
+      "gasto_meta": 3810550,
+      "costo_por_cita": 27414,
       "porcentaje_publicidad": 1.7,
-      "utilidad_bruta": 224294146.0,
-      "roas": 59.93
+      "utilidad_bruta": 225089450.0,
+      "roas": 60.07
     }
   },
   "facetech": {
@@ -224,31 +218,31 @@
   },
   "chart": {
     "labels": [
-      "07-30",
       "07-31",
       "08-01",
       "08-02",
       "08-03",
       "08-04",
-      "08-05"
+      "08-05",
+      "08-06"
     ],
     "clinica_ingresos": [
       0.0,
       0.0,
       0.0,
-      0.0,
       600000.0,
       6100000.0,
-      12000000.0
+      12800000.0,
+      0.0
     ],
     "clinica_gasto": [
-      0,
       0,
       59357.0,
       0,
       89398.0,
       0,
-      96564.0
+      101260.0,
+      0
     ],
     "facetech_ingresos": [
       0,
@@ -666,6 +660,15 @@
         "citas_presencial": 1,
         "total_facturado": 600000.0,
         "tiene_total": true
+      },
+      {
+        "fecha": "2026-08-05",
+        "citas_agendadas": 4,
+        "procedimientos_vendidos": 0,
+        "citas_virtual": 2,
+        "citas_presencial": 2,
+        "total_facturado": 800000.0,
+        "tiene_total": true
       }
     ],
     "procedimientos": [
@@ -958,9 +961,9 @@
         "clicks": 607
       },
       "2026-08-05": {
-        "spend": 96564,
-        "impressions": 7689,
-        "clicks": 551
+        "spend": 101260,
+        "impressions": 8141,
+        "clicks": 581
       }
     },
     "meta_facetech": {
@@ -979,16 +982,6 @@
   "alcance": {
     "clinica": {
       "hoy": {
-        "spend": 96564,
-        "reach": 6495,
-        "impressions": 7689,
-        "frequency": 1.18,
-        "clicks": 551,
-        "ctr": 7.17,
-        "cpm": 12559,
-        "cpp": 14867
-      },
-      "ayer": {
         "spend": 0,
         "reach": 0,
         "impressions": 0,
@@ -998,35 +991,45 @@
         "cpm": 0,
         "cpp": 0
       },
+      "ayer": {
+        "spend": 101260,
+        "reach": 6847,
+        "impressions": 8141,
+        "frequency": 1.19,
+        "clicks": 581,
+        "ctr": 7.14,
+        "cpm": 12438,
+        "cpp": 14789
+      },
       "semana": {
-        "spend": 245319,
-        "reach": 14516,
-        "impressions": 20321,
+        "spend": 250015,
+        "reach": 14792,
+        "impressions": 20773,
         "frequency": 1.4,
-        "clicks": 1472,
-        "ctr": 7.24,
-        "cpm": 12072,
-        "cpp": 16900
+        "clicks": 1502,
+        "ctr": 7.23,
+        "cpm": 12036,
+        "cpp": 16902
       },
       "mes": {
-        "spend": 245319,
-        "reach": 14516,
-        "impressions": 20321,
+        "spend": 250015,
+        "reach": 14792,
+        "impressions": 20773,
         "frequency": 1.4,
-        "clicks": 1472,
-        "ctr": 7.24,
-        "cpm": 12072,
-        "cpp": 16900
+        "clicks": 1502,
+        "ctr": 7.23,
+        "cpm": 12036,
+        "cpp": 16902
       },
       "todo": {
-        "spend": 3805854,
+        "spend": 3810550,
         "reach": 92081,
-        "impressions": 280529,
+        "impressions": 280981,
         "frequency": 3.05,
-        "clicks": 20510,
+        "clicks": 20540,
         "ctr": 7.31,
-        "cpm": 13567,
-        "cpp": 41332
+        "cpm": 13562,
+        "cpp": 41383
       }
     },
     "facetech": {
@@ -1084,34 +1087,34 @@
   },
   "conclusiones": {
     "clinica": {
-      "hoy": [
-        "📣 Hoy tu clínica llegó a 6.495 personas únicas en la región — excelente alcance de marca.",
-        "👁️ 7.689 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
+      "hoy": [],
+      "ayer": [
+        "📣 Ayer tu clínica llegó a 6.847 personas únicas en la región — excelente alcance de marca.",
+        "👁️ 8.141 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
         "🚀 Con 1.2x de frecuencia, tu anuncio está llegando constantemente a nuevas personas — la audiencia de la clínica sigue creciendo.",
-        "🎯 CTR 7.17% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
-        "🖱️ 551 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
+        "🎯 CTR 7.14% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
+        "🖱️ 581 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
       ],
-      "ayer": [],
       "semana": [
-        "📣 Esta semana tu clínica llegó a 14.516 personas únicas en la región — excelente alcance de marca.",
-        "👁️ 20.321 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
+        "📣 Esta semana tu clínica llegó a 14.792 personas únicas en la región — excelente alcance de marca.",
+        "👁️ 20.773 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
         "🚀 Con 1.4x de frecuencia, tu anuncio está llegando constantemente a nuevas personas — la audiencia de la clínica sigue creciendo.",
-        "🎯 CTR 7.24% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
-        "🖱️ 1.472 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
+        "🎯 CTR 7.23% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
+        "🖱️ 1.502 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
       ],
       "mes": [
-        "📣 Este mes tu clínica llegó a 14.516 personas únicas en la región — excelente alcance de marca.",
-        "👁️ 20.321 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
+        "📣 Este mes tu clínica llegó a 14.792 personas únicas en la región — excelente alcance de marca.",
+        "👁️ 20.773 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
         "🚀 Con 1.4x de frecuencia, tu anuncio está llegando constantemente a nuevas personas — la audiencia de la clínica sigue creciendo.",
-        "🎯 CTR 7.24% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
-        "🖱️ 1.472 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
+        "🎯 CTR 7.23% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
+        "🖱️ 1.502 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
       ],
       "todo": [
         "📣 Desde el inicio tu clínica llegó a 92.081 personas únicas en la región — excelente alcance de marca.",
-        "👁️ 280.529 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
+        "👁️ 280.981 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
         "✅ Frecuencia 3.0x — nivel óptimo de recordación. Tu marca está perfectamente posicionada en la mente de los pacientes.",
         "🎯 CTR 7.31% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
-        "🖱️ 20.510 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
+        "🖱️ 20.540 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
       ]
     },
     "facetech": {
