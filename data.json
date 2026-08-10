@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-09 13:00",
+  "updated_at": "2026-08-09 19:00",
   "today": "2026-08-09",
   "precio_cita": 200000.0,
   "first_date": "2026-05-04",
@@ -28,10 +28,10 @@
       "ingresos_procedimientos": 0,
       "ingresos_totales": 0.0,
       "desglose_procedimientos": [],
-      "gasto_meta": 54006.0,
+      "gasto_meta": 54016.0,
       "costo_por_cita": 0,
       "porcentaje_publicidad": 0.0,
-      "utilidad_bruta": -54006.0,
+      "utilidad_bruta": -54016.0,
       "roas": 0.0
     },
     "semana": {
@@ -54,10 +54,10 @@
           "valor": 5500000.0
         }
       ],
-      "gasto_meta": 244761.0,
-      "costo_por_cita": 24476,
+      "gasto_meta": 244771.0,
+      "costo_por_cita": 24477,
       "porcentaje_publicidad": 1.3,
-      "utilidad_bruta": 19255239.0,
+      "utilidad_bruta": 19255229.0,
       "roas": 79.67
     },
     "mes": {
@@ -80,10 +80,10 @@
           "valor": 5500000.0
         }
       ],
-      "gasto_meta": 304118.0,
-      "costo_por_cita": 30412,
+      "gasto_meta": 304128.0,
+      "costo_por_cita": 30413,
       "porcentaje_publicidad": 1.6,
-      "utilidad_bruta": 19195882.0,
+      "utilidad_bruta": 19195872.0,
       "roas": 64.12
     },
     "todo": {
@@ -141,10 +141,10 @@
           "valor": 8000000.0
         }
       ],
-      "gasto_meta": 3864653,
+      "gasto_meta": 3864663,
       "costo_por_cita": 27803,
       "porcentaje_publicidad": 1.7,
-      "utilidad_bruta": 225035347.0,
+      "utilidad_bruta": 225035337.0,
       "roas": 59.23
     }
   },
@@ -235,7 +235,7 @@
       101357.0,
       0,
       0,
-      54006.0,
+      54016.0,
       0
     ],
     "facetech_ingresos": [
@@ -960,8 +960,8 @@
         "clicks": 582
       },
       "2026-08-08": {
-        "spend": 54006,
-        "impressions": 2411,
+        "spend": 54016,
+        "impressions": 2412,
         "clicks": 224
       }
     },
@@ -991,39 +991,39 @@
         "cpp": 0
       },
       "ayer": {
-        "spend": 54006,
+        "spend": 54016,
         "reach": 2155,
-        "impressions": 2411,
+        "impressions": 2412,
         "frequency": 1.12,
         "clicks": 224,
         "ctr": 9.29,
-        "cpm": 22400,
-        "cpp": 25061
+        "cpm": 22395,
+        "cpp": 25065
       },
       "semana": {
-        "spend": 244761,
+        "spend": 244771,
         "reach": 14122,
-        "impressions": 19663,
+        "impressions": 19664,
         "frequency": 1.39,
         "clicks": 1413,
         "ctr": 7.19,
         "cpm": 12448,
-        "cpp": 17332
+        "cpp": 17333
       },
       "mes": {
-        "spend": 304118,
+        "spend": 304128,
         "reach": 16112,
-        "impressions": 23192,
+        "impressions": 23193,
         "frequency": 1.44,
         "clicks": 1727,
         "ctr": 7.45,
         "cpm": 13113,
-        "cpp": 18875
+        "cpp": 18876
       },
       "todo": {
-        "spend": 3864653,
+        "spend": 3864663,
         "reach": 92588,
-        "impressions": 283400,
+        "impressions": 283401,
         "frequency": 3.06,
         "clicks": 20765,
         "ctr": 7.33,
@@ -1089,28 +1089,28 @@
       "hoy": [],
       "ayer": [
         "📣 Ayer tu clínica llegó a 2.155 personas únicas en la región — excelente alcance de marca.",
-        "👁️ 2.411 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
+        "👁️ 2.412 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
         "🚀 Con 1.1x de frecuencia, tu anuncio está llegando constantemente a nuevas personas — la audiencia de la clínica sigue creciendo.",
         "🎯 CTR 9.29% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
         "🖱️ 224 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
       ],
       "semana": [
         "📣 Esta semana tu clínica llegó a 14.122 personas únicas en la región — excelente alcance de marca.",
-        "👁️ 19.663 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
+        "👁️ 19.664 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
         "🚀 Con 1.4x de frecuencia, tu anuncio está llegando constantemente a nuevas personas — la audiencia de la clínica sigue creciendo.",
         "🎯 CTR 7.19% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
         "🖱️ 1.413 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
       ],
       "mes": [
         "📣 Este mes tu clínica llegó a 16.112 personas únicas en la región — excelente alcance de marca.",
-        "👁️ 23.192 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
+        "👁️ 23.193 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
         "🚀 Con 1.4x de frecuencia, tu anuncio está llegando constantemente a nuevas personas — la audiencia de la clínica sigue creciendo.",
         "🎯 CTR 7.45% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
         "🖱️ 1.727 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
       ],
       "todo": [
         "📣 Desde el inicio tu clínica llegó a 92.588 personas únicas en la región — excelente alcance de marca.",
-        "👁️ 283.400 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
+        "👁️ 283.401 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
         "✅ Frecuencia 3.1x — nivel óptimo de recordación. Tu marca está perfectamente posicionada en la mente de los pacientes.",
         "🎯 CTR 7.33% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
         "🖱️ 20.765 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
