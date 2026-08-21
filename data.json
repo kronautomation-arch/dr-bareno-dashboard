@@ -1,10 +1,25 @@
 {
-  "updated_at": "2026-08-20 19:00",
-  "today": "2026-08-20",
+  "updated_at": "2026-08-21 08:00",
+  "today": "2026-08-21",
   "precio_cita": 200000.0,
   "first_date": "2026-05-04",
   "clinica": {
     "hoy": {
+      "citas_agendadas": 0,
+      "procedimientos_vendidos": 0,
+      "procedimientos_agendados": 0,
+      "tasa_conversion": 0.0,
+      "ingresos_citas": 0.0,
+      "ingresos_procedimientos": 0,
+      "ingresos_totales": 0.0,
+      "desglose_procedimientos": [],
+      "gasto_meta": 0.0,
+      "costo_por_cita": 0,
+      "porcentaje_publicidad": 0.0,
+      "utilidad_bruta": 0.0,
+      "roas": 0.0
+    },
+    "ayer": {
       "citas_agendadas": 5,
       "procedimientos_vendidos": 0,
       "procedimientos_agendados": 0,
@@ -18,27 +33,6 @@
       "porcentaje_publicidad": 0.0,
       "utilidad_bruta": 1000000.0,
       "roas": 0.0
-    },
-    "ayer": {
-      "citas_agendadas": 0,
-      "procedimientos_vendidos": 1,
-      "procedimientos_agendados": 0,
-      "tasa_conversion": 0.0,
-      "ingresos_citas": 0.0,
-      "ingresos_procedimientos": 38000000.0,
-      "ingresos_totales": 38000000.0,
-      "desglose_procedimientos": [
-        {
-          "tipo": "Terc, fronto, deep plane",
-          "cantidad": 1,
-          "valor": 38000000.0
-        }
-      ],
-      "gasto_meta": 104977.0,
-      "costo_por_cita": 0,
-      "porcentaje_publicidad": 0.3,
-      "utilidad_bruta": 37895023.0,
-      "roas": 361.98
     },
     "semana": {
       "citas_agendadas": 8,
@@ -248,30 +242,30 @@
   },
   "chart": {
     "labels": [
-      "08-14",
       "08-15",
       "08-16",
       "08-17",
       "08-18",
       "08-19",
-      "08-20"
+      "08-20",
+      "08-21"
     ],
     "clinica_ingresos": [
       0.0,
       0.0,
       0.0,
-      0.0,
       600000.0,
       38000000.0,
-      1000000.0
+      1000000.0,
+      0.0
     ],
     "clinica_gasto": [
-      0,
       58298.0,
       0,
       88571.0,
       0,
       104977.0,
+      0,
       0
     ],
     "facetech_ingresos": [
@@ -1099,14 +1093,14 @@
         "cpp": 0
       },
       "ayer": {
-        "spend": 104977,
-        "reach": 9720,
-        "impressions": 11169,
-        "frequency": 1.15,
-        "clicks": 587,
-        "ctr": 5.26,
-        "cpm": 9399,
-        "cpp": 10800
+        "spend": 0,
+        "reach": 0,
+        "impressions": 0,
+        "frequency": 0,
+        "clicks": 0,
+        "ctr": 0,
+        "cpm": 0,
+        "cpp": 0
       },
       "semana": {
         "spend": 251846,
@@ -1195,13 +1189,7 @@
   "conclusiones": {
     "clinica": {
       "hoy": [],
-      "ayer": [
-        "📣 Ayer tu clínica llegó a 9.720 personas únicas en la región — excelente alcance de marca.",
-        "👁️ 11.169 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
-        "🚀 Con 1.1x de frecuencia, tu anuncio está llegando constantemente a nuevas personas — la audiencia de la clínica sigue creciendo.",
-        "🎯 CTR 5.26% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
-        "🖱️ 587 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
-      ],
+      "ayer": [],
       "semana": [
         "📣 Esta semana tu clínica llegó a 19.169 personas únicas en la región — excelente alcance de marca.",
         "👁️ 25.073 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
