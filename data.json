@@ -1,73 +1,89 @@
 {
-  "updated_at": "2026-08-21 13:00",
+  "updated_at": "2026-08-21 19:00",
   "today": "2026-08-21",
   "precio_cita": 200000.0,
   "first_date": "2026-05-04",
   "clinica": {
     "hoy": {
-      "citas_agendadas": 0,
+      "citas_agendadas": 1,
       "procedimientos_vendidos": 0,
       "procedimientos_agendados": 0,
       "tasa_conversion": 0.0,
-      "ingresos_citas": 0.0,
+      "ingresos_citas": 200000.0,
       "ingresos_procedimientos": 0,
-      "ingresos_totales": 0.0,
+      "ingresos_totales": 200000.0,
       "desglose_procedimientos": [],
       "gasto_meta": 0.0,
       "costo_por_cita": 0,
       "porcentaje_publicidad": 0.0,
-      "utilidad_bruta": 0.0,
+      "utilidad_bruta": 200000.0,
       "roas": 0.0
     },
     "ayer": {
       "citas_agendadas": 5,
-      "procedimientos_vendidos": 0,
+      "procedimientos_vendidos": 1,
       "procedimientos_agendados": 0,
-      "tasa_conversion": 0.0,
+      "tasa_conversion": 20.0,
       "ingresos_citas": 1000000.0,
-      "ingresos_procedimientos": 0,
-      "ingresos_totales": 1000000.0,
-      "desglose_procedimientos": [],
+      "ingresos_procedimientos": 25000000.0,
+      "ingresos_totales": 26000000.0,
+      "desglose_procedimientos": [
+        {
+          "tipo": "Terc medio, lift cuello",
+          "cantidad": 1,
+          "valor": 25000000.0
+        }
+      ],
       "gasto_meta": 0.0,
       "costo_por_cita": 0,
       "porcentaje_publicidad": 0.0,
-      "utilidad_bruta": 1000000.0,
+      "utilidad_bruta": 26000000.0,
       "roas": 0.0
     },
     "semana": {
-      "citas_agendadas": 8,
-      "procedimientos_vendidos": 1,
+      "citas_agendadas": 9,
+      "procedimientos_vendidos": 2,
       "procedimientos_agendados": 0,
-      "tasa_conversion": 12.5,
-      "ingresos_citas": 1600000.0,
-      "ingresos_procedimientos": 38000000.0,
-      "ingresos_totales": 39600000.0,
+      "tasa_conversion": 22.2,
+      "ingresos_citas": 1800000.0,
+      "ingresos_procedimientos": 63000000.0,
+      "ingresos_totales": 64800000.0,
       "desglose_procedimientos": [
         {
           "tipo": "Terc, fronto, deep plane",
           "cantidad": 1,
           "valor": 38000000.0
+        },
+        {
+          "tipo": "Terc medio, lift cuello",
+          "cantidad": 1,
+          "valor": 25000000.0
         }
       ],
       "gasto_meta": 251945.0,
-      "costo_por_cita": 31493,
-      "porcentaje_publicidad": 0.6,
-      "utilidad_bruta": 39348055.0,
-      "roas": 157.18
+      "costo_por_cita": 27994,
+      "porcentaje_publicidad": 0.4,
+      "utilidad_bruta": 64548055.0,
+      "roas": 257.2
     },
     "mes": {
-      "citas_agendadas": 21,
-      "procedimientos_vendidos": 6,
+      "citas_agendadas": 22,
+      "procedimientos_vendidos": 7,
       "procedimientos_agendados": 0,
-      "tasa_conversion": 28.6,
-      "ingresos_citas": 4200000.0,
-      "ingresos_procedimientos": 102000000.0,
-      "ingresos_totales": 106200000.0,
+      "tasa_conversion": 31.8,
+      "ingresos_citas": 4400000.0,
+      "ingresos_procedimientos": 127000000.0,
+      "ingresos_totales": 131400000.0,
       "desglose_procedimientos": [
         {
           "tipo": "Terc, fronto, deep plane",
           "cantidad": 1,
           "valor": 38000000.0
+        },
+        {
+          "tipo": "Terc medio, lift cuello",
+          "cantidad": 1,
+          "valor": 25000000.0
         },
         {
           "tipo": "Blefa quad + liftin",
@@ -91,19 +107,19 @@
         }
       ],
       "gasto_meta": 740086.0,
-      "costo_por_cita": 35242,
-      "porcentaje_publicidad": 0.7,
-      "utilidad_bruta": 105459914.0,
-      "roas": 143.5
+      "costo_por_cita": 33640,
+      "porcentaje_publicidad": 0.6,
+      "utilidad_bruta": 130659914.0,
+      "roas": 177.55
     },
     "todo": {
-      "citas_agendadas": 150,
-      "procedimientos_vendidos": 17,
+      "citas_agendadas": 151,
+      "procedimientos_vendidos": 18,
       "procedimientos_agendados": 0,
-      "tasa_conversion": 11.3,
-      "ingresos_citas": 29600000.0,
-      "ingresos_procedimientos": 286000000.0,
-      "ingresos_totales": 315600000.0,
+      "tasa_conversion": 11.9,
+      "ingresos_citas": 29800000.0,
+      "ingresos_procedimientos": 311000000.0,
+      "ingresos_totales": 340800000.0,
       "desglose_procedimientos": [
         {
           "tipo": "Terc, fronto, deep plane",
@@ -129,6 +145,11 @@
           "tipo": "Blefaro 4 parpados",
           "cantidad": 2,
           "valor": 26000000.0
+        },
+        {
+          "tipo": "Terc medio, lift cuello",
+          "cantidad": 1,
+          "valor": 25000000.0
         },
         {
           "tipo": "Blefa quad + liftin",
@@ -172,10 +193,10 @@
         }
       ],
       "gasto_meta": 4300621,
-      "costo_por_cita": 28671,
-      "porcentaje_publicidad": 1.4,
-      "utilidad_bruta": 311299379.0,
-      "roas": 73.38
+      "costo_por_cita": 28481,
+      "porcentaje_publicidad": 1.3,
+      "utilidad_bruta": 336499379.0,
+      "roas": 79.24
     }
   },
   "facetech": {
@@ -256,8 +277,8 @@
       0.0,
       600000.0,
       38000000.0,
-      1000000.0,
-      0.0
+      26000000.0,
+      200000.0
     ],
     "clinica_gasto": [
       58298.0,
@@ -720,6 +741,15 @@
         "citas_presencial": 3,
         "total_facturado": 1000000.0,
         "tiene_total": true
+      },
+      {
+        "fecha": "2026-08-21",
+        "citas_agendadas": 1,
+        "procedimientos_vendidos": 0,
+        "citas_virtual": 1,
+        "citas_presencial": 0,
+        "total_facturado": 200000.0,
+        "tiene_total": true
       }
     ],
     "procedimientos": [
@@ -807,6 +837,11 @@
         "fecha": "2026-08-19",
         "tipo": "Terc, fronto, deep plane",
         "valor": 38000000.0
+      },
+      {
+        "fecha": "2026-08-20",
+        "tipo": "Terc medio, lift cuello",
+        "valor": 25000000.0
       }
     ],
     "facetech": [],
