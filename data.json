@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-23 09:30",
+  "updated_at": "2026-08-23 13:00",
   "today": "2026-08-23",
   "precio_cita": 200000.0,
   "first_date": "2026-05-04",
@@ -28,10 +28,10 @@
       "ingresos_procedimientos": 0,
       "ingresos_totales": 0.0,
       "desglose_procedimientos": [],
-      "gasto_meta": 59390.0,
+      "gasto_meta": 59400.0,
       "costo_por_cita": 0,
       "porcentaje_publicidad": 0.0,
-      "utilidad_bruta": -59390.0,
+      "utilidad_bruta": -59400.0,
       "roas": 0.0
     },
     "semana": {
@@ -54,11 +54,11 @@
           "valor": 25000000.0
         }
       ],
-      "gasto_meta": 253037.0,
-      "costo_por_cita": 28115,
+      "gasto_meta": 253047.0,
+      "costo_por_cita": 28116,
       "porcentaje_publicidad": 0.4,
-      "utilidad_bruta": 64546963.0,
-      "roas": 256.09
+      "utilidad_bruta": 64546953.0,
+      "roas": 256.08
     },
     "mes": {
       "citas_agendadas": 22,
@@ -100,10 +100,10 @@
           "valor": 11000000.0
         }
       ],
-      "gasto_meta": 799476.0,
+      "gasto_meta": 799486.0,
       "costo_por_cita": 36340,
       "porcentaje_publicidad": 0.6,
-      "utilidad_bruta": 130600524.0,
+      "utilidad_bruta": 130600514.0,
       "roas": 164.36
     },
     "todo": {
@@ -186,10 +186,10 @@
           "valor": 8000000.0
         }
       ],
-      "gasto_meta": 4360011,
+      "gasto_meta": 4360021,
       "costo_por_cita": 28874,
       "porcentaje_publicidad": 1.3,
-      "utilidad_bruta": 336439989.0,
+      "utilidad_bruta": 336439979.0,
       "roas": 78.16
     }
   },
@@ -280,7 +280,7 @@
       105076.0,
       0,
       0,
-      59390.0,
+      59400.0,
       0
     ],
     "facetech_ingresos": [
@@ -1096,8 +1096,8 @@
         "clicks": 587
       },
       "2026-08-22": {
-        "spend": 59390,
-        "impressions": 3785,
+        "spend": 59400,
+        "impressions": 3786,
         "clicks": 284
       }
     },
@@ -1127,19 +1127,19 @@
         "cpp": 0
       },
       "ayer": {
-        "spend": 59390,
+        "spend": 59400,
         "reach": 3343,
-        "impressions": 3785,
+        "impressions": 3786,
         "frequency": 1.13,
         "clicks": 284,
         "ctr": 7.5,
-        "cpm": 15691,
-        "cpp": 17765
+        "cpm": 15689,
+        "cpp": 17768
       },
       "semana": {
-        "spend": 253037,
+        "spend": 253047,
         "reach": 19079,
-        "impressions": 25093,
+        "impressions": 25094,
         "frequency": 1.32,
         "clicks": 1513,
         "ctr": 6.03,
@@ -1147,9 +1147,9 @@
         "cpp": 13263
       },
       "mes": {
-        "spend": 799476,
+        "spend": 799486,
         "reach": 37065,
-        "impressions": 67411,
+        "impressions": 67412,
         "frequency": 1.82,
         "clicks": 4376,
         "ctr": 6.49,
@@ -1157,9 +1157,9 @@
         "cpp": 21570
       },
       "todo": {
-        "spend": 4360011,
+        "spend": 4360021,
         "reach": 102144,
-        "impressions": 327619,
+        "impressions": 327620,
         "frequency": 3.21,
         "clicks": 23414,
         "ctr": 7.15,
@@ -1225,28 +1225,28 @@
       "hoy": [],
       "ayer": [
         "📣 Ayer tu clínica llegó a 3.343 personas únicas en la región — excelente alcance de marca.",
-        "👁️ 3.785 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
+        "👁️ 3.786 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
         "🚀 Con 1.1x de frecuencia, tu anuncio está llegando constantemente a nuevas personas — la audiencia de la clínica sigue creciendo.",
         "🎯 CTR 7.50% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
         "🖱️ 284 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
       ],
       "semana": [
         "📣 Esta semana tu clínica llegó a 19.079 personas únicas en la región — excelente alcance de marca.",
-        "👁️ 25.093 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
+        "👁️ 25.094 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
         "🚀 Con 1.3x de frecuencia, tu anuncio está llegando constantemente a nuevas personas — la audiencia de la clínica sigue creciendo.",
         "🎯 CTR 6.03% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
         "🖱️ 1.513 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
       ],
       "mes": [
         "📣 Este mes tu clínica llegó a 37.065 personas únicas en la región — excelente alcance de marca.",
-        "👁️ 67.411 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
+        "👁️ 67.412 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
         "🚀 Con 1.8x de frecuencia, tu anuncio está llegando constantemente a nuevas personas — la audiencia de la clínica sigue creciendo.",
         "🎯 CTR 6.49% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
         "🖱️ 4.376 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
       ],
       "todo": [
         "📣 Desde el inicio tu clínica llegó a 102.144 personas únicas en la región — excelente alcance de marca.",
-        "👁️ 327.619 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
+        "👁️ 327.620 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
         "✅ Frecuencia 3.2x — nivel óptimo de recordación. Tu marca está perfectamente posicionada en la mente de los pacientes.",
         "🎯 CTR 7.15% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
         "🖱️ 23.414 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
