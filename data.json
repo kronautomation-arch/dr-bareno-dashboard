@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-08-26 13:00",
+  "updated_at": "2026-08-26 19:00",
   "today": "2026-08-26",
   "precio_cita": 200000.0,
-  "first_date": "2026-05-04",
+  "first_date": "2026-05-06",
   "clinica": {
     "hoy": {
       "citas_agendadas": 0,
@@ -13,10 +13,10 @@
       "ingresos_procedimientos": 0,
       "ingresos_totales": 0.0,
       "desglose_procedimientos": [],
-      "gasto_meta": 64870.0,
+      "gasto_meta": 107915.0,
       "costo_por_cita": 0,
       "porcentaje_publicidad": 0.0,
-      "utilidad_bruta": -64870.0,
+      "utilidad_bruta": -107915.0,
       "roas": 0.0
     },
     "ayer": {
@@ -35,13 +35,13 @@
       "roas": 0.0
     },
     "semana": {
-      "citas_agendadas": 10,
+      "citas_agendadas": 0,
       "procedimientos_vendidos": 1,
       "procedimientos_agendados": 0,
-      "tasa_conversion": 10.0,
-      "ingresos_citas": 2000000.0,
+      "tasa_conversion": 0.0,
+      "ingresos_citas": 0.0,
       "ingresos_procedimientos": 25000000.0,
-      "ingresos_totales": 27000000.0,
+      "ingresos_totales": 25000000.0,
       "desglose_procedimientos": [
         {
           "tipo": "Terc medio, lift cuello",
@@ -49,20 +49,20 @@
           "valor": 25000000.0
         }
       ],
-      "gasto_meta": 215757.0,
-      "costo_por_cita": 21576,
-      "porcentaje_publicidad": 0.8,
-      "utilidad_bruta": 26784243.0,
-      "roas": 125.14
+      "gasto_meta": 258802.0,
+      "costo_por_cita": 0,
+      "porcentaje_publicidad": 1.0,
+      "utilidad_bruta": 24741198.0,
+      "roas": 96.6
     },
     "mes": {
-      "citas_agendadas": 26,
+      "citas_agendadas": 0,
       "procedimientos_vendidos": 7,
       "procedimientos_agendados": 0,
-      "tasa_conversion": 26.9,
-      "ingresos_citas": 5200000.0,
+      "tasa_conversion": 0.0,
+      "ingresos_citas": 0.0,
       "ingresos_procedimientos": 127000000.0,
-      "ingresos_totales": 132200000.0,
+      "ingresos_totales": 127000000.0,
       "desglose_procedimientos": [
         {
           "tipo": "Terc, fronto, deep plane",
@@ -95,20 +95,20 @@
           "valor": 11000000.0
         }
       ],
-      "gasto_meta": 955843.0,
-      "costo_por_cita": 36763,
-      "porcentaje_publicidad": 0.7,
-      "utilidad_bruta": 131244157.0,
-      "roas": 138.31
+      "gasto_meta": 998888.0,
+      "costo_por_cita": 0,
+      "porcentaje_publicidad": 0.8,
+      "utilidad_bruta": 126001112.0,
+      "roas": 127.14
     },
     "todo": {
-      "citas_agendadas": 155,
+      "citas_agendadas": 0,
       "procedimientos_vendidos": 18,
       "procedimientos_agendados": 0,
-      "tasa_conversion": 11.6,
-      "ingresos_citas": 30600000.0,
+      "tasa_conversion": 0.0,
+      "ingresos_citas": 0.0,
       "ingresos_procedimientos": 311000000.0,
-      "ingresos_totales": 341600000.0,
+      "ingresos_totales": 311000000.0,
       "desglose_procedimientos": [
         {
           "tipo": "Terc, fronto, deep plane",
@@ -181,11 +181,11 @@
           "valor": 8000000.0
         }
       ],
-      "gasto_meta": 4516378,
-      "costo_por_cita": 29138,
-      "porcentaje_publicidad": 1.3,
-      "utilidad_bruta": 337083622.0,
-      "roas": 75.64
+      "gasto_meta": 4350095,
+      "costo_por_cita": 0,
+      "porcentaje_publicidad": 1.4,
+      "utilidad_bruta": 306649905.0,
+      "roas": 71.49
     }
   },
   "facetech": {
@@ -243,10 +243,10 @@
       "valor_ticket": 0,
       "tasa_conversion": 0.0,
       "ingresos": 0,
-      "gasto_meta": 95790,
+      "gasto_meta": 0,
       "costo_por_lead": 0,
       "costo_por_compra": 0,
-      "utilidad_bruta": -95790,
+      "utilidad_bruta": 0,
       "roas": 0.0
     }
   },
@@ -261,12 +261,12 @@
       "08-26"
     ],
     "clinica_ingresos": [
-      26000000.0,
-      200000.0,
+      25000000.0,
       0.0,
       0.0,
-      400000.0,
-      400000.0,
+      0.0,
+      0.0,
+      0.0,
       0.0
     ],
     "clinica_gasto": [
@@ -276,7 +276,7 @@
       0,
       91225.0,
       0,
-      64870.0
+      107915.0
     ],
     "facetech_ingresos": [
       0,
@@ -298,467 +298,7 @@
     ]
   },
   "daily": {
-    "clinica": [
-      {
-        "fecha": "2026-05-04",
-        "citas_agendadas": 4,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 0,
-        "citas_presencial": 4,
-        "total_facturado": 800000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-05-05",
-        "citas_agendadas": 1,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 1,
-        "citas_presencial": 0,
-        "total_facturado": 200000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-05-07",
-        "citas_agendadas": 1,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 0,
-        "citas_presencial": 1,
-        "total_facturado": 200000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-05-08",
-        "citas_agendadas": 2,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 0,
-        "citas_presencial": 2,
-        "total_facturado": 400000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-05-11",
-        "citas_agendadas": 4,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 0,
-        "citas_presencial": 4,
-        "total_facturado": 800000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-05-12",
-        "citas_agendadas": 3,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 1,
-        "citas_presencial": 3,
-        "total_facturado": 600000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-05-13",
-        "citas_agendadas": 4,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 0,
-        "citas_presencial": 4,
-        "total_facturado": 800000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-05-14",
-        "citas_agendadas": 1,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 1,
-        "citas_presencial": 0,
-        "total_facturado": 200000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-05-15",
-        "citas_agendadas": 6,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 0,
-        "citas_presencial": 6,
-        "total_facturado": 1200000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-05-19",
-        "citas_agendadas": 4,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 0,
-        "citas_presencial": 4,
-        "total_facturado": 800000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-05-20",
-        "citas_agendadas": 3,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 2,
-        "citas_presencial": 1,
-        "total_facturado": 600000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-05-21",
-        "citas_agendadas": 2,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 0,
-        "citas_presencial": 2,
-        "total_facturado": 400000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-05-22",
-        "citas_agendadas": 2,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 2,
-        "citas_presencial": 0,
-        "total_facturado": 400000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-05-25",
-        "citas_agendadas": 6,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 1,
-        "citas_presencial": 5,
-        "total_facturado": 1200000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-05-26",
-        "citas_agendadas": 5,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 3,
-        "citas_presencial": 2,
-        "total_facturado": 1000000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-05-27",
-        "citas_agendadas": 4,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 0,
-        "citas_presencial": 4,
-        "total_facturado": 800000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-05-28",
-        "citas_agendadas": 3,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 1,
-        "citas_presencial": 2,
-        "total_facturado": 600000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-05-29",
-        "citas_agendadas": 1,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 1,
-        "citas_presencial": 0,
-        "total_facturado": 200000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-06-01",
-        "citas_agendadas": 1,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 0,
-        "citas_presencial": 1,
-        "total_facturado": 200000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-06-03",
-        "citas_agendadas": 2,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 0,
-        "citas_presencial": 2,
-        "total_facturado": 400000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-06-04",
-        "citas_agendadas": 2,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 0,
-        "citas_presencial": 2,
-        "total_facturado": 400000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-06-10",
-        "citas_agendadas": 4,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 0,
-        "citas_presencial": 4,
-        "total_facturado": 800000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-06-17",
-        "citas_agendadas": 2,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 0,
-        "citas_presencial": 2,
-        "total_facturado": 400000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-06-19",
-        "citas_agendadas": 4,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 0,
-        "citas_presencial": 4,
-        "total_facturado": 800000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-06-23",
-        "citas_agendadas": 7,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 5,
-        "citas_presencial": 2,
-        "total_facturado": 1400000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-06-26",
-        "citas_agendadas": 1,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 0,
-        "citas_presencial": 1,
-        "total_facturado": 200000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-06-30",
-        "citas_agendadas": 2,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 0,
-        "citas_presencial": 2,
-        "total_facturado": 400000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-07-01",
-        "citas_agendadas": 6,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 4,
-        "citas_presencial": 2,
-        "total_facturado": 1200000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-07-02",
-        "citas_agendadas": 5,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 2,
-        "citas_presencial": 3,
-        "total_facturado": 1000000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-07-07",
-        "citas_agendadas": 2,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 1,
-        "citas_presencial": 1,
-        "total_facturado": 400000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-07-09",
-        "citas_agendadas": 2,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 1,
-        "citas_presencial": 1,
-        "total_facturado": 400000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-07-10",
-        "citas_agendadas": 6,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 2,
-        "citas_presencial": 4,
-        "total_facturado": 1200000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-07-14",
-        "citas_agendadas": 2,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 2,
-        "citas_presencial": 0,
-        "total_facturado": 400000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-07-21",
-        "citas_agendadas": 4,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 0,
-        "citas_presencial": 4,
-        "total_facturado": 800000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-07-22",
-        "citas_agendadas": 5,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 3,
-        "citas_presencial": 2,
-        "total_facturado": 1000000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-07-23",
-        "citas_agendadas": 2,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 0,
-        "citas_presencial": 2,
-        "total_facturado": 400000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-07-24",
-        "citas_agendadas": 2,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 0,
-        "citas_presencial": 2,
-        "total_facturado": 400000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-07-27",
-        "citas_agendadas": 4,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 2,
-        "citas_presencial": 2,
-        "total_facturado": 400000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-07-28",
-        "citas_agendadas": 1,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 1,
-        "citas_presencial": 0,
-        "total_facturado": 200000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-07-29",
-        "citas_agendadas": 4,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 1,
-        "citas_presencial": 3,
-        "total_facturado": 800000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-07-30",
-        "citas_agendadas": 2,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 0,
-        "citas_presencial": 2,
-        "total_facturado": 400000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-07-31",
-        "citas_agendadas": 1,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 0,
-        "citas_presencial": 1,
-        "total_facturado": 200000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-08-03",
-        "citas_agendadas": 3,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 1,
-        "citas_presencial": 2,
-        "total_facturado": 600000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-08-04",
-        "citas_agendadas": 3,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 2,
-        "citas_presencial": 1,
-        "total_facturado": 600000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-08-05",
-        "citas_agendadas": 4,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 2,
-        "citas_presencial": 2,
-        "total_facturado": 800000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-08-12",
-        "citas_agendadas": 3,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 3,
-        "citas_presencial": 0,
-        "total_facturado": 600000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-08-18",
-        "citas_agendadas": 3,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 3,
-        "citas_presencial": 0,
-        "total_facturado": 600000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-08-20",
-        "citas_agendadas": 5,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 2,
-        "citas_presencial": 3,
-        "total_facturado": 1000000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-08-21",
-        "citas_agendadas": 1,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 1,
-        "citas_presencial": 0,
-        "total_facturado": 200000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-08-24",
-        "citas_agendadas": 2,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 2,
-        "citas_presencial": 0,
-        "total_facturado": 400000.0,
-        "tiene_total": true
-      },
-      {
-        "fecha": "2026-08-25",
-        "citas_agendadas": 2,
-        "procedimientos_vendidos": 0,
-        "citas_virtual": 0,
-        "citas_presencial": 2,
-        "total_facturado": 400000.0,
-        "tiene_total": true
-      }
-    ],
+    "clinica": [],
     "procedimientos": [
       {
         "fecha": "2026-05-06",
@@ -853,16 +393,6 @@
     ],
     "facetech": [],
     "meta_clinica": {
-      "2026-05-04": {
-        "spend": 107874,
-        "impressions": 9303,
-        "clicks": 632
-      },
-      "2026-05-05": {
-        "spend": 101454,
-        "impressions": 7513,
-        "clicks": 460
-      },
       "2026-05-06": {
         "spend": 83882,
         "impressions": 5198,
@@ -1119,35 +649,24 @@
         "clicks": 531
       },
       "2026-08-26": {
-        "spend": 64870,
-        "impressions": 3895,
-        "clicks": 285
+        "spend": 107915,
+        "impressions": 7604,
+        "clicks": 645
       }
     },
-    "meta_facetech": {
-      "2026-05-04": {
-        "spend": 35,
-        "impressions": 5,
-        "clicks": 0
-      },
-      "2026-05-05": {
-        "spend": 95755,
-        "impressions": 9002,
-        "clicks": 212
-      }
-    }
+    "meta_facetech": {}
   },
   "alcance": {
     "clinica": {
       "hoy": {
-        "spend": 64870,
-        "reach": 3340,
-        "impressions": 3895,
-        "frequency": 1.17,
-        "clicks": 285,
-        "ctr": 7.32,
-        "cpm": 16655,
-        "cpp": 19422
+        "spend": 107915,
+        "reach": 6085,
+        "impressions": 7604,
+        "frequency": 1.25,
+        "clicks": 645,
+        "ctr": 8.48,
+        "cpm": 14192,
+        "cpp": 17735
       },
       "ayer": {
         "spend": 0,
@@ -1160,34 +679,34 @@
         "cpp": 0
       },
       "semana": {
-        "spend": 215757,
-        "reach": 11204,
-        "impressions": 14776,
-        "frequency": 1.32,
-        "clicks": 1102,
-        "ctr": 7.46,
-        "cpm": 14602,
-        "cpp": 19257
+        "spend": 258802,
+        "reach": 13076,
+        "impressions": 18485,
+        "frequency": 1.41,
+        "clicks": 1462,
+        "ctr": 7.91,
+        "cpm": 14001,
+        "cpp": 19792
       },
       "mes": {
-        "spend": 955843,
-        "reach": 40603,
-        "impressions": 78402,
-        "frequency": 1.93,
-        "clicks": 5194,
-        "ctr": 6.62,
-        "cpm": 12192,
-        "cpp": 23541
+        "spend": 998888,
+        "reach": 41728,
+        "impressions": 82111,
+        "frequency": 1.97,
+        "clicks": 5554,
+        "ctr": 6.76,
+        "cpm": 12165,
+        "cpp": 23938
       },
       "todo": {
-        "spend": 4516378,
-        "reach": 104269,
-        "impressions": 338610,
-        "frequency": 3.25,
-        "clicks": 24232,
-        "ctr": 7.16,
-        "cpm": 13338,
-        "cpp": 43315
+        "spend": 4350095,
+        "reach": 102277,
+        "impressions": 325503,
+        "frequency": 3.18,
+        "clicks": 23500,
+        "ctr": 7.22,
+        "cpm": 13364,
+        "cpp": 42532
       }
     },
     "facetech": {
@@ -1232,47 +751,47 @@
         "cpp": 0
       },
       "todo": {
-        "spend": 95790,
-        "reach": 7968,
-        "impressions": 9007,
-        "frequency": 1.13,
-        "clicks": 212,
-        "ctr": 2.35,
-        "cpm": 10635,
-        "cpp": 12022
+        "spend": 0,
+        "reach": 0,
+        "impressions": 0,
+        "frequency": 0,
+        "clicks": 0,
+        "ctr": 0,
+        "cpm": 0,
+        "cpp": 0
       }
     }
   },
   "conclusiones": {
     "clinica": {
       "hoy": [
-        "📣 Hoy tu clínica llegó a 3.340 personas únicas en la región — excelente alcance de marca.",
-        "👁️ 3.895 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
+        "📣 Hoy tu clínica llegó a 6.085 personas únicas en la región — excelente alcance de marca.",
+        "👁️ 7.604 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
         "🚀 Con 1.2x de frecuencia, tu anuncio está llegando constantemente a nuevas personas — la audiencia de la clínica sigue creciendo.",
-        "🎯 CTR 7.32% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
-        "🖱️ 285 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
+        "🎯 CTR 8.48% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
+        "🖱️ 645 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
       ],
       "ayer": [],
       "semana": [
-        "📣 Esta semana tu clínica llegó a 11.204 personas únicas en la región — excelente alcance de marca.",
-        "👁️ 14.776 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
-        "🚀 Con 1.3x de frecuencia, tu anuncio está llegando constantemente a nuevas personas — la audiencia de la clínica sigue creciendo.",
-        "🎯 CTR 7.46% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
-        "🖱️ 1.102 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
+        "📣 Esta semana tu clínica llegó a 13.076 personas únicas en la región — excelente alcance de marca.",
+        "👁️ 18.485 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
+        "🚀 Con 1.4x de frecuencia, tu anuncio está llegando constantemente a nuevas personas — la audiencia de la clínica sigue creciendo.",
+        "🎯 CTR 7.91% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
+        "🖱️ 1.462 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
       ],
       "mes": [
-        "📣 Este mes tu clínica llegó a 40.603 personas únicas en la región — excelente alcance de marca.",
-        "👁️ 78.402 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
-        "🚀 Con 1.9x de frecuencia, tu anuncio está llegando constantemente a nuevas personas — la audiencia de la clínica sigue creciendo.",
-        "🎯 CTR 6.62% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
-        "🖱️ 5.194 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
+        "📣 Este mes tu clínica llegó a 41.728 personas únicas en la región — excelente alcance de marca.",
+        "👁️ 82.111 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
+        "🚀 Con 2.0x de frecuencia, tu anuncio está llegando constantemente a nuevas personas — la audiencia de la clínica sigue creciendo.",
+        "🎯 CTR 6.76% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
+        "🖱️ 5.554 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
       ],
       "todo": [
-        "📣 Desde el inicio tu clínica llegó a 104.269 personas únicas en la región — excelente alcance de marca.",
-        "👁️ 338.610 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
+        "📣 Desde el inicio tu clínica llegó a 102.277 personas únicas en la región — excelente alcance de marca.",
+        "👁️ 325.503 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
         "✅ Frecuencia 3.2x — nivel óptimo de recordación. Tu marca está perfectamente posicionada en la mente de los pacientes.",
-        "🎯 CTR 7.16% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
-        "🖱️ 24.232 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
+        "🎯 CTR 7.22% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
+        "🖱️ 23.500 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
       ]
     },
     "facetech": {
@@ -1280,13 +799,7 @@
       "ayer": [],
       "semana": [],
       "mes": [],
-      "todo": [
-        "📣 Desde el inicio FaceTech llegó a 7.968 personas únicas — potenciales asistentes al congreso ya en el radar.",
-        "👁️ 9.007 impresiones generadas — el congreso FaceTech está presente en la mente de los profesionales de la región.",
-        "✅ Frecuencia 1.1x — excelente nivel de recordación para el evento. Los profesionales están recordando el congreso FaceTech.",
-        "🎯 CTR 2.35% — por encima del promedio de eventos (1.8%). Gran atracción e interés generados por el congreso.",
-        "🖱️ 212 profesionales hicieron clic para conocer el congreso — interés genuino y demanda comprobada."
-      ]
+      "todo": []
     }
   }
 }
