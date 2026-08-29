@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-28 13:00",
+  "updated_at": "2026-08-28 19:00",
   "today": "2026-08-28",
   "precio_cita": 200000.0,
   "first_date": "2026-05-04",
@@ -35,28 +35,28 @@
       "roas": 0.0
     },
     "semana": {
-      "citas_agendadas": 5,
+      "citas_agendadas": 6,
       "procedimientos_vendidos": 0,
       "procedimientos_agendados": 0,
       "tasa_conversion": 0.0,
-      "ingresos_citas": 1000000.0,
+      "ingresos_citas": 1200000.0,
       "ingresos_procedimientos": 0,
-      "ingresos_totales": 1000000.0,
+      "ingresos_totales": 1200000.0,
       "desglose_procedimientos": [],
       "gasto_meta": 264585.0,
-      "costo_por_cita": 52917,
-      "porcentaje_publicidad": 26.5,
-      "utilidad_bruta": 735415.0,
-      "roas": 3.78
+      "costo_por_cita": 44098,
+      "porcentaje_publicidad": 22.0,
+      "utilidad_bruta": 935415.0,
+      "roas": 4.54
     },
     "mes": {
-      "citas_agendadas": 27,
+      "citas_agendadas": 28,
       "procedimientos_vendidos": 7,
       "procedimientos_agendados": 0,
-      "tasa_conversion": 25.9,
-      "ingresos_citas": 5400000.0,
+      "tasa_conversion": 25.0,
+      "ingresos_citas": 5600000.0,
       "ingresos_procedimientos": 127000000.0,
-      "ingresos_totales": 132400000.0,
+      "ingresos_totales": 132600000.0,
       "desglose_procedimientos": [
         {
           "tipo": "Terc, fronto, deep plane",
@@ -90,10 +90,10 @@
         }
       ],
       "gasto_meta": 1004671.0,
-      "costo_por_cita": 37210,
+      "costo_por_cita": 35881,
       "porcentaje_publicidad": 0.8,
-      "utilidad_bruta": 131395329.0,
-      "roas": 131.78
+      "utilidad_bruta": 131595329.0,
+      "roas": 131.98
     },
     "todo": {
       "citas_agendadas": 156,
@@ -758,8 +758,8 @@
         "procedimientos_vendidos": 0,
         "citas_virtual": 0,
         "citas_presencial": 1,
-        "total_facturado": 0.0,
-        "tiene_total": false
+        "total_facturado": 200000.0,
+        "tiene_total": true
       }
     ],
     "procedimientos": [
