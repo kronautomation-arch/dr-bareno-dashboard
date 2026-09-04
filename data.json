@@ -1,10 +1,25 @@
 {
-  "updated_at": "2026-09-03 19:00",
-  "today": "2026-09-03",
+  "updated_at": "2026-09-04 08:00",
+  "today": "2026-09-04",
   "precio_cita": 200000.0,
   "first_date": "2026-05-04",
   "clinica": {
     "hoy": {
+      "citas_agendadas": 0,
+      "procedimientos_vendidos": 0,
+      "procedimientos_agendados": 1,
+      "tasa_conversion": 0.0,
+      "ingresos_citas": 0.0,
+      "ingresos_procedimientos": 0.0,
+      "ingresos_totales": 0.0,
+      "desglose_procedimientos": [],
+      "gasto_meta": 0.0,
+      "costo_por_cita": 0,
+      "porcentaje_publicidad": 0.0,
+      "utilidad_bruta": 0.0,
+      "roas": 0.0
+    },
+    "ayer": {
       "citas_agendadas": 1,
       "procedimientos_vendidos": 0,
       "procedimientos_agendados": 0,
@@ -18,21 +33,6 @@
       "porcentaje_publicidad": 0.0,
       "utilidad_bruta": 200000.0,
       "roas": 0.0
-    },
-    "ayer": {
-      "citas_agendadas": 4,
-      "procedimientos_vendidos": 0,
-      "procedimientos_agendados": 0,
-      "tasa_conversion": 0.0,
-      "ingresos_citas": 800000.0,
-      "ingresos_procedimientos": 0,
-      "ingresos_totales": 800000.0,
-      "desglose_procedimientos": [],
-      "gasto_meta": 102019.0,
-      "costo_por_cita": 25505,
-      "porcentaje_publicidad": 12.8,
-      "utilidad_bruta": 697981.0,
-      "roas": 7.84
     },
     "semana": {
       "citas_agendadas": 6,
@@ -67,7 +67,7 @@
     "todo": {
       "citas_agendadas": 165,
       "procedimientos_vendidos": 18,
-      "procedimientos_agendados": 0,
+      "procedimientos_agendados": 1,
       "tasa_conversion": 10.9,
       "ingresos_citas": 32600000.0,
       "ingresos_procedimientos": 311000000.0,
@@ -215,30 +215,30 @@
   },
   "chart": {
     "labels": [
-      "08-28",
       "08-29",
       "08-30",
       "08-31",
       "09-01",
       "09-02",
-      "09-03"
+      "09-03",
+      "09-04"
     ],
     "clinica_ingresos": [
       0.0,
       0.0,
       0.0,
-      0.0,
       200000.0,
       800000.0,
-      200000.0
+      200000.0,
+      0.0
     ],
     "clinica_gasto": [
-      0,
       55333.0,
       0,
       70336.0,
       0,
       102019.0,
+      0,
       0
     ],
     "facetech_ingresos": [
@@ -866,6 +866,11 @@
         "fecha": "2026-08-20",
         "tipo": "Terc medio, lift cuello",
         "valor": 25000000.0
+      },
+      {
+        "fecha": "2026-09-04",
+        "tipo": "Blefaro, liftin cuello, papada",
+        "valor": 0.0
       }
     ],
     "facetech": [],
@@ -1182,14 +1187,14 @@
         "cpp": 0
       },
       "ayer": {
-        "spend": 102019,
-        "reach": 7845,
-        "impressions": 9744,
-        "frequency": 1.24,
-        "clicks": 738,
-        "ctr": 7.57,
-        "cpm": 10470,
-        "cpp": 13004
+        "spend": 0,
+        "reach": 0,
+        "impressions": 0,
+        "frequency": 0,
+        "clicks": 0,
+        "ctr": 0,
+        "cpm": 0,
+        "cpp": 0
       },
       "semana": {
         "spend": 227688,
@@ -1278,13 +1283,7 @@
   "conclusiones": {
     "clinica": {
       "hoy": [],
-      "ayer": [
-        "📣 Ayer tu clínica llegó a 7.845 personas únicas en la región — excelente alcance de marca.",
-        "👁️ 9.744 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
-        "🚀 Con 1.2x de frecuencia, tu anuncio está llegando constantemente a nuevas personas — la audiencia de la clínica sigue creciendo.",
-        "🎯 CTR 7.57% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
-        "🖱️ 738 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
-      ],
+      "ayer": [],
       "semana": [
         "📣 Esta semana tu clínica llegó a 13.661 personas únicas en la región — excelente alcance de marca.",
         "👁️ 20.090 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
