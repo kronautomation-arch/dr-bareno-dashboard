@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-03 13:25",
+  "updated_at": "2026-10-03 13:27",
   "today": "2026-10-03",
   "precio_cita": 200000.0,
   "first_date": "2026-05-04",
@@ -13,10 +13,10 @@
       "ingresos_procedimientos": 0,
       "ingresos_totales": 0.0,
       "desglose_procedimientos": [],
-      "gasto_meta": 0.0,
+      "gasto_meta": 30775.0,
       "costo_por_cita": 0,
       "porcentaje_publicidad": 0.0,
-      "utilidad_bruta": 0.0,
+      "utilidad_bruta": -30775.0,
       "roas": 0.0
     },
     "ayer": {
@@ -28,11 +28,11 @@
       "ingresos_procedimientos": 0,
       "ingresos_totales": 600000.0,
       "desglose_procedimientos": [],
-      "gasto_meta": 0.0,
-      "costo_por_cita": 0,
-      "porcentaje_publicidad": 0.0,
-      "utilidad_bruta": 600000.0,
-      "roas": 0.0
+      "gasto_meta": 121538.0,
+      "costo_por_cita": 40513,
+      "porcentaje_publicidad": 20.3,
+      "utilidad_bruta": 478462.0,
+      "roas": 4.94
     },
     "semana": {
       "citas_agendadas": 5,
@@ -43,11 +43,11 @@
       "ingresos_procedimientos": 0,
       "ingresos_totales": 1000000.0,
       "desglose_procedimientos": [],
-      "gasto_meta": 81081.0,
-      "costo_por_cita": 16216,
-      "porcentaje_publicidad": 8.1,
-      "utilidad_bruta": 918919.0,
-      "roas": 12.33
+      "gasto_meta": 773076.0,
+      "costo_por_cita": 154615,
+      "porcentaje_publicidad": 77.3,
+      "utilidad_bruta": 226924.0,
+      "roas": 1.29
     },
     "mes": {
       "citas_agendadas": 5,
@@ -58,11 +58,11 @@
       "ingresos_procedimientos": 0,
       "ingresos_totales": 1000000.0,
       "desglose_procedimientos": [],
-      "gasto_meta": 0,
-      "costo_por_cita": 0,
-      "porcentaje_publicidad": 0.0,
-      "utilidad_bruta": 1000000.0,
-      "roas": 0.0
+      "gasto_meta": 244055.0,
+      "costo_por_cita": 48811,
+      "porcentaje_publicidad": 24.4,
+      "utilidad_bruta": 755945.0,
+      "roas": 4.1
     },
     "todo": {
       "citas_agendadas": 195,
@@ -164,11 +164,11 @@
           "valor": 12000000.0
         }
       ],
-      "gasto_meta": 5808907,
-      "costo_por_cita": 29789,
-      "porcentaje_publicidad": 1.3,
-      "utilidad_bruta": 447791093.0,
-      "roas": 78.09
+      "gasto_meta": 8559974,
+      "costo_por_cita": 43897,
+      "porcentaje_publicidad": 1.9,
+      "utilidad_bruta": 445040026.0,
+      "roas": 52.99
     }
   },
   "facetech": {
@@ -445,13 +445,13 @@
       0.0
     ],
     "clinica_gasto": [
-      0,
-      81081.0,
-      0,
-      0,
-      0,
-      0,
-      0
+      104730.0,
+      217271.0,
+      61305.0,
+      145715.0,
+      91742.0,
+      121538.0,
+      30775.0
     ],
     "facetech_ingresos": [
       0,
@@ -1387,334 +1387,389 @@
         "clicks": 460
       },
       "2026-05-06": {
-        "spend": 83882,
-        "impressions": 5198,
-        "clicks": 353
+        "spend": 101685,
+        "impressions": 6058,
+        "clicks": 442
       },
       "2026-05-09": {
-        "spend": 63733,
-        "impressions": 3585,
-        "clicks": 257
+        "spend": 80180,
+        "impressions": 4492,
+        "clicks": 321
       },
       "2026-05-11": {
-        "spend": 81362,
-        "impressions": 8048,
-        "clicks": 478
-      },
-      "2026-05-13": {
-        "spend": 102663,
-        "impressions": 7689,
-        "clicks": 563
-      },
-      "2026-05-16": {
-        "spend": 59812,
-        "impressions": 4284,
-        "clicks": 283
-      },
-      "2026-05-18": {
-        "spend": 95079,
-        "impressions": 4197,
-        "clicks": 299
-      },
-      "2026-05-19": {
-        "spend": 8,
-        "impressions": 1,
-        "clicks": 0
-      },
-      "2026-05-20": {
-        "spend": 141262,
-        "impressions": 9376,
-        "clicks": 592
-      },
-      "2026-05-23": {
-        "spend": 70908,
-        "impressions": 3686,
-        "clicks": 269
-      },
-      "2026-05-25": {
-        "spend": 94842,
-        "impressions": 8339,
-        "clicks": 518
-      },
-      "2026-05-27": {
-        "spend": 95469,
-        "impressions": 6668,
-        "clicks": 431
-      },
-      "2026-05-30": {
-        "spend": 62313,
-        "impressions": 3556,
-        "clicks": 289
-      },
-      "2026-06-01": {
-        "spend": 74866,
-        "impressions": 5283,
-        "clicks": 365
-      },
-      "2026-06-03": {
-        "spend": 116521,
-        "impressions": 6483,
-        "clicks": 511
-      },
-      "2026-06-06": {
-        "spend": 54285,
-        "impressions": 2777,
-        "clicks": 269
-      },
-      "2026-06-08": {
-        "spend": 97254,
-        "impressions": 4002,
-        "clicks": 355
-      },
-      "2026-06-10": {
-        "spend": 98160,
-        "impressions": 6488,
-        "clicks": 433
-      },
-      "2026-06-13": {
-        "spend": 57863,
-        "impressions": 3215,
-        "clicks": 268
-      },
-      "2026-06-15": {
-        "spend": 97296,
-        "impressions": 5659,
-        "clicks": 416
-      },
-      "2026-06-17": {
-        "spend": 151497,
-        "impressions": 13055,
-        "clicks": 952
-      },
-      "2026-06-18": {
-        "spend": 93132,
-        "impressions": 8709,
-        "clicks": 693
-      },
-      "2026-06-20": {
-        "spend": 63249,
-        "impressions": 4156,
-        "clicks": 281
-      },
-      "2026-06-22": {
-        "spend": 97678,
-        "impressions": 6660,
-        "clicks": 470
-      },
-      "2026-06-24": {
-        "spend": 89472,
-        "impressions": 7182,
-        "clicks": 477
-      },
-      "2026-06-27": {
-        "spend": 59231,
-        "impressions": 3868,
-        "clicks": 295
-      },
-      "2026-06-29": {
-        "spend": 42161,
-        "impressions": 1831,
-        "clicks": 171
-      },
-      "2026-07-01": {
-        "spend": 56020,
-        "impressions": 4521,
-        "clicks": 396
-      },
-      "2026-07-02": {
-        "spend": 102857,
-        "impressions": 7928,
-        "clicks": 691
-      },
-      "2026-07-04": {
-        "spend": 60237,
-        "impressions": 4635,
-        "clicks": 351
-      },
-      "2026-07-06": {
-        "spend": 96904,
-        "impressions": 8997,
-        "clicks": 619
-      },
-      "2026-07-08": {
-        "spend": 110186,
-        "impressions": 9773,
-        "clicks": 710
-      },
-      "2026-07-11": {
-        "spend": 59936,
-        "impressions": 3543,
-        "clicks": 330
-      },
-      "2026-07-13": {
-        "spend": 85407,
-        "impressions": 7394,
-        "clicks": 614
-      },
-      "2026-07-15": {
-        "spend": 117987,
-        "impressions": 12937,
-        "clicks": 799
-      },
-      "2026-07-18": {
-        "spend": 61155,
-        "impressions": 3580,
-        "clicks": 333
-      },
-      "2026-07-20": {
-        "spend": 87296,
-        "impressions": 6264,
-        "clicks": 525
-      },
-      "2026-07-22": {
-        "spend": 114642,
-        "impressions": 9280,
-        "clicks": 671
-      },
-      "2026-07-25": {
-        "spend": 64077,
-        "impressions": 4048,
-        "clicks": 370
-      },
-      "2026-07-27": {
-        "spend": 85818,
-        "impressions": 6077,
-        "clicks": 481
-      },
-      "2026-07-29": {
-        "spend": 104687,
-        "impressions": 10420,
-        "clicks": 768
-      },
-      "2026-08-01": {
-        "spend": 59357,
-        "impressions": 3529,
-        "clicks": 314
-      },
-      "2026-08-03": {
-        "spend": 89398,
-        "impressions": 9103,
-        "clicks": 607
-      },
-      "2026-08-05": {
-        "spend": 101357,
-        "impressions": 8149,
-        "clicks": 582
-      },
-      "2026-08-08": {
-        "spend": 54016,
-        "impressions": 2412,
-        "clicks": 224
-      },
-      "2026-08-10": {
-        "spend": 74088,
-        "impressions": 6338,
-        "clicks": 323
-      },
-      "2026-08-12": {
-        "spend": 109925,
-        "impressions": 9021,
-        "clicks": 560
-      },
-      "2026-08-15": {
-        "spend": 58298,
-        "impressions": 3766,
-        "clicks": 253
-      },
-      "2026-08-17": {
-        "spend": 88571,
-        "impressions": 10138,
-        "clicks": 642
-      },
-      "2026-08-19": {
-        "spend": 105076,
-        "impressions": 11170,
+        "spend": 101972,
+        "impressions": 9819,
         "clicks": 587
       },
-      "2026-08-22": {
-        "spend": 59662,
-        "impressions": 3790,
-        "clicks": 286
+      "2026-05-13": {
+        "spend": 126097,
+        "impressions": 9330,
+        "clicks": 678
       },
-      "2026-08-24": {
-        "spend": 91225,
-        "impressions": 7091,
-        "clicks": 531
+      "2026-05-16": {
+        "spend": 77339,
+        "impressions": 5173,
+        "clicks": 354
       },
-      "2026-08-26": {
-        "spend": 113698,
-        "impressions": 8075,
-        "clicks": 687
+      "2026-05-18": {
+        "spend": 116086,
+        "impressions": 5299,
+        "clicks": 368
       },
-      "2026-08-29": {
-        "spend": 55333,
-        "impressions": 3446,
-        "clicks": 309
+      "2026-05-19": {
+        "spend": 3292,
+        "impressions": 184,
+        "clicks": 15
       },
-      "2026-08-31": {
-        "spend": 70336,
-        "impressions": 6900,
-        "clicks": 546
+      "2026-05-20": {
+        "spend": 160607,
+        "impressions": 10628,
+        "clicks": 684
       },
-      "2026-09-02": {
-        "spend": 102028,
-        "impressions": 9745,
-        "clicks": 738
+      "2026-05-23": {
+        "spend": 91914,
+        "impressions": 4904,
+        "clicks": 345
       },
-      "2026-09-05": {
-        "spend": 63580,
-        "impressions": 4422,
-        "clicks": 325
+      "2026-05-25": {
+        "spend": 117126,
+        "impressions": 10048,
+        "clicks": 627
       },
-      "2026-09-07": {
-        "spend": 78666,
-        "impressions": 8627,
-        "clicks": 546
+      "2026-05-27": {
+        "spend": 117722,
+        "impressions": 8010,
+        "clicks": 538
       },
-      "2026-09-09": {
-        "spend": 119144,
-        "impressions": 8925,
-        "clicks": 708
+      "2026-05-30": {
+        "spend": 79034,
+        "impressions": 4660,
+        "clicks": 370
       },
-      "2026-09-12": {
-        "spend": 57004,
-        "impressions": 2622,
-        "clicks": 236
+      "2026-06-01": {
+        "spend": 91985,
+        "impressions": 6262,
+        "clicks": 437
       },
-      "2026-09-14": {
-        "spend": 86077,
-        "impressions": 4361,
-        "clicks": 391
+      "2026-06-03": {
+        "spend": 144729,
+        "impressions": 7992,
+        "clicks": 610
       },
-      "2026-09-16": {
-        "spend": 112505,
-        "impressions": 9045,
-        "clicks": 739
+      "2026-06-06": {
+        "spend": 68540,
+        "impressions": 3443,
+        "clicks": 312
       },
-      "2026-09-18": {
-        "spend": 106281,
-        "impressions": 9572,
-        "clicks": 701
+      "2026-06-08": {
+        "spend": 120417,
+        "impressions": 5024,
+        "clicks": 421
       },
-      "2026-09-21": {
-        "spend": 97978,
-        "impressions": 7570,
-        "clicks": 493
+      "2026-06-10": {
+        "spend": 121151,
+        "impressions": 7939,
+        "clicks": 515
       },
-      "2026-09-23": {
-        "spend": 109674,
-        "impressions": 8132,
-        "clicks": 691
+      "2026-06-13": {
+        "spend": 74000,
+        "impressions": 4107,
+        "clicks": 329
       },
-      "2026-09-25": {
-        "spend": 104014,
-        "impressions": 7770,
+      "2026-06-15": {
+        "spend": 121114,
+        "impressions": 6612,
+        "clicks": 485
+      },
+      "2026-06-17": {
+        "spend": 184808,
+        "impressions": 15645,
+        "clicks": 1115
+      },
+      "2026-06-18": {
+        "spend": 113820,
+        "impressions": 10530,
+        "clicks": 798
+      },
+      "2026-06-20": {
+        "spend": 81219,
+        "impressions": 5499,
+        "clicks": 357
+      },
+      "2026-06-22": {
+        "spend": 121688,
+        "impressions": 8377,
+        "clicks": 566
+      },
+      "2026-06-24": {
+        "spend": 110946,
+        "impressions": 9290,
+        "clicks": 603
+      },
+      "2026-06-27": {
+        "spend": 72858,
+        "impressions": 4779,
+        "clicks": 387
+      },
+      "2026-06-29": {
+        "spend": 52271,
+        "impressions": 2223,
+        "clicks": 210
+      },
+      "2026-07-01": {
+        "spend": 66324,
+        "impressions": 5429,
+        "clicks": 503
+      },
+      "2026-07-02": {
+        "spend": 123320,
+        "impressions": 9550,
+        "clicks": 873
+      },
+      "2026-07-04": {
+        "spend": 82908,
+        "impressions": 6421,
+        "clicks": 519
+      },
+      "2026-07-06": {
+        "spend": 125130,
+        "impressions": 11510,
+        "clicks": 798
+      },
+      "2026-07-08": {
+        "spend": 147054,
+        "impressions": 12708,
+        "clicks": 940
+      },
+      "2026-07-11": {
+        "spend": 79805,
+        "impressions": 4969,
+        "clicks": 445
+      },
+      "2026-07-13": {
+        "spend": 111825,
+        "impressions": 9375,
+        "clicks": 799
+      },
+      "2026-07-15": {
+        "spend": 156167,
+        "impressions": 16826,
+        "clicks": 1050
+      },
+      "2026-07-18": {
+        "spend": 82033,
+        "impressions": 4833,
+        "clicks": 442
+      },
+      "2026-07-20": {
+        "spend": 113157,
+        "impressions": 8194,
+        "clicks": 704
+      },
+      "2026-07-22": {
+        "spend": 149724,
+        "impressions": 11752,
+        "clicks": 902
+      },
+      "2026-07-25": {
+        "spend": 84744,
+        "impressions": 5510,
+        "clicks": 480
+      },
+      "2026-07-27": {
+        "spend": 110169,
+        "impressions": 7492,
         "clicks": 589
       },
+      "2026-07-29": {
+        "spend": 139182,
+        "impressions": 13013,
+        "clicks": 989
+      },
+      "2026-08-01": {
+        "spend": 78329,
+        "impressions": 4645,
+        "clicks": 420
+      },
+      "2026-08-03": {
+        "spend": 113312,
+        "impressions": 10959,
+        "clicks": 782
+      },
+      "2026-08-05": {
+        "spend": 133666,
+        "impressions": 10150,
+        "clicks": 775
+      },
+      "2026-08-08": {
+        "spend": 72461,
+        "impressions": 3180,
+        "clicks": 313
+      },
+      "2026-08-10": {
+        "spend": 94715,
+        "impressions": 7944,
+        "clicks": 429
+      },
+      "2026-08-12": {
+        "spend": 145563,
+        "impressions": 11868,
+        "clicks": 746
+      },
+      "2026-08-15": {
+        "spend": 76677,
+        "impressions": 5035,
+        "clicks": 344
+      },
+      "2026-08-17": {
+        "spend": 115697,
+        "impressions": 12521,
+        "clicks": 791
+      },
+      "2026-08-19": {
+        "spend": 140079,
+        "impressions": 14426,
+        "clicks": 785
+      },
+      "2026-08-22": {
+        "spend": 80909,
+        "impressions": 5223,
+        "clicks": 401
+      },
+      "2026-08-24": {
+        "spend": 117892,
+        "impressions": 9168,
+        "clicks": 703
+      },
+      "2026-08-26": {
+        "spend": 147801,
+        "impressions": 10472,
+        "clicks": 870
+      },
+      "2026-08-29": {
+        "spend": 75360,
+        "impressions": 4525,
+        "clicks": 421
+      },
+      "2026-08-31": {
+        "spend": 90615,
+        "impressions": 8509,
+        "clicks": 678
+      },
+      "2026-09-02": {
+        "spend": 132334,
+        "impressions": 12234,
+        "clicks": 929
+      },
+      "2026-09-05": {
+        "spend": 85249,
+        "impressions": 5928,
+        "clicks": 454
+      },
+      "2026-09-07": {
+        "spend": 103582,
+        "impressions": 11061,
+        "clicks": 723
+      },
+      "2026-09-09": {
+        "spend": 156596,
+        "impressions": 11816,
+        "clicks": 927
+      },
+      "2026-09-12": {
+        "spend": 76424,
+        "impressions": 3606,
+        "clicks": 321
+      },
+      "2026-09-14": {
+        "spend": 109379,
+        "impressions": 5395,
+        "clicks": 483
+      },
+      "2026-09-15": {
+        "spend": 17999,
+        "impressions": 1751,
+        "clicks": 145
+      },
+      "2026-09-16": {
+        "spend": 197316,
+        "impressions": 16630,
+        "clicks": 1291
+      },
+      "2026-09-17": {
+        "spend": 52737,
+        "impressions": 5813,
+        "clicks": 413
+      },
+      "2026-09-18": {
+        "spend": 183600,
+        "impressions": 16663,
+        "clicks": 1227
+      },
+      "2026-09-19": {
+        "spend": 16253,
+        "impressions": 1050,
+        "clicks": 70
+      },
+      "2026-09-21": {
+        "spend": 165723,
+        "impressions": 12643,
+        "clicks": 907
+      },
+      "2026-09-23": {
+        "spend": 201386,
+        "impressions": 16244,
+        "clicks": 1230
+      },
+      "2026-09-24": {
+        "spend": 51422,
+        "impressions": 4736,
+        "clicks": 281
+      },
+      "2026-09-25": {
+        "spend": 225993,
+        "impressions": 17710,
+        "clicks": 1317
+      },
+      "2026-09-26": {
+        "spend": 94359,
+        "impressions": 8208,
+        "clicks": 509
+      },
+      "2026-09-27": {
+        "spend": 104730,
+        "impressions": 9653,
+        "clicks": 619
+      },
       "2026-09-28": {
-        "spend": 81081,
-        "impressions": 5669,
-        "clicks": 513
+        "spend": 217271,
+        "impressions": 19444,
+        "clicks": 1360
+      },
+      "2026-09-29": {
+        "spend": 61305,
+        "impressions": 5787,
+        "clicks": 340
+      },
+      "2026-09-30": {
+        "spend": 145715,
+        "impressions": 13101,
+        "clicks": 881
+      },
+      "2026-10-01": {
+        "spend": 91742,
+        "impressions": 9337,
+        "clicks": 542
+      },
+      "2026-10-02": {
+        "spend": 121538,
+        "impressions": 12713,
+        "clicks": 892
+      },
+      "2026-10-03": {
+        "spend": 30775,
+        "impressions": 2731,
+        "clicks": 151
       }
     },
     "meta_facetech": {
@@ -2439,54 +2494,54 @@
   "alcance": {
     "clinica": {
       "hoy": {
-        "spend": 0,
-        "reach": 0,
-        "impressions": 0,
-        "frequency": 0,
-        "clicks": 0,
-        "ctr": 0,
-        "cpm": 0,
-        "cpp": 0
+        "spend": 30775,
+        "reach": 2449,
+        "impressions": 2731,
+        "frequency": 1.12,
+        "clicks": 151,
+        "ctr": 5.53,
+        "cpm": 11269,
+        "cpp": 12566
       },
       "ayer": {
-        "spend": 0,
-        "reach": 0,
-        "impressions": 0,
-        "frequency": 0,
-        "clicks": 0,
-        "ctr": 0,
-        "cpm": 0,
-        "cpp": 0
+        "spend": 121538,
+        "reach": 10803,
+        "impressions": 12713,
+        "frequency": 1.18,
+        "clicks": 892,
+        "ctr": 7.02,
+        "cpm": 9560,
+        "cpp": 11250
       },
       "semana": {
-        "spend": 81081,
-        "reach": 4470,
-        "impressions": 5669,
-        "frequency": 1.27,
-        "clicks": 513,
-        "ctr": 9.05,
-        "cpm": 14303,
-        "cpp": 18139
+        "spend": 773076,
+        "reach": 40075,
+        "impressions": 72766,
+        "frequency": 1.82,
+        "clicks": 4785,
+        "ctr": 6.58,
+        "cpm": 10624,
+        "cpp": 19291
       },
       "mes": {
-        "spend": 0,
-        "reach": 0,
-        "impressions": 0,
-        "frequency": 0,
-        "clicks": 0,
-        "ctr": 0,
-        "cpm": 0,
-        "cpp": 0
+        "spend": 244055,
+        "reach": 18507,
+        "impressions": 24781,
+        "frequency": 1.34,
+        "clicks": 1585,
+        "ctr": 6.4,
+        "cpm": 9848,
+        "cpp": 13187
       },
       "todo": {
-        "spend": 5808907,
-        "reach": 122115,
-        "impressions": 439596,
-        "frequency": 3.6,
-        "clicks": 32159,
-        "ctr": 7.32,
-        "cpm": 13214,
-        "cpp": 47569
+        "spend": 8559974,
+        "reach": 153819,
+        "impressions": 663604,
+        "frequency": 4.31,
+        "clicks": 48069,
+        "ctr": 7.24,
+        "cpm": 12899,
+        "cpp": 55650
       }
     },
     "facetech": {
@@ -2544,22 +2599,40 @@
   },
   "conclusiones": {
     "clinica": {
-      "hoy": [],
-      "ayer": [],
-      "semana": [
-        "📣 Esta semana tu clínica llegó a 4.470 personas únicas en la región — excelente alcance de marca.",
-        "👁️ 5.669 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
-        "🚀 Con 1.3x de frecuencia, tu anuncio está llegando constantemente a nuevas personas — la audiencia de la clínica sigue creciendo.",
-        "🎯 CTR 9.05% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
-        "🖱️ 513 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
+      "hoy": [
+        "📣 Hoy tu clínica llegó a 2.449 personas únicas en la región — excelente alcance de marca.",
+        "👁️ 2.731 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
+        "🚀 Con 1.1x de frecuencia, tu anuncio está llegando constantemente a nuevas personas — la audiencia de la clínica sigue creciendo.",
+        "🎯 CTR 5.53% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
+        "🖱️ 151 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
       ],
-      "mes": [],
+      "ayer": [
+        "📣 Ayer tu clínica llegó a 10.803 personas únicas en la región — excelente alcance de marca.",
+        "👁️ 12.713 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
+        "🚀 Con 1.2x de frecuencia, tu anuncio está llegando constantemente a nuevas personas — la audiencia de la clínica sigue creciendo.",
+        "🎯 CTR 7.02% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
+        "🖱️ 892 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
+      ],
+      "semana": [
+        "📣 Esta semana tu clínica llegó a 40.075 personas únicas en la región — excelente alcance de marca.",
+        "👁️ 72.766 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
+        "🚀 Con 1.8x de frecuencia, tu anuncio está llegando constantemente a nuevas personas — la audiencia de la clínica sigue creciendo.",
+        "🎯 CTR 6.58% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
+        "🖱️ 4.785 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
+      ],
+      "mes": [
+        "📣 Este mes tu clínica llegó a 18.507 personas únicas en la región — excelente alcance de marca.",
+        "👁️ 24.781 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
+        "🚀 Con 1.3x de frecuencia, tu anuncio está llegando constantemente a nuevas personas — la audiencia de la clínica sigue creciendo.",
+        "🎯 CTR 6.40% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
+        "🖱️ 1.585 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
+      ],
       "todo": [
-        "📣 Desde el inicio tu clínica llegó a 122.115 personas únicas en la región — excelente alcance de marca.",
-        "👁️ 439.596 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
-        "✅ Frecuencia 3.6x — nivel óptimo de recordación. Tu marca está perfectamente posicionada en la mente de los pacientes.",
-        "🎯 CTR 7.32% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
-        "🖱️ 32.159 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
+        "📣 Desde el inicio tu clínica llegó a 153.819 personas únicas en la región — excelente alcance de marca.",
+        "👁️ 663.604 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
+        "💪 Frecuencia 4.3x — tu audiencia conoce muy bien la clínica. Excelente nivel de recordación de marca logrado.",
+        "🎯 CTR 7.24% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
+        "🖱️ 48.069 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
       ]
     },
     "facetech": {
@@ -2577,5 +2650,5 @@
     }
   },
   "meta_ok": true,
-  "meta_last_ok": "2026-10-03 13:25"
+  "meta_last_ok": "2026-10-03 13:27"
 }
