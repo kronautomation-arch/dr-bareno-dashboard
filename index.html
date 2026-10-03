@@ -131,19 +131,31 @@
       position:relative; z-index:1;
       font-size:10px; color:var(--txt3); margin-bottom:22px;
     }
+    .hdr-meta-warn {
+      position:relative; z-index:1;
+      font-size:11px; line-height:1.4; color:#fbbf24;
+      background:rgba(251,191,36,.10); border:1px solid rgba(251,191,36,.35);
+      border-radius:10px; padding:8px 10px; margin:-12px 0 18px;
+    }
 
     /* tab pills (in hero header) */
     .hdr-controls {
       position:relative; z-index:1;
       display:flex; align-items:center; justify-content:flex-end; gap:6px;
     }
-    .tab-pills { display:flex; gap:6px; }
+    .tab-pills { display:flex; gap:6px; max-width:100%; overflow-x:auto; scrollbar-width:none; }
+    .tab-pills::-webkit-scrollbar { display:none; }
+    /* Con 4 pestañas no caben en 390px: se alinean a la izquierda y se deslizan. */
+    @media(max-width:520px) {
+      .hdr-controls { justify-content:flex-start; }
+      .tab-pill { padding:8px 11px; }
+    }
     .tab-pill {
       display:flex; align-items:center; gap:5px;
       padding:8px 14px; border-radius:11px;
       font-size:12px; font-weight:700;
       color:var(--txt3); background:var(--glass); border:1px solid var(--border);
-      cursor:pointer; transition:all .22s;
+      cursor:pointer; transition:all .22s; white-space:nowrap; flex-shrink:0;
     }
     .tab-pill.active {
       background:rgba(124,58,237,.18); border-color:rgba(124,58,237,.4); color:var(--p2);
@@ -154,7 +166,78 @@
     .tab-pill.vl-tab.active {
       background:rgba(217,119,6,.18); border-color:rgba(217,119,6,.4); color:var(--a2);
     }
+    .tab-pill.vs-tab.active {
+      background:rgba(8,145,178,.18); border-color:rgba(8,145,178,.4); color:var(--c2);
+    }
     .tab-pill-icon { font-size:14px; }
+
+    /* ─── BOT VS ASISTENTE ─── */
+    .vs-hero {
+      display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:14px;
+    }
+    .vs-side {
+      position:relative; overflow:hidden;
+      border-radius:var(--r); padding:18px 16px;
+      border:1px solid var(--border);
+    }
+    .vs-side.bot { background:linear-gradient(135deg, rgba(8,145,178,.22), rgba(103,232,249,.05)); border-color:rgba(8,145,178,.35); }
+    .vs-side.asi { background:linear-gradient(135deg, rgba(217,119,6,.22), rgba(251,191,36,.05)); border-color:rgba(217,119,6,.35); }
+    .vs-side.win { box-shadow:0 0 0 2px var(--g2) inset; }
+    .vs-name { font-size:12px; font-weight:800; letter-spacing:.3px; margin-bottom:10px; }
+    .vs-side.bot .vs-name { color:var(--c2); }
+    .vs-side.asi .vs-name { color:var(--a2); }
+    .vs-amount { font-size:26px; font-weight:900; letter-spacing:-1.2px; color:var(--txt); line-height:1.1; }
+    .vs-cap { font-size:10px; color:var(--txt2); margin-top:4px; }
+    .vs-crown {
+      display:none; position:absolute; top:12px; right:12px;
+      font-size:10px; font-weight:800; color:#052e1f; background:var(--g2);
+      padding:3px 8px; border-radius:99px;
+    }
+    .vs-side.win .vs-crown { display:block; }
+
+    .vs-table {
+      background:var(--glass); border:1px solid var(--border);
+      border-radius:var(--rs); overflow:hidden; margin-bottom:14px;
+    }
+    .vs-row {
+      display:grid; grid-template-columns:1.3fr 1fr 1fr; align-items:center;
+      padding:11px 14px; border-top:1px solid var(--border); font-size:12px;
+    }
+    .vs-row:first-child { border-top:none; }
+    .vs-row.head { font-size:10px; font-weight:800; letter-spacing:.6px; text-transform:uppercase; color:var(--txt3); }
+    .vs-row.head .c-bot { color:var(--c2); }
+    .vs-row.head .c-asi { color:var(--a2); }
+    .vs-lbl { color:var(--txt2); font-weight:600; }
+    .vs-lbl small { display:block; font-size:9.5px; color:var(--txt3); font-weight:500; margin-top:1px; }
+    .vs-cell { text-align:right; font-weight:800; color:var(--txt); font-variant-numeric:tabular-nums; }
+    .vs-cell.win { color:var(--g2); }
+    .vs-cell.win::after { content:' ▲'; font-size:9px; }
+
+    .funnel { display:flex; flex-direction:column; gap:7px; margin-top:4px; }
+    .funnel-step { display:grid; grid-template-columns:96px 1fr 44px; gap:8px; align-items:center; font-size:11px; color:var(--txt2); }
+    .funnel-bar { height:9px; border-radius:99px; background:rgba(255,255,255,.07); overflow:hidden; }
+    .funnel-fill { height:100%; border-radius:99px; transition:width 1s cubic-bezier(.16,1,.3,1); }
+    .funnel-fill.bot { background:linear-gradient(90deg,var(--c1),var(--c2)); }
+    .funnel-fill.asi { background:linear-gradient(90deg,var(--a1),var(--a2)); }
+    .funnel-n { text-align:right; font-weight:800; color:var(--txt); font-variant-numeric:tabular-nums; }
+    .funnel-title { font-size:12px; font-weight:800; margin:12px 0 6px; }
+    .funnel-title:first-child { margin-top:0; }
+
+    .vs-note {
+      font-size:11px; line-height:1.5; color:var(--txt2);
+      background:rgba(251,191,36,.07); border:1px solid rgba(251,191,36,.22);
+      border-radius:var(--rx); padding:10px 12px; margin-bottom:10px;
+    }
+    .vs-note strong { color:var(--a2); }
+    .vs-note.info { background:rgba(103,232,249,.06); border-color:rgba(103,232,249,.2); }
+    .vs-note.info strong { color:var(--c2); }
+    @media(max-width:380px) {
+      .vs-amount { font-size:21px; }
+      .vs-row { padding:10px 11px; font-size:11px; }
+    }
+    @media(min-width:900px) {
+      .vs-layout { display:grid; grid-template-columns:1.1fr 1fr; gap:14px; align-items:start; }
+    }
 
     /* ─── VIRAL LAB ─── */
     .vl-sub-nav { display:flex; gap:6px; margin-bottom:18px; }
@@ -794,6 +877,7 @@
 
   <div class="hdr-date" id="hdr-date">—</div>
   <div class="hdr-updated">Actualizado: <span id="updated-at">—</span></div>
+  <div class="hdr-meta-warn" id="meta-warn" style="display:none"></div>
 
   <div class="hdr-controls">
     <div class="tab-pills">
@@ -802,6 +886,9 @@
       </button>
       <button class="tab-pill ft-tab" id="tab-facetech" onclick="switchTab('facetech')">
         <span class="tab-pill-icon">🎤</span> FaceTech
+      </button>
+      <button class="tab-pill vs-tab" id="tab-canales" onclick="switchTab('canales')">
+        <span class="tab-pill-icon">🤖</span> Bot vs Asistente
       </button>
       <button class="tab-pill vl-tab" id="tab-viral-lab" onclick="switchTab('viral-lab')">
         <span class="tab-pill-icon">🎬</span> Viral Lab
@@ -1298,6 +1385,61 @@
     </div>
 
   </div><!-- /facetech -->
+
+  <!-- ─── BOT VS ASISTENTE ─── -->
+  <div class="page" id="page-canales">
+
+    <div class="sec-lbl">🏆 ¿Quién vende más?</div>
+    <div class="vs-hero">
+      <div class="vs-side bot" id="vs-side-bot">
+        <div class="vs-crown">Gana</div>
+        <div class="vs-name">🤖 Bot</div>
+        <div class="vs-amount" id="vs-bot-ing">$0</div>
+        <div class="vs-cap">ingresos · <span id="vs-bot-roas">0x</span> ROAS</div>
+      </div>
+      <div class="vs-side asi" id="vs-side-asi">
+        <div class="vs-crown">Gana</div>
+        <div class="vs-name">👩‍💼 Asistente</div>
+        <div class="vs-amount" id="vs-asi-ing">$0</div>
+        <div class="vs-cap">ingresos · <span id="vs-asi-roas">0x</span> ROAS</div>
+      </div>
+    </div>
+
+    <div id="vs-notes"></div>
+
+    <div class="vs-layout">
+      <div>
+        <div class="sec-lbl">Cara a cara</div>
+        <div class="vs-table" id="vs-table"></div>
+      </div>
+      <div>
+        <div class="sec-lbl">Embudo</div>
+        <div class="conv-card">
+          <div class="funnel" id="vs-funnel"></div>
+        </div>
+
+        <div class="chart-card" style="margin-bottom:10px">
+          <div class="chart-hdr">
+            <div>
+              <div class="chart-title-txt">Citas por día</div>
+              <div class="chart-sub-txt" id="vs-chart-sub">—</div>
+            </div>
+            <div class="chart-leg">
+              <div class="leg-row"><div class="leg-dot" style="background:var(--c2)"></div>Bot</div>
+              <div class="leg-row"><div class="leg-dot" style="background:var(--a2)"></div>Asistente</div>
+            </div>
+          </div>
+          <div class="chart-canvas-wrap"><canvas id="chart-canales"></canvas></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="vs-note info" id="vs-control"></div>
+    <div style="font-size:10px;color:var(--txt3);line-height:1.5;margin:6px 2px 24px">
+      Bot = campañas de Meta con “ASISTENTE” en el nombre. Asistente = el resto de campañas de la clínica (sin FaceTech).
+      Citas y ventas: lo que se registra en el Sheet por canal.
+    </div>
+  </div><!-- /canales -->
 
   <!-- ─── VIRAL LAB ─── -->
   <div class="page" id="page-viral-lab">
@@ -1983,6 +2125,180 @@ function chartRango(desde, hasta) {
 }
 
 /* ── Switch period ── */
+/* ── Bot vs Asistente ──
+   Mismo cálculo que calc_canales() en tools/metrics/calculator.py, para
+   rangos arbitrarios. Si cambias uno, cambia el otro. */
+function kpisCanalesRango(desde, hasta) {
+  const dd = DATA.daily || {};
+  const precio = DATA.precio_cita || 0;
+  const div = (a, b) => (b ? a / b : 0);
+  const cRows = (dd.clinica || []).filter(r => inRange(r.fecha, desde, hasta));
+  const pRows = (dd.procedimientos || []).filter(r => inRange(r.fecha, desde, hasta));
+  const sumSerie = (m, k) => Object.entries(m || {})
+    .filter(([f]) => inRange(f, desde, hasta)).reduce((s, [, v]) => s + (v[k] || 0), 0);
+
+  const ingCitas = { bot: 0, asistente: 0 };
+  cRows.forEach(r => {
+    const total = r.tiene_total ? r.total_facturado : (r.citas_agendadas || 0) * precio;
+    const citas = r.citas_agendadas || ((r.citas_bot || 0) + (r.citas_asistente || 0));
+    for (const k in ingCitas) ingCitas[k] += div(total * (r['citas_' + k] || 0), citas);
+  });
+
+  const out = {};
+  [['bot', dd.meta_bot], ['asistente', dd.meta_asistente]].forEach(([k, meta]) => {
+    const gasto = sumSerie(meta, 'spend');
+    const convs = sumSerie(meta, 'conversaciones');
+    const citas = cRows.reduce((s, r) => s + (r['citas_' + k] || 0), 0);
+    const vend = pRows.filter(p => p.canal === k && p.valor > 0);
+    const ingProcs = vend.reduce((s, p) => s + p.valor, 0);
+    const ing = ingCitas[k] + ingProcs;
+    out[k] = {
+      gasto_meta: gasto, conversaciones: convs,
+      costo_por_conversacion: Math.round(div(gasto, convs)),
+      citas, tasa_conv_cita: +(div(citas, convs) * 100).toFixed(1),
+      costo_por_cita: Math.round(div(gasto, citas)),
+      procedimientos_vendidos: vend.length,
+      tasa_cita_venta: +(div(vend.length, citas) * 100).toFixed(1),
+      ingresos_citas: Math.round(ingCitas[k]), ingresos_procedimientos: ingProcs,
+      ingresos: Math.round(ing), roas: +div(ing, gasto).toFixed(2),
+    };
+  });
+  out.bot.control_pancake = {
+    conversaciones: sumSerie(dd.pancake_bot, 'conversaciones'),
+    citas: sumSerie(dd.pancake_bot, 'citas'),
+  };
+  const total = cRows.reduce((s, r) => s + (r.citas_agendadas || 0), 0);
+  out.sin_atribuir = {
+    citas: Math.max(0, total - out.bot.citas - out.asistente.citas),
+    procedimientos: pRows.filter(p => !p.canal && p.valor > 0).length,
+  };
+  return out;
+}
+
+/* Filas de la tabla: [clave, etiqueta, ayuda, formato, mejor ('max'|'min'|null)] */
+const VS_ROWS = [
+  ['gasto_meta',              'Gasto Meta',            'lo invertido en anuncios',  COP,  null],
+  ['conversaciones',          'Conversaciones',        'chats iniciados (Meta)',    NUM,  'max'],
+  ['costo_por_conversacion',  'Costo / conversación',  'gasto ÷ chats',             COP,  'min'],
+  ['citas',                   'Citas agendadas',       'según el Sheet',            NUM,  'max'],
+  ['tasa_conv_cita',          'Chat → Cita',           '% de chats que agendan',    PCT,  'max'],
+  ['costo_por_cita',          'Costo / cita',          'gasto ÷ citas',             COP,  'min'],
+  ['procedimientos_vendidos', 'Procedimientos',        'vendidos',                  NUM,  'max'],
+  ['tasa_cita_venta',         'Cita → Venta',          '% de citas que compran',    PCT,  'max'],
+  ['ingresos',                'Ingresos',              'citas + procedimientos',    COP,  'max'],
+  ['roas',                    'ROAS',                  'ingresos ÷ gasto',          ROAS, 'max'],
+];
+
+/* Ganador de una métrica. En "menor es mejor" un 0 es falta de datos, no una victoria. */
+function vsGanador(b, a, mejor) {
+  if (!mejor || b === a) return null;
+  if (mejor === 'min') {
+    if (!b || !a) return null;
+    return b < a ? 'bot' : 'asistente';
+  }
+  return b > a ? 'bot' : 'asistente';
+}
+
+let chartVS = null;
+function renderCanales(c, desde, hasta) {
+  if (!c || !c.bot) {
+    document.getElementById('vs-table').innerHTML =
+      '<div class="vs-row"><span class="vs-lbl">Todavía no hay datos de canales. Se llenan en la próxima actualización.</span></div>';
+    return;
+  }
+  const b = c.bot, a = c.asistente;
+  set('vs-bot-ing', COP(b.ingresos));  set('vs-bot-roas', ROAS(b.roas));
+  set('vs-asi-ing', COP(a.ingresos));  set('vs-asi-roas', ROAS(a.roas));
+  const gana = vsGanador(b.ingresos, a.ingresos, 'max');
+  document.getElementById('vs-side-bot').classList.toggle('win', gana === 'bot');
+  document.getElementById('vs-side-asi').classList.toggle('win', gana === 'asistente');
+
+  document.getElementById('vs-table').innerHTML =
+    '<div class="vs-row head"><span>Métrica</span><span class="vs-cell c-bot">🤖 Bot</span><span class="vs-cell c-asi">👩‍💼 Asistente</span></div>' +
+    VS_ROWS.map(([k, lbl, ayuda, fmt, mejor]) => {
+      const w = vsGanador(b[k] || 0, a[k] || 0, mejor);
+      return `<div class="vs-row"><span class="vs-lbl">${lbl}<small>${ayuda}</small></span>` +
+        `<span class="vs-cell${w === 'bot' ? ' win' : ''}">${fmt(b[k])}</span>` +
+        `<span class="vs-cell${w === 'asistente' ? ' win' : ''}">${fmt(a[k])}</span></div>`;
+    }).join('');
+
+  /* Embudo: todo relativo a las conversaciones de cada canal */
+  const paso = (lbl, n, base, cls) =>
+    `<div class="funnel-step"><span>${lbl}</span><div class="funnel-bar"><div class="funnel-fill ${cls}" style="width:${base ? Math.min(100, n / base * 100) : 0}%"></div></div><span class="funnel-n">${NUM(n)}</span></div>`;
+  const embudo = (nombre, x, cls, color) =>
+    `<div class="funnel-title" style="color:${color}">${nombre}</div>` +
+    paso('Conversaciones', x.conversaciones, x.conversaciones, cls) +
+    paso('Citas', x.citas, x.conversaciones, cls) +
+    paso('Ventas', x.procedimientos_vendidos, x.conversaciones, cls);
+  document.getElementById('vs-funnel').innerHTML =
+    embudo('🤖 Bot', b, 'bot', 'var(--c2)') + embudo('👩‍💼 Asistente', a, 'asi', 'var(--a2)');
+
+  /* Avisos: datos incompletos antes que conclusiones falsas */
+  const notas = [];
+  const sa = c.sin_atribuir || {};
+  if (sa.citas || sa.procedimientos) {
+    notas.push(`<div class="vs-note"><strong>Sin atribuir:</strong> ${NUM(sa.citas)} citas y ${NUM(sa.procedimientos)} procedimientos del periodo no tienen canal en el Sheet, así que no cuentan para ninguno. Llenar <em>Citas Bot / Citas Asistente</em> y la columna <em>Canal</em>.</div>`);
+  }
+  if (!b.gasto_meta && !a.gasto_meta) {
+    notas.push('<div class="vs-note">No hay gasto de Meta en este periodo para ninguno de los dos canales.</div>');
+  }
+  document.getElementById('vs-notes').innerHTML = notas.join('');
+
+  const cp = b.control_pancake || {};
+  document.getElementById('vs-control').innerHTML =
+    `<strong>Control del bot (Pancake):</strong> en este periodo el bot atendió ${NUM(cp.conversaciones)} chats nuevos y dejó ` +
+    `${NUM(cp.citas)} citas agendadas con su etiqueta. El Sheet registra ${NUM(b.citas)} citas del bot` +
+    (cp.citas > b.citas ? ' — hay citas del bot sin registrar.' : '.');
+
+  renderChartCanales(desde, hasta);
+}
+
+function renderChartCanales(desde, hasta) {
+  const hoy = new Date().toISOString().split('T')[0];
+  if (!desde) {  // presets cortos: últimos 7 días, igual que las otras gráficas
+    const d = new Date(); d.setDate(d.getDate() - 6);
+    desde = d.toISOString().split('T')[0]; hasta = hoy;
+  }
+  const dias = [];
+  for (let d = new Date(desde + 'T12:00:00'); d.toISOString().split('T')[0] <= hasta; d.setDate(d.getDate() + 1))
+    dias.push(d.toISOString().split('T')[0]);
+  const rows = DATA.daily?.clinica || [];
+  const serie = k => dias.map(f => rows.filter(r => r.fecha === f).reduce((s, r) => s + (r['citas_' + k] || 0), 0));
+  set('vs-chart-sub', `${fmtFecha(desde)} → ${fmtFecha(hasta)}`);
+
+  if (chartVS) chartVS.destroy();
+  const ctx = document.getElementById('chart-canales').getContext('2d');
+  chartVS = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: dias.map(f => f.slice(5)),
+      datasets: [
+        { label: 'Bot', data: serie('bot'), backgroundColor: '#67e8f955', borderColor: '#67e8f9', borderWidth: 1.5, borderRadius: 6 },
+        { label: 'Asistente', data: serie('asistente'), backgroundColor: '#fbbf2455', borderColor: '#fbbf24', borderWidth: 1.5, borderRadius: 6 },
+      ],
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false },
+        tooltip: { backgroundColor: '#0d1120', borderColor: 'rgba(255,255,255,.1)', borderWidth: 1, cornerRadius: 12, padding: 12 } },
+      scales: {
+        x: { ticks: { color: '#475569', font: { size: 10, weight: '600' }, maxTicksLimit: 10 }, grid: { display: false }, border: { display: false } },
+        y: { beginAtZero: true, ticks: { color: '#475569', font: { size: 10 }, precision: 0, maxTicksLimit: 5 },
+             grid: { color: 'rgba(255,255,255,.05)' }, border: { display: false } },
+      },
+    },
+  });
+}
+
+/* Rango de fechas que cubre cada preset, para la gráfica de canales. */
+function rangoDelPeriodo() {
+  const hoy = new Date().toISOString().split('T')[0];
+  if (currentPeriod === 'rango' && currentRange) return currentRange;
+  if (currentPeriod === 'todo') return { desde: DATA.first_date, hasta: hoy };
+  if (currentPeriod === 'mes') return { desde: hoy.slice(0, 8) + '01', hasta: hoy };
+  return {};
+}
+
 const PERIOD_IDX    = { hoy:0, ayer:1, semana:2, mes:3, todo:4 };
 const PERIOD_DATA   = { hoy:'hoy', ayer:'ayer', semana:'semana', mes:'mes', todo:'todo' };
 const PERIOD_ALCANCE = { hoy:'hoy', ayer:'ayer', semana:'semana', mes:'mes', todo:'todo' };
@@ -2015,7 +2331,10 @@ function switchPeriod(p, range) {
   currentPeriod = p;
   currentRange = (p === 'rango') ? range : null;
 
-  document.querySelectorAll('.fb-btn').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.fb-btn').forEach(el => {
+    el.classList.remove('active');
+    el.style.background = el.style.boxShadow = '';  // limpia el inline de switchTab
+  });
   const btns = document.querySelectorAll('.fb-btn');
   const idx  = PERIOD_IDX[p];
   if (idx !== undefined && btns[idx]) btns[idx].classList.add('active');
@@ -2049,6 +2368,10 @@ function switchPeriod(p, range) {
   renderAlcanceClinica(calc, cconc, ckpis);
   renderAlcanceFacetech(falc, fconc, fkpis);
   renderCharts(chartDelPeriodo());
+  const rv = rangoDelPeriodo();
+  renderCanales(p === 'rango' && currentRange
+    ? kpisCanalesRango(currentRange.desde, currentRange.hasta)
+    : DATA.canales?.[PERIOD_DATA[p] || 'mes'], rv.desde, rv.hasta);
   updateRangeLabel();
 }
 
@@ -2163,9 +2486,11 @@ function switchTab(tab) {
   document.getElementById('avatar').classList.toggle('ft', isFt);
   document.getElementById('tab-clinica').classList.toggle('active', tab === 'clinica');
   document.getElementById('tab-facetech').classList.toggle('active', isFt);
+  document.getElementById('tab-canales').classList.toggle('active', tab === 'canales');
   document.getElementById('tab-viral-lab').classList.toggle('active', isVL);
   document.getElementById('page-clinica').classList.toggle('active', tab === 'clinica');
   document.getElementById('page-facetech').classList.toggle('active', isFt);
+  document.getElementById('page-canales').classList.toggle('active', tab === 'canales');
   document.getElementById('page-viral-lab').classList.toggle('active', isVL);
 
   /* filter bar visibility — hide for Viral Lab */
@@ -2241,6 +2566,15 @@ async function loadData() {
     if (!res.ok) throw new Error('HTTP ' + res.status);
     DATA = await res.json();
     set('updated-at', DATA.updated_at || '—');
+    // Ventas (Sheet/Pancake) se publican aunque Meta falle; avisar que gasto/ROAS no están al día.
+    const warn = document.getElementById('meta-warn');
+    if (DATA.meta_ok === false) {
+      warn.textContent = '⚠️ Ventas y citas al día. La inversión en Meta (gasto, ROAS, costo por cita) está pendiente de reconexión'
+        + (DATA.meta_last_ok ? ' — último dato válido: ' + DATA.meta_last_ok : '') + '.';
+      warn.style.display = 'block';
+    } else {
+      warn.style.display = 'none';
+    }
     setDate();
     // Un solo camino de render: switchPeriod ya arma KPIs, alcance, gráfica y etiqueta.
     switchPeriod(currentPeriod, currentRange);
