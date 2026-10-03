@@ -1,8 +1,9 @@
-// Subir la versión en cada cambio de index.html: el fetch handler sirve el HTML
-// desde caché primero, así que sin bump los clientes instalados (PWA en iPhone)
-// se quedan con el JS viejo aunque data.json sí se actualice.
-const CACHE = 'drbareno-v2';
-const STATIC = ['/', '/index.html', '/manifest.json'];
+// El HTML y data.json van network-first: con cache-first el iPhone del Dr. se
+// quedó con un index.html viejo sin la pestaña Bot vs Asistente (2026-10-03)
+// porque nadie subió la versión. Subirla igual limpia cachés viejos.
+const CACHE = 'drbareno-v3';
+// Relativas: el sitio vive en /dr-bareno-dashboard/, no en la raíz del dominio.
+const STATIC = ['./', 'index.html', 'manifest.json'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(STATIC)));
@@ -19,14 +20,22 @@ self.addEventListener('activate', e => {
 });
 
 self.addEventListener('fetch', e => {
-  // data.json: siempre desde red (datos frescos), fallback a caché
-  if (e.request.url.includes('data.json')) {
+  // data.json y la página: siempre desde red, fallback a caché sin conexión
+  if (e.request.url.includes('data.json') || e.request.mode === 'navigate') {
     e.respondWith(
-      fetch(e.request).catch(() => caches.match(e.request))
+      fetch(e.request)
+        .then(res => {
+          if (e.request.mode === 'navigate' && res.ok) {
+            const copy = res.clone();
+            caches.open(CACHE).then(c => c.put(e.request, copy));
+          }
+          return res;
+        })
+        .catch(() => caches.match(e.request).then(r => r || caches.match('index.html')))
     );
     return;
   }
-  // Resto: caché primero
+  // Resto (íconos, manifest): caché primero
   e.respondWith(
     caches.match(e.request).then(cached => cached || fetch(e.request))
   );

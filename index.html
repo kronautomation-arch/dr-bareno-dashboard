@@ -2589,7 +2589,15 @@ async function loadData() {
   }
 }
 
-if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
+if ('serviceWorker' in navigator) {
+  // Cuando entra un sw.js nuevo, recargar una vez para estrenar la versión.
+  const hadController = !!navigator.serviceWorker.controller;
+  let reloaded = false;
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (hadController && !reloaded) { reloaded = true; location.reload(); }
+  });
+  navigator.serviceWorker.register('sw.js').then(r => r.update()).catch(()=>{});
+}
 setDate();
 initDateInputs();
 loadData();
