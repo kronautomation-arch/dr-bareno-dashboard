@@ -2157,14 +2157,15 @@ function kpisCanalesRango(desde, hasta) {
     }
     const vend = pRows.filter(p => p.canal === k && p.valor > 0);
     const ingProcs = vend.reduce((s, p) => s + p.valor, 0);
+    const nVend = k === 'bot' ? Math.max(vend.length, sumSerie(dd.calendar_bot, 'cirugias')) : vend.length;
     const ing = ingC + ingProcs;
     out[k] = {
       gasto_meta: gasto, conversaciones: convs,
       costo_por_conversacion: Math.round(div(gasto, convs)),
       citas, tasa_conv_cita: +(div(citas, convs) * 100).toFixed(1),
       costo_por_cita: Math.round(div(gasto, citas)),
-      procedimientos_vendidos: vend.length,
-      tasa_cita_venta: +(div(vend.length, citas) * 100).toFixed(1),
+      procedimientos_vendidos: nVend,
+      tasa_cita_venta: +(div(nVend, citas) * 100).toFixed(1),
       ingresos_citas: Math.round(ingC), ingresos_procedimientos: ingProcs,
       ingresos: Math.round(ing), roas: +div(ing, gasto).toFixed(2),
     };
