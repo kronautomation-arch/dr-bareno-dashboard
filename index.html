@@ -2148,10 +2148,16 @@ function kpisCanalesRango(desde, hasta) {
   [['bot', dd.meta_bot], ['asistente', dd.meta_asistente]].forEach(([k, meta]) => {
     const gasto = sumSerie(meta, 'spend');
     const convs = sumSerie(meta, 'conversaciones');
-    const citas = cRows.reduce((s, r) => s + (r['citas_' + k] || 0), 0);
+    let citas = cRows.reduce((s, r) => s + (r['citas_' + k] || 0), 0);
+    let ingC = ingCitas[k];
+    // Citas del bot: del Google Calendar (igual que calc_canales en Python).
+    if (k === 'bot' && dd.calendar_bot && Object.keys(dd.calendar_bot).length) {
+      citas = sumSerie(dd.calendar_bot, 'citas');
+      ingC = citas * precio;
+    }
     const vend = pRows.filter(p => p.canal === k && p.valor > 0);
     const ingProcs = vend.reduce((s, p) => s + p.valor, 0);
-    const ing = ingCitas[k] + ingProcs;
+    const ing = ingC + ingProcs;
     out[k] = {
       gasto_meta: gasto, conversaciones: convs,
       costo_por_conversacion: Math.round(div(gasto, convs)),
@@ -2159,10 +2165,11 @@ function kpisCanalesRango(desde, hasta) {
       costo_por_cita: Math.round(div(gasto, citas)),
       procedimientos_vendidos: vend.length,
       tasa_cita_venta: +(div(vend.length, citas) * 100).toFixed(1),
-      ingresos_citas: Math.round(ingCitas[k]), ingresos_procedimientos: ingProcs,
+      ingresos_citas: Math.round(ingC), ingresos_procedimientos: ingProcs,
       ingresos: Math.round(ing), roas: +div(ing, gasto).toFixed(2),
     };
   });
+  out.bot.cirugias_agendadas = sumSerie(dd.calendar_bot, 'cirugias');
   out.bot.control_pancake = {
     conversaciones: sumSerie(dd.pancake_bot, 'conversaciones'),
     citas: sumSerie(dd.pancake_bot, 'citas'),
@@ -2180,7 +2187,7 @@ const VS_ROWS = [
   ['gasto_meta',              'Gasto Meta',            'lo invertido en anuncios',  COP,  null],
   ['conversaciones',          'Conversaciones',        'chats iniciados (Meta)',    NUM,  'max'],
   ['costo_por_conversacion',  'Costo / conversación',  'gasto ÷ chats',             COP,  'min'],
-  ['citas',                   'Citas agendadas',       'según el Sheet',            NUM,  'max'],
+  ['citas',                   'Citas agendadas',       'bot: calendario · asistente: Sheet', NUM,  'max'],
   ['tasa_conv_cita',          'Chat → Cita',           '% de chats que agendan',    PCT,  'max'],
   ['costo_por_cita',          'Costo / cita',          'gasto ÷ citas',             COP,  'min'],
   ['procedimientos_vendidos', 'Procedimientos',        'vendidos',                  NUM,  'max'],
@@ -2237,7 +2244,7 @@ function renderCanales(c, desde, hasta) {
   const notas = [];
   const sa = c.sin_atribuir || {};
   if (sa.citas || sa.procedimientos) {
-    notas.push(`<div class="vs-note"><strong>Sin atribuir:</strong> ${NUM(sa.citas)} citas y ${NUM(sa.procedimientos)} procedimientos del periodo no tienen canal en el Sheet, así que no cuentan para ninguno. Llenar <em>Citas Bot / Citas Asistente</em> y la columna <em>Canal</em>.</div>`);
+    notas.push(`<div class="vs-note"><strong>Sin atribuir:</strong> ${NUM(sa.citas)} citas y ${NUM(sa.procedimientos)} procedimientos del periodo no tienen canal en el Sheet. Las del bot ya salen solas del calendario; para la asistente hay que llenar <em>Citas Asistente</em> y la columna <em>Canal</em>.</div>`);
   }
   if (!b.gasto_meta && !a.gasto_meta) {
     notas.push('<div class="vs-note">No hay gasto de Meta en este periodo para ninguno de los dos canales.</div>');
@@ -2246,9 +2253,10 @@ function renderCanales(c, desde, hasta) {
 
   const cp = b.control_pancake || {};
   document.getElementById('vs-control').innerHTML =
-    `<strong>Control del bot (Pancake):</strong> en este periodo el bot atendió ${NUM(cp.conversaciones)} chats nuevos y dejó ` +
-    `${NUM(cp.citas)} citas agendadas con su etiqueta. El Sheet registra ${NUM(b.citas)} citas del bot` +
-    (cp.citas > b.citas ? ' — hay citas del bot sin registrar.' : '.');
+    `<strong>Citas del bot:</strong> ${NUM(b.citas)} en el calendario del Dr. en este periodo ` +
+    `(las que agendó el bot y las que la secretaria anotó con "BOT")` +
+    (b.cirugias_agendadas ? `, más ${NUM(b.cirugias_agendadas)} cirugía(s) de pacientes del bot` : '') +
+    `. El bot atendió ${NUM(cp.conversaciones)} chats nuevos de WhatsApp.`;
 
   renderChartCanales(desde, hasta);
 }
@@ -2263,7 +2271,10 @@ function renderChartCanales(desde, hasta) {
   for (let d = new Date(desde + 'T12:00:00'); d.toISOString().split('T')[0] <= hasta; d.setDate(d.getDate() + 1))
     dias.push(d.toISOString().split('T')[0]);
   const rows = DATA.daily?.clinica || [];
-  const serie = k => dias.map(f => rows.filter(r => r.fecha === f).reduce((s, r) => s + (r['citas_' + k] || 0), 0));
+  const cal = DATA.daily?.calendar_bot;
+  const serie = k => dias.map(f => (k === 'bot' && cal && Object.keys(cal).length)
+    ? ((cal[f] || {}).citas || 0)
+    : rows.filter(r => r.fecha === f).reduce((s, r) => s + (r['citas_' + k] || 0), 0));
   set('vs-chart-sub', `${fmtFecha(desde)} → ${fmtFecha(hasta)}`);
 
   if (chartVS) chartVS.destroy();
