@@ -1,10 +1,25 @@
 {
-  "updated_at": "2026-10-20 19:01",
-  "today": "2026-10-20",
+  "updated_at": "2026-10-21 08:02",
+  "today": "2026-10-21",
   "precio_cita": 200000.0,
   "first_date": "2026-05-04",
   "clinica": {
     "hoy": {
+      "citas_agendadas": 0,
+      "procedimientos_vendidos": 0,
+      "procedimientos_agendados": 0,
+      "tasa_conversion": 0.0,
+      "ingresos_citas": 0.0,
+      "ingresos_procedimientos": 0,
+      "ingresos_totales": 0.0,
+      "desglose_procedimientos": [],
+      "gasto_meta": 11543.0,
+      "costo_por_cita": 0,
+      "porcentaje_publicidad": 0.0,
+      "utilidad_bruta": -11543.0,
+      "roas": 0.0
+    },
+    "ayer": {
       "citas_agendadas": 4,
       "procedimientos_vendidos": 0,
       "procedimientos_agendados": 0,
@@ -13,52 +28,26 @@
       "ingresos_procedimientos": 0,
       "ingresos_totales": 800000.0,
       "desglose_procedimientos": [],
-      "gasto_meta": 76139.0,
-      "costo_por_cita": 19035,
-      "porcentaje_publicidad": 9.5,
-      "utilidad_bruta": 723861.0,
-      "roas": 10.51
+      "gasto_meta": 104887.0,
+      "costo_por_cita": 26222,
+      "porcentaje_publicidad": 13.1,
+      "utilidad_bruta": 695113.0,
+      "roas": 7.63
     },
-    "ayer": {
-      "citas_agendadas": 5,
+    "semana": {
+      "citas_agendadas": 16,
       "procedimientos_vendidos": 0,
       "procedimientos_agendados": 0,
       "tasa_conversion": 0.0,
-      "ingresos_citas": 1000000.0,
+      "ingresos_citas": 3200000.0,
       "ingresos_procedimientos": 0,
-      "ingresos_totales": 1000000.0,
+      "ingresos_totales": 3200000.0,
       "desglose_procedimientos": [],
-      "gasto_meta": 141812.0,
-      "costo_por_cita": 28362,
-      "porcentaje_publicidad": 14.2,
-      "utilidad_bruta": 858188.0,
-      "roas": 7.05
-    },
-    "semana": {
-      "citas_agendadas": 18,
-      "procedimientos_vendidos": 2,
-      "procedimientos_agendados": 0,
-      "tasa_conversion": 11.1,
-      "ingresos_citas": 3600000.0,
-      "ingresos_procedimientos": 73000000.0,
-      "ingresos_totales": 76600000.0,
-      "desglose_procedimientos": [
-        {
-          "tipo": "Quad, terci, cuello",
-          "cantidad": 1,
-          "valor": 38000000.0
-        },
-        {
-          "tipo": "queda, lifting, fronto",
-          "cantidad": 1,
-          "valor": 35000000.0
-        }
-      ],
-      "gasto_meta": 733076.0,
-      "costo_por_cita": 40726,
-      "porcentaje_publicidad": 1.0,
-      "utilidad_bruta": 75866924.0,
-      "roas": 104.49
+      "gasto_meta": 654010.0,
+      "costo_por_cita": 40876,
+      "porcentaje_publicidad": 20.4,
+      "utilidad_bruta": 2545990.0,
+      "roas": 4.89
     },
     "mes": {
       "citas_agendadas": 51,
@@ -90,11 +79,11 @@
           "valor": 8000000.0
         }
       ],
-      "gasto_meta": 2076583.0,
-      "costo_por_cita": 40717,
+      "gasto_meta": 2117617.0,
+      "costo_por_cita": 41522,
       "porcentaje_publicidad": 1.7,
-      "utilidad_bruta": 121123417.0,
-      "roas": 59.33
+      "utilidad_bruta": 121082383.0,
+      "roas": 58.18
     },
     "todo": {
       "citas_agendadas": 245,
@@ -216,11 +205,11 @@
           "valor": 8000000.0
         }
       ],
-      "gasto_meta": 10392694,
-      "costo_por_cita": 42419,
+      "gasto_meta": 10433629,
+      "costo_por_cita": 42586,
       "porcentaje_publicidad": 1.8,
-      "utilidad_bruta": 566007306.0,
-      "roas": 55.46
+      "utilidad_bruta": 565966371.0,
+      "roas": 55.24
     }
   },
   "facetech": {
@@ -288,9 +277,49 @@
   "canales": {
     "hoy": {
       "bot": {
-        "gasto_meta": 48545,
-        "conversaciones": 43,
-        "costo_por_conversacion": 1129,
+        "gasto_meta": 0,
+        "conversaciones": 2,
+        "costo_por_conversacion": 0,
+        "citas": 1,
+        "tasa_conv_cita": 50.0,
+        "costo_por_cita": 0,
+        "procedimientos_vendidos": 0,
+        "tasa_cita_venta": 0.0,
+        "ingresos_citas": 200000,
+        "ingresos_procedimientos": 0,
+        "ingresos": 200000,
+        "roas": 0.0,
+        "fuente_citas": "calendario",
+        "cirugias_agendadas": 0,
+        "control_pancake": {
+          "conversaciones": 5,
+          "citas": 1
+        }
+      },
+      "asistente": {
+        "gasto_meta": 0,
+        "conversaciones": 7,
+        "costo_por_conversacion": 0,
+        "citas": 0,
+        "tasa_conv_cita": 0.0,
+        "costo_por_cita": 0,
+        "procedimientos_vendidos": 0,
+        "tasa_cita_venta": 0.0,
+        "ingresos_citas": 0,
+        "ingresos_procedimientos": 0,
+        "ingresos": 0,
+        "roas": 0.0
+      },
+      "sin_atribuir": {
+        "citas": 0,
+        "procedimientos": 0
+      }
+    },
+    "ayer": {
+      "bot": {
+        "gasto_meta": 0,
+        "conversaciones": 63,
+        "costo_por_conversacion": 0,
         "citas": 0,
         "tasa_conv_cita": 0.0,
         "costo_por_cita": 0,
@@ -303,217 +332,177 @@
         "fuente_citas": "calendario",
         "cirugias_agendadas": 0,
         "control_pancake": {
-          "conversaciones": 43,
+          "conversaciones": 58,
           "citas": 0
         }
       },
       "asistente": {
-        "gasto_meta": 27783,
+        "gasto_meta": 0,
         "conversaciones": 8,
-        "costo_por_conversacion": 3473,
+        "costo_por_conversacion": 0,
         "citas": 2,
         "tasa_conv_cita": 25.0,
-        "costo_por_cita": 13892,
+        "costo_por_cita": 0,
         "procedimientos_vendidos": 0,
         "tasa_cita_venta": 0.0,
         "ingresos_citas": 400000,
         "ingresos_procedimientos": 0,
         "ingresos": 400000,
-        "roas": 14.4
+        "roas": 0.0
       },
       "sin_atribuir": {
         "citas": 2,
         "procedimientos": 0
       }
     },
-    "ayer": {
-      "bot": {
-        "gasto_meta": 103390,
-        "conversaciones": 80,
-        "costo_por_conversacion": 1292,
-        "citas": 0,
-        "tasa_conv_cita": 0.0,
-        "costo_por_cita": 0,
-        "procedimientos_vendidos": 0,
-        "tasa_cita_venta": 0.0,
-        "ingresos_citas": 0,
-        "ingresos_procedimientos": 0,
-        "ingresos": 0,
-        "roas": 0.0,
-        "fuente_citas": "calendario",
-        "cirugias_agendadas": 0,
-        "control_pancake": {
-          "conversaciones": 73,
-          "citas": 0
-        }
-      },
-      "asistente": {
-        "gasto_meta": 38425,
-        "conversaciones": 41,
-        "costo_por_conversacion": 937,
-        "citas": 5,
-        "tasa_conv_cita": 12.2,
-        "costo_por_cita": 7685,
-        "procedimientos_vendidos": 0,
-        "tasa_cita_venta": 0.0,
-        "ingresos_citas": 1000000,
-        "ingresos_procedimientos": 0,
-        "ingresos": 1000000,
-        "roas": 26.02
-      },
-      "sin_atribuir": {
-        "citas": 0,
-        "procedimientos": 0
-      }
-    },
     "semana": {
       "bot": {
-        "gasto_meta": 597697,
-        "conversaciones": 413,
-        "costo_por_conversacion": 1447,
+        "gasto_meta": 0,
+        "conversaciones": 390,
+        "costo_por_conversacion": 0,
         "citas": 4,
         "tasa_conv_cita": 1.0,
-        "costo_por_cita": 149424,
+        "costo_por_cita": 0,
         "procedimientos_vendidos": 0,
         "tasa_cita_venta": 0.0,
         "ingresos_citas": 800000,
         "ingresos_procedimientos": 0,
         "ingresos": 800000,
-        "roas": 1.34,
+        "roas": 0.0,
         "fuente_citas": "calendario",
         "cirugias_agendadas": 0,
         "control_pancake": {
-          "conversaciones": 392,
+          "conversaciones": 366,
           "citas": 3
         }
       },
       "asistente": {
-        "gasto_meta": 135571,
-        "conversaciones": 122,
-        "costo_por_conversacion": 1111,
-        "citas": 10,
-        "tasa_conv_cita": 8.2,
-        "costo_por_cita": 13557,
+        "gasto_meta": 0,
+        "conversaciones": 85,
+        "costo_por_conversacion": 0,
+        "citas": 8,
+        "tasa_conv_cita": 9.4,
+        "costo_por_cita": 0,
         "procedimientos_vendidos": 0,
         "tasa_cita_venta": 0.0,
-        "ingresos_citas": 2000000,
+        "ingresos_citas": 1600000,
         "ingresos_procedimientos": 0,
-        "ingresos": 2000000,
-        "roas": 14.75
+        "ingresos": 1600000,
+        "roas": 0.0
       },
       "sin_atribuir": {
         "citas": 4,
-        "procedimientos": 2
+        "procedimientos": 0
       }
     },
     "mes": {
       "bot": {
-        "gasto_meta": 1773882,
-        "conversaciones": 1312,
-        "costo_por_conversacion": 1352,
-        "citas": 15,
-        "tasa_conv_cita": 1.1,
-        "costo_por_cita": 118259,
+        "gasto_meta": 0,
+        "conversaciones": 1334,
+        "costo_por_conversacion": 0,
+        "citas": 16,
+        "tasa_conv_cita": 1.2,
+        "costo_por_cita": 0,
         "procedimientos_vendidos": 1,
-        "tasa_cita_venta": 6.7,
-        "ingresos_citas": 3000000,
+        "tasa_cita_venta": 6.2,
+        "ingresos_citas": 3200000,
         "ingresos_procedimientos": 0,
-        "ingresos": 3000000,
-        "roas": 1.69,
+        "ingresos": 3200000,
+        "roas": 0.0,
         "fuente_citas": "calendario",
         "cirugias_agendadas": 1,
         "control_pancake": {
-          "conversaciones": 1236,
-          "citas": 14
+          "conversaciones": 1256,
+          "citas": 15
         }
       },
       "asistente": {
-        "gasto_meta": 302893,
-        "conversaciones": 340,
-        "costo_por_conversacion": 891,
+        "gasto_meta": 0,
+        "conversaciones": 347,
+        "costo_por_conversacion": 0,
         "citas": 25,
-        "tasa_conv_cita": 7.4,
-        "costo_por_cita": 12116,
+        "tasa_conv_cita": 7.2,
+        "costo_por_cita": 0,
         "procedimientos_vendidos": 0,
         "tasa_cita_venta": 0.0,
         "ingresos_citas": 5000000,
         "ingresos_procedimientos": 0,
         "ingresos": 5000000,
-        "roas": 16.51
+        "roas": 0.0
       },
       "sin_atribuir": {
-        "citas": 11,
+        "citas": 10,
         "procedimientos": 4
       }
     },
     "todo": {
       "bot": {
-        "gasto_meta": 2665864,
-        "conversaciones": 2158,
-        "costo_por_conversacion": 1235,
-        "citas": 20,
-        "tasa_conv_cita": 0.9,
-        "costo_por_cita": 133293,
+        "gasto_meta": 0,
+        "conversaciones": 2180,
+        "costo_por_conversacion": 0,
+        "citas": 21,
+        "tasa_conv_cita": 1.0,
+        "costo_por_cita": 0,
         "procedimientos_vendidos": 1,
-        "tasa_cita_venta": 5.0,
-        "ingresos_citas": 4000000,
+        "tasa_cita_venta": 4.8,
+        "ingresos_citas": 4200000,
         "ingresos_procedimientos": 0,
-        "ingresos": 4000000,
-        "roas": 1.5,
+        "ingresos": 4200000,
+        "roas": 0.0,
         "fuente_citas": "calendario",
         "cirugias_agendadas": 1,
         "control_pancake": {
-          "conversaciones": 2076,
-          "citas": 24
+          "conversaciones": 2096,
+          "citas": 25
         }
       },
       "asistente": {
-        "gasto_meta": 7726830,
-        "conversaciones": 6443,
-        "costo_por_conversacion": 1199,
+        "gasto_meta": 0,
+        "conversaciones": 6450,
+        "costo_por_conversacion": 0,
         "citas": 25,
         "tasa_conv_cita": 0.4,
-        "costo_por_cita": 309073,
+        "costo_por_cita": 0,
         "procedimientos_vendidos": 0,
         "tasa_cita_venta": 0.0,
         "ingresos_citas": 5000000,
         "ingresos_procedimientos": 0,
         "ingresos": 5000000,
-        "roas": 0.65
+        "roas": 0.0
       },
       "sin_atribuir": {
-        "citas": 200,
+        "citas": 199,
         "procedimientos": 27
       }
     }
   },
   "chart": {
     "labels": [
-      "10-14",
       "10-15",
       "10-16",
       "10-17",
       "10-18",
       "10-19",
-      "10-20"
+      "10-20",
+      "10-21"
     ],
     "clinica_ingresos": [
-      73400000.0,
       800000.0,
       600000.0,
       0.0,
       0.0,
       1000000.0,
-      800000.0
+      800000.0,
+      0.0
     ],
     "clinica_gasto": [
-      120100.0,
       76888.0,
       118259.0,
       85965.0,
       113913.0,
-      141812.0,
-      76139.0
+      141863.0,
+      104887.0,
+      12235.0
     ],
     "facetech_ingresos": [
       0,
@@ -2098,14 +2087,19 @@
         "clicks": 642
       },
       "2026-10-19": {
-        "spend": 141815,
-        "impressions": 13432,
+        "spend": 141863,
+        "impressions": 13437,
         "clicks": 840
       },
       "2026-10-20": {
-        "spend": 76328,
-        "impressions": 5517,
-        "clicks": 338
+        "spend": 104887,
+        "impressions": 8029,
+        "clicks": 492
+      },
+      "2026-10-21": {
+        "spend": 12328,
+        "impressions": 741,
+        "clicks": 45
       }
     },
     "meta_facetech": {
@@ -2122,23 +2116,23 @@
     },
     "meta_bot": {
       "2026-09-15": {
-        "spend": 17999,
+        "spend": 0,
         "conversaciones": 21
       },
       "2026-09-16": {
-        "spend": 50100,
+        "spend": 0,
         "conversaciones": 55
       },
       "2026-09-17": {
-        "spend": 52737,
+        "spend": 0,
         "conversaciones": 75
       },
       "2026-09-18": {
-        "spend": 44432,
+        "spend": 0,
         "conversaciones": 60
       },
       "2026-09-19": {
-        "spend": 16253,
+        "spend": 0,
         "conversaciones": 21
       },
       "2026-09-20": {
@@ -2146,7 +2140,7 @@
         "conversaciones": 0
       },
       "2026-09-21": {
-        "spend": 38223,
+        "spend": 0,
         "conversaciones": 53
       },
       "2026-09-22": {
@@ -2154,129 +2148,133 @@
         "conversaciones": 0
       },
       "2026-09-23": {
-        "spend": 57992,
+        "spend": 0,
         "conversaciones": 46
       },
       "2026-09-24": {
-        "spend": 51422,
+        "spend": 0,
         "conversaciones": 32
       },
       "2026-09-25": {
-        "spend": 86788,
+        "spend": 0,
         "conversaciones": 81
       },
       "2026-09-26": {
-        "spend": 94359,
+        "spend": 0,
         "conversaciones": 86
       },
       "2026-09-27": {
-        "spend": 104730,
+        "spend": 0,
         "conversaciones": 97
       },
       "2026-09-28": {
-        "spend": 108376,
+        "spend": 0,
         "conversaciones": 92
       },
       "2026-09-29": {
-        "spend": 61305,
+        "spend": 0,
         "conversaciones": 54
       },
       "2026-09-30": {
-        "spend": 107266,
+        "spend": 0,
         "conversaciones": 73
       },
       "2026-10-01": {
-        "spend": 91742,
+        "spend": 0,
         "conversaciones": 67
       },
       "2026-10-02": {
-        "spend": 86756,
+        "spend": 0,
         "conversaciones": 85
       },
       "2026-10-03": {
-        "spend": 69695,
+        "spend": 0,
         "conversaciones": 53
       },
       "2026-10-04": {
-        "spend": 118180,
+        "spend": 0,
         "conversaciones": 97
       },
       "2026-10-05": {
-        "spend": 99482,
+        "spend": 0,
         "conversaciones": 78
       },
       "2026-10-06": {
-        "spend": 87812,
+        "spend": 0,
         "conversaciones": 67
       },
       "2026-10-07": {
-        "spend": 81540,
+        "spend": 0,
         "conversaciones": 51
       },
       "2026-10-08": {
-        "spend": 75667,
+        "spend": 0,
         "conversaciones": 54
       },
       "2026-10-09": {
-        "spend": 91240,
+        "spend": 0,
         "conversaciones": 54
       },
       "2026-10-10": {
-        "spend": 76051,
+        "spend": 0,
         "conversaciones": 55
       },
       "2026-10-11": {
-        "spend": 111546,
+        "spend": 0,
         "conversaciones": 78
       },
       "2026-10-12": {
-        "spend": 111166,
+        "spend": 0,
         "conversaciones": 99
       },
       "2026-10-13": {
-        "spend": 75308,
+        "spend": 0,
         "conversaciones": 61
       },
       "2026-10-14": {
-        "spend": 85824,
+        "spend": 0,
         "conversaciones": 45
       },
       "2026-10-15": {
-        "spend": 76888,
+        "spend": 0,
         "conversaciones": 61
       },
       "2026-10-16": {
-        "spend": 83172,
+        "spend": 0,
         "conversaciones": 50
       },
       "2026-10-17": {
-        "spend": 85965,
+        "spend": 0,
         "conversaciones": 54
       },
       "2026-10-18": {
-        "spend": 113913,
+        "spend": 0,
         "conversaciones": 80
       },
       "2026-10-19": {
-        "spend": 103390,
+        "spend": 0,
         "conversaciones": 80
       },
       "2026-10-20": {
-        "spend": 48545,
-        "conversaciones": 43
+        "spend": 0,
+        "conversaciones": 63
+      },
+      "2026-10-21": {
+        "spend": 0,
+        "conversaciones": 2
       }
     },
     "meta_asistente": {
       "2026-05-04": {
-        "spend": 107874,
+        "spend": 0,
         "conversaciones": 99
       },
       "2026-05-05": {
-        "spend": 101454,
+        "spend": 0,
         "conversaciones": 68
       },
       "2026-05-06": {
-        "spend": 101685,
+        "spend": 0,
         "conversaciones": 74
       },
       "2026-05-07": {
@@ -2288,7 +2286,7 @@
         "conversaciones": 1
       },
       "2026-05-09": {
-        "spend": 80180,
+        "spend": 0,
         "conversaciones": 76
       },
       "2026-05-10": {
@@ -2296,7 +2294,7 @@
         "conversaciones": 1
       },
       "2026-05-11": {
-        "spend": 101972,
+        "spend": 0,
         "conversaciones": 115
       },
       "2026-05-12": {
@@ -2304,7 +2302,7 @@
         "conversaciones": 1
       },
       "2026-05-13": {
-        "spend": 126097,
+        "spend": 0,
         "conversaciones": 137
       },
       "2026-05-14": {
@@ -2316,19 +2314,19 @@
         "conversaciones": 2
       },
       "2026-05-16": {
-        "spend": 77339,
+        "spend": 0,
         "conversaciones": 58
       },
       "2026-05-18": {
-        "spend": 116086,
+        "spend": 0,
         "conversaciones": 56
       },
       "2026-05-19": {
-        "spend": 3292,
+        "spend": 0,
         "conversaciones": 5
       },
       "2026-05-20": {
-        "spend": 160607,
+        "spend": 0,
         "conversaciones": 111
       },
       "2026-05-21": {
@@ -2340,7 +2338,7 @@
         "conversaciones": 0
       },
       "2026-05-23": {
-        "spend": 91914,
+        "spend": 0,
         "conversaciones": 66
       },
       "2026-05-24": {
@@ -2348,7 +2346,7 @@
         "conversaciones": 0
       },
       "2026-05-25": {
-        "spend": 117126,
+        "spend": 0,
         "conversaciones": 108
       },
       "2026-05-26": {
@@ -2356,7 +2354,7 @@
         "conversaciones": 1
       },
       "2026-05-27": {
-        "spend": 117722,
+        "spend": 0,
         "conversaciones": 90
       },
       "2026-05-28": {
@@ -2364,7 +2362,7 @@
         "conversaciones": 1
       },
       "2026-05-30": {
-        "spend": 79034,
+        "spend": 0,
         "conversaciones": 64
       },
       "2026-05-31": {
@@ -2372,7 +2370,7 @@
         "conversaciones": 2
       },
       "2026-06-01": {
-        "spend": 91985,
+        "spend": 0,
         "conversaciones": 69
       },
       "2026-06-02": {
@@ -2380,7 +2378,7 @@
         "conversaciones": 0
       },
       "2026-06-03": {
-        "spend": 144729,
+        "spend": 0,
         "conversaciones": 107
       },
       "2026-06-04": {
@@ -2392,7 +2390,7 @@
         "conversaciones": 1
       },
       "2026-06-06": {
-        "spend": 68540,
+        "spend": 0,
         "conversaciones": 51
       },
       "2026-06-07": {
@@ -2400,7 +2398,7 @@
         "conversaciones": 2
       },
       "2026-06-08": {
-        "spend": 120417,
+        "spend": 0,
         "conversaciones": 67
       },
       "2026-06-09": {
@@ -2408,11 +2406,11 @@
         "conversaciones": 1
       },
       "2026-06-10": {
-        "spend": 121151,
+        "spend": 0,
         "conversaciones": 88
       },
       "2026-06-13": {
-        "spend": 74000,
+        "spend": 0,
         "conversaciones": 60
       },
       "2026-06-14": {
@@ -2420,7 +2418,7 @@
         "conversaciones": 0
       },
       "2026-06-15": {
-        "spend": 121114,
+        "spend": 0,
         "conversaciones": 80
       },
       "2026-06-16": {
@@ -2428,11 +2426,11 @@
         "conversaciones": 1
       },
       "2026-06-17": {
-        "spend": 184808,
+        "spend": 0,
         "conversaciones": 145
       },
       "2026-06-18": {
-        "spend": 113820,
+        "spend": 0,
         "conversaciones": 101
       },
       "2026-06-19": {
@@ -2440,7 +2438,7 @@
         "conversaciones": 2
       },
       "2026-06-20": {
-        "spend": 81219,
+        "spend": 0,
         "conversaciones": 61
       },
       "2026-06-21": {
@@ -2448,7 +2446,7 @@
         "conversaciones": 1
       },
       "2026-06-22": {
-        "spend": 121688,
+        "spend": 0,
         "conversaciones": 85
       },
       "2026-06-23": {
@@ -2456,7 +2454,7 @@
         "conversaciones": 1
       },
       "2026-06-24": {
-        "spend": 110946,
+        "spend": 0,
         "conversaciones": 78
       },
       "2026-06-25": {
@@ -2468,7 +2466,7 @@
         "conversaciones": 0
       },
       "2026-06-27": {
-        "spend": 72858,
+        "spend": 0,
         "conversaciones": 50
       },
       "2026-06-28": {
@@ -2476,15 +2474,15 @@
         "conversaciones": 1
       },
       "2026-06-29": {
-        "spend": 52271,
+        "spend": 0,
         "conversaciones": 31
       },
       "2026-07-01": {
-        "spend": 66324,
+        "spend": 0,
         "conversaciones": 81
       },
       "2026-07-02": {
-        "spend": 123320,
+        "spend": 0,
         "conversaciones": 128
       },
       "2026-07-03": {
@@ -2492,7 +2490,7 @@
         "conversaciones": 0
       },
       "2026-07-04": {
-        "spend": 82908,
+        "spend": 0,
         "conversaciones": 90
       },
       "2026-07-05": {
@@ -2500,7 +2498,7 @@
         "conversaciones": 0
       },
       "2026-07-06": {
-        "spend": 125130,
+        "spend": 0,
         "conversaciones": 90
       },
       "2026-07-07": {
@@ -2508,7 +2506,7 @@
         "conversaciones": 1
       },
       "2026-07-08": {
-        "spend": 147054,
+        "spend": 0,
         "conversaciones": 122
       },
       "2026-07-09": {
@@ -2516,7 +2514,7 @@
         "conversaciones": 2
       },
       "2026-07-11": {
-        "spend": 79805,
+        "spend": 0,
         "conversaciones": 78
       },
       "2026-07-12": {
@@ -2524,7 +2522,7 @@
         "conversaciones": 0
       },
       "2026-07-13": {
-        "spend": 111825,
+        "spend": 0,
         "conversaciones": 109
       },
       "2026-07-14": {
@@ -2532,7 +2530,7 @@
         "conversaciones": 1
       },
       "2026-07-15": {
-        "spend": 156167,
+        "spend": 0,
         "conversaciones": 123
       },
       "2026-07-16": {
@@ -2544,7 +2542,7 @@
         "conversaciones": 0
       },
       "2026-07-18": {
-        "spend": 82033,
+        "spend": 0,
         "conversaciones": 81
       },
       "2026-07-19": {
@@ -2552,7 +2550,7 @@
         "conversaciones": 0
       },
       "2026-07-20": {
-        "spend": 113157,
+        "spend": 0,
         "conversaciones": 114
       },
       "2026-07-21": {
@@ -2560,7 +2558,7 @@
         "conversaciones": 0
       },
       "2026-07-22": {
-        "spend": 149724,
+        "spend": 0,
         "conversaciones": 121
       },
       "2026-07-23": {
@@ -2572,11 +2570,11 @@
         "conversaciones": 0
       },
       "2026-07-25": {
-        "spend": 84744,
+        "spend": 0,
         "conversaciones": 72
       },
       "2026-07-27": {
-        "spend": 110169,
+        "spend": 0,
         "conversaciones": 83
       },
       "2026-07-28": {
@@ -2584,7 +2582,7 @@
         "conversaciones": 2
       },
       "2026-07-29": {
-        "spend": 139182,
+        "spend": 0,
         "conversaciones": 134
       },
       "2026-07-30": {
@@ -2592,11 +2590,11 @@
         "conversaciones": 0
       },
       "2026-08-01": {
-        "spend": 78329,
+        "spend": 0,
         "conversaciones": 81
       },
       "2026-08-03": {
-        "spend": 113312,
+        "spend": 0,
         "conversaciones": 100
       },
       "2026-08-04": {
@@ -2604,7 +2602,7 @@
         "conversaciones": 1
       },
       "2026-08-05": {
-        "spend": 133666,
+        "spend": 0,
         "conversaciones": 113
       },
       "2026-08-07": {
@@ -2612,7 +2610,7 @@
         "conversaciones": 0
       },
       "2026-08-08": {
-        "spend": 72461,
+        "spend": 0,
         "conversaciones": 52
       },
       "2026-08-09": {
@@ -2620,7 +2618,7 @@
         "conversaciones": 0
       },
       "2026-08-10": {
-        "spend": 94715,
+        "spend": 0,
         "conversaciones": 50
       },
       "2026-08-11": {
@@ -2628,7 +2626,7 @@
         "conversaciones": 1
       },
       "2026-08-12": {
-        "spend": 145563,
+        "spend": 0,
         "conversaciones": 110
       },
       "2026-08-13": {
@@ -2640,11 +2638,11 @@
         "conversaciones": 0
       },
       "2026-08-15": {
-        "spend": 76677,
+        "spend": 0,
         "conversaciones": 60
       },
       "2026-08-17": {
-        "spend": 115697,
+        "spend": 0,
         "conversaciones": 98
       },
       "2026-08-18": {
@@ -2652,7 +2650,7 @@
         "conversaciones": 0
       },
       "2026-08-19": {
-        "spend": 140079,
+        "spend": 0,
         "conversaciones": 115
       },
       "2026-08-20": {
@@ -2664,11 +2662,11 @@
         "conversaciones": 1
       },
       "2026-08-22": {
-        "spend": 80909,
+        "spend": 0,
         "conversaciones": 69
       },
       "2026-08-24": {
-        "spend": 117892,
+        "spend": 0,
         "conversaciones": 104
       },
       "2026-08-25": {
@@ -2676,7 +2674,7 @@
         "conversaciones": 0
       },
       "2026-08-26": {
-        "spend": 147801,
+        "spend": 0,
         "conversaciones": 114
       },
       "2026-08-27": {
@@ -2684,7 +2682,7 @@
         "conversaciones": 0
       },
       "2026-08-29": {
-        "spend": 75360,
+        "spend": 0,
         "conversaciones": 59
       },
       "2026-08-30": {
@@ -2692,7 +2690,7 @@
         "conversaciones": 1
       },
       "2026-08-31": {
-        "spend": 90615,
+        "spend": 0,
         "conversaciones": 68
       },
       "2026-09-01": {
@@ -2700,7 +2698,7 @@
         "conversaciones": 1
       },
       "2026-09-02": {
-        "spend": 132334,
+        "spend": 0,
         "conversaciones": 128
       },
       "2026-09-03": {
@@ -2712,7 +2710,7 @@
         "conversaciones": 1
       },
       "2026-09-05": {
-        "spend": 85249,
+        "spend": 0,
         "conversaciones": 80
       },
       "2026-09-06": {
@@ -2720,7 +2718,7 @@
         "conversaciones": 0
       },
       "2026-09-07": {
-        "spend": 103582,
+        "spend": 0,
         "conversaciones": 99
       },
       "2026-09-08": {
@@ -2728,7 +2726,7 @@
         "conversaciones": 0
       },
       "2026-09-09": {
-        "spend": 156596,
+        "spend": 0,
         "conversaciones": 117
       },
       "2026-09-10": {
@@ -2736,11 +2734,11 @@
         "conversaciones": 0
       },
       "2026-09-12": {
-        "spend": 76424,
+        "spend": 0,
         "conversaciones": 62
       },
       "2026-09-14": {
-        "spend": 109379,
+        "spend": 0,
         "conversaciones": 82
       },
       "2026-09-15": {
@@ -2748,7 +2746,7 @@
         "conversaciones": 0
       },
       "2026-09-16": {
-        "spend": 147216,
+        "spend": 0,
         "conversaciones": 127
       },
       "2026-09-17": {
@@ -2756,7 +2754,7 @@
         "conversaciones": 1
       },
       "2026-09-18": {
-        "spend": 139168,
+        "spend": 0,
         "conversaciones": 110
       },
       "2026-09-19": {
@@ -2764,7 +2762,7 @@
         "conversaciones": 0
       },
       "2026-09-21": {
-        "spend": 127500,
+        "spend": 0,
         "conversaciones": 88
       },
       "2026-09-22": {
@@ -2772,7 +2770,7 @@
         "conversaciones": 0
       },
       "2026-09-23": {
-        "spend": 143394,
+        "spend": 0,
         "conversaciones": 115
       },
       "2026-09-24": {
@@ -2780,7 +2778,7 @@
         "conversaciones": 0
       },
       "2026-09-25": {
-        "spend": 139205,
+        "spend": 0,
         "conversaciones": 118
       },
       "2026-09-26": {
@@ -2792,7 +2790,7 @@
         "conversaciones": 0
       },
       "2026-09-28": {
-        "spend": 108895,
+        "spend": 0,
         "conversaciones": 83
       },
       "2026-09-29": {
@@ -2800,7 +2798,7 @@
         "conversaciones": 1
       },
       "2026-09-30": {
-        "spend": 38449,
+        "spend": 0,
         "conversaciones": 35
       },
       "2026-10-01": {
@@ -2808,7 +2806,7 @@
         "conversaciones": 1
       },
       "2026-10-02": {
-        "spend": 34936,
+        "spend": 0,
         "conversaciones": 50
       },
       "2026-10-04": {
@@ -2816,7 +2814,7 @@
         "conversaciones": 2
       },
       "2026-10-05": {
-        "spend": 27636,
+        "spend": 0,
         "conversaciones": 33
       },
       "2026-10-06": {
@@ -2824,7 +2822,7 @@
         "conversaciones": 0
       },
       "2026-10-07": {
-        "spend": 34174,
+        "spend": 0,
         "conversaciones": 41
       },
       "2026-10-08": {
@@ -2832,7 +2830,7 @@
         "conversaciones": 0
       },
       "2026-10-09": {
-        "spend": 38337,
+        "spend": 0,
         "conversaciones": 44
       },
       "2026-10-10": {
@@ -2840,11 +2838,11 @@
         "conversaciones": 0
       },
       "2026-10-12": {
-        "spend": 32239,
+        "spend": 0,
         "conversaciones": 47
       },
       "2026-10-14": {
-        "spend": 34276,
+        "spend": 0,
         "conversaciones": 44
       },
       "2026-10-15": {
@@ -2852,16 +2850,20 @@
         "conversaciones": 2
       },
       "2026-10-16": {
-        "spend": 35087,
+        "spend": 0,
         "conversaciones": 27
       },
       "2026-10-19": {
-        "spend": 38425,
+        "spend": 0,
         "conversaciones": 41
       },
       "2026-10-20": {
-        "spend": 27783,
+        "spend": 0,
         "conversaciones": 8
+      },
+      "2026-10-21": {
+        "spend": 0,
+        "conversaciones": 7
       }
     },
     "pancake_bot": {
@@ -2998,8 +3000,12 @@
         "citas": 0
       },
       "2026-10-20": {
-        "conversaciones": 43,
+        "conversaciones": 58,
         "citas": 0
+      },
+      "2026-10-21": {
+        "conversaciones": 5,
+        "citas": 1
       }
     },
     "calendar_bot": {
@@ -3058,60 +3064,64 @@
       "2026-10-18": {
         "citas": 1,
         "cirugias": 0
+      },
+      "2026-10-21": {
+        "citas": 1,
+        "cirugias": 0
       }
     }
   },
   "alcance": {
     "clinica": {
       "hoy": {
-        "spend": 76139,
-        "reach": 4371,
-        "impressions": 5502,
-        "frequency": 1.26,
-        "clicks": 337,
-        "ctr": 6.13,
-        "cpm": 13838,
-        "cpp": 17419
+        "spend": 12260,
+        "reach": 588,
+        "impressions": 734,
+        "frequency": 1.25,
+        "clicks": 44,
+        "ctr": 5.99,
+        "cpm": 16703,
+        "cpp": 20850
       },
       "ayer": {
-        "spend": 141812,
-        "reach": 10482,
-        "impressions": 13431,
-        "frequency": 1.28,
-        "clicks": 840,
-        "ctr": 6.25,
-        "cpm": 10559,
-        "cpp": 13529
+        "spend": 104887,
+        "reach": 6456,
+        "impressions": 8029,
+        "frequency": 1.24,
+        "clicks": 492,
+        "ctr": 6.13,
+        "cpm": 13064,
+        "cpp": 16246
       },
       "semana": {
-        "spend": 733076,
-        "reach": 41568,
-        "impressions": 66949,
-        "frequency": 1.61,
-        "clicks": 4200,
-        "ctr": 6.27,
-        "cpm": 10950,
-        "cpp": 17636
+        "spend": 654035,
+        "reach": 37254,
+        "impressions": 58054,
+        "frequency": 1.56,
+        "clicks": 3648,
+        "ctr": 6.28,
+        "cpm": 11266,
+        "cpp": 17556
       },
       "mes": {
-        "spend": 2076583,
-        "reach": 83530,
-        "impressions": 206062,
+        "spend": 2117642,
+        "reach": 84864,
+        "impressions": 209329,
         "frequency": 2.47,
-        "clicks": 12675,
+        "clicks": 12874,
         "ctr": 6.15,
-        "cpm": 10077,
-        "cpp": 24860
+        "cpm": 10116,
+        "cpp": 24953
       },
       "todo": {
-        "spend": 10392694,
-        "reach": 186775,
-        "impressions": 844901,
-        "frequency": 4.52,
-        "clicks": 59160,
+        "spend": 10433629,
+        "reach": 186803,
+        "impressions": 848159,
+        "frequency": 4.54,
+        "clicks": 59359,
         "ctr": 7.0,
-        "cpm": 12300,
-        "cpp": 55643
+        "cpm": 12302,
+        "cpp": 55854
       }
     },
     "facetech": {
@@ -3170,39 +3180,39 @@
   "conclusiones": {
     "clinica": {
       "hoy": [
-        "📣 Hoy tu clínica llegó a 4.371 personas únicas en la región — excelente alcance de marca.",
-        "👁️ 5.502 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
-        "🚀 Con 1.3x de frecuencia, tu anuncio está llegando constantemente a nuevas personas — la audiencia de la clínica sigue creciendo.",
-        "🎯 CTR 6.13% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
-        "🖱️ 337 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
+        "📣 Hoy tu clínica llegó a 588 personas únicas en la región — excelente alcance de marca.",
+        "👁️ 734 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
+        "🚀 Con 1.2x de frecuencia, tu anuncio está llegando constantemente a nuevas personas — la audiencia de la clínica sigue creciendo.",
+        "🎯 CTR 5.99% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
+        "🖱️ 44 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
       ],
       "ayer": [
-        "📣 Ayer tu clínica llegó a 10.482 personas únicas en la región — excelente alcance de marca.",
-        "👁️ 13.431 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
-        "🚀 Con 1.3x de frecuencia, tu anuncio está llegando constantemente a nuevas personas — la audiencia de la clínica sigue creciendo.",
-        "🎯 CTR 6.25% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
-        "🖱️ 840 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
+        "📣 Ayer tu clínica llegó a 6.456 personas únicas en la región — excelente alcance de marca.",
+        "👁️ 8.029 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
+        "🚀 Con 1.2x de frecuencia, tu anuncio está llegando constantemente a nuevas personas — la audiencia de la clínica sigue creciendo.",
+        "🎯 CTR 6.13% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
+        "🖱️ 492 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
       ],
       "semana": [
-        "📣 Esta semana tu clínica llegó a 41.568 personas únicas en la región — excelente alcance de marca.",
-        "👁️ 66.949 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
+        "📣 Esta semana tu clínica llegó a 37.254 personas únicas en la región — excelente alcance de marca.",
+        "👁️ 58.054 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
         "🚀 Con 1.6x de frecuencia, tu anuncio está llegando constantemente a nuevas personas — la audiencia de la clínica sigue creciendo.",
-        "🎯 CTR 6.27% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
-        "🖱️ 4.200 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
+        "🎯 CTR 6.28% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
+        "🖱️ 3.648 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
       ],
       "mes": [
-        "📣 Este mes tu clínica llegó a 83.530 personas únicas en la región — excelente alcance de marca.",
-        "👁️ 206.062 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
+        "📣 Este mes tu clínica llegó a 84.864 personas únicas en la región — excelente alcance de marca.",
+        "👁️ 209.329 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
         "✅ Frecuencia 2.5x — nivel óptimo de recordación. Tu marca está perfectamente posicionada en la mente de los pacientes.",
         "🎯 CTR 6.15% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
-        "🖱️ 12.675 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
+        "🖱️ 12.874 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
       ],
       "todo": [
-        "📣 Desde el inicio tu clínica llegó a 186.775 personas únicas en la región — excelente alcance de marca.",
-        "👁️ 844.901 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
+        "📣 Desde el inicio tu clínica llegó a 186.803 personas únicas en la región — excelente alcance de marca.",
+        "👁️ 848.159 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
         "💪 Frecuencia 4.5x — tu audiencia conoce muy bien la clínica. Excelente nivel de recordación de marca logrado.",
         "🎯 CTR 7.00% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
-        "🖱️ 59.160 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
+        "🖱️ 59.359 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
       ]
     },
     "facetech": {
@@ -3220,5 +3230,5 @@
     }
   },
   "meta_ok": true,
-  "meta_last_ok": "2026-10-20 19:01"
+  "meta_last_ok": "2026-10-21 08:02"
 }
