@@ -1,0 +1,9 @@
+venv/
+.env
+.env.bak*
+credentials.json
+calendar_credentials.json
+logs/
+.tmp/
+__pycache__/
+dashboard/

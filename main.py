@@ -7,9 +7,14 @@ from pathlib import Path
 from tools.core import env_loader
 from tools.core.logger import get_logger
 from tools.meta.refresh_token import refresh_long_lived_token
-from tools.meta.fetch_spend import get_spend_today, get_spend_month, get_spend_range, get_insights_totals
+from tools.meta.fetch_spend import (
+    get_spend_today, get_spend_month, get_spend_range, get_insights_totals,
+    get_insights_daily, get_channel_daily,
+)
+from tools.pancake.bot_citas import get_bot_daily
+from tools.agenda.citas_bot import get_bot_calendar_daily
 from tools.sheets.read_data import read_clinica, read_procedimientos, read_facetech, get_last_30_days
-from tools.metrics.calculator import calc_clinica_day, calc_facetech_day, build_chart_data
+from tools.metrics.calculator import calc_clinica_day, calc_facetech_day, build_chart_data, calc_canales
 
 logger = get_logger("main")
 
@@ -64,28 +69,86 @@ def build_data() -> dict:
         ins_c_hoy = ins_c_semana = ins_c_mes = _empty_ins
         ins_f_hoy = ins_f_semana = ins_f_mes = _empty_ins
 
-    # --- Sheets ---
-    logger.info("Leyendo Google Sheets...")
-    clinica_hoy = read_clinica(today)
-    procs_hoy = read_procedimientos(today)
-    facetech_hoy = read_facetech(today)
+    # 'ayer' tenía su propia clave de alcance apuntando a 'hoy' en el frontend,
+    # así que el bloque de marca mostraba el alcance de hoy bajo la etiqueta Ayer.
+    _yesterday = (date.today() - timedelta(days=1)).isoformat()
+    try:
+        ins_c_ayer = get_insights_totals(campaign_clinica, _yesterday, _yesterday)
+        ins_f_ayer = get_insights_totals(campaign_facetech, _yesterday, _yesterday)
+    except Exception as e:
+        logger.warning(f"No se pudo obtener alcance de ayer: {e}")
+        ins_c_ayer = ins_f_ayer = _empty_ins
 
-    # Mes completo
-    clinica_mes = read_clinica()
-    procs_mes = read_procedimientos()
-    facetech_mes = read_facetech()
+    # --- Sheets ---
+    # Una sola lectura por tab; los periodos se filtran en memoria. Antes se
+    # llamaba a la API 3 veces por tab (hoy / mes / ayer) leyendo lo mismo.
+    logger.info("Leyendo Google Sheets...")
+    clinica_all = read_clinica()
+    procs_all = read_procedimientos()
+    facetech_all = read_facetech()
+
+    def _on(rows, d):      return [r for r in rows if r["fecha"] == d]
+    def _between(rows, a, b): return [r for r in rows if a <= r["fecha"] <= b]
+
+    clinica_hoy = _on(clinica_all, today)
+    procs_hoy = _on(procs_all, today)
+    facetech_hoy = _on(facetech_all, today)
 
     # Filtrar solo el mes actual
     prefix = f"{year}-{month:02d}"
-    clinica_mes = [r for r in clinica_mes if r["fecha"].startswith(prefix)]
-    procs_mes = [r for r in procs_mes if r["fecha"].startswith(prefix)]
-    facetech_mes = [r for r in facetech_mes if r["fecha"].startswith(prefix)]
+    clinica_mes = [r for r in clinica_all if r["fecha"].startswith(prefix)]
+    procs_mes = [r for r in procs_all if r["fecha"].startswith(prefix)]
+    facetech_mes = [r for r in facetech_all if r["fecha"].startswith(prefix)]
 
-    # --- KPIs hoy y mes ---
+    # Histórico: desde el primer día con datos reales hasta hoy. El tab CLINICA
+    # trae la columna Fecha pre-rellenada (filas en 0 antes del primer dato y
+    # hasta 2027), así que se descartan para no arrastrar días vacíos ni correr
+    # first_date hacia atrás.
+    def _con_datos(r):
+        # OJO: desde octubre la asistente muchos días llena SOLO "Citas Bot" /
+        # "Citas Asistente" y deja "Citas Agendadas" vacía. Antes esas filas se
+        # descartaban y el dashboard mostraba 6 citas de la asistente en el mes
+        # cuando el Sheet tenía 24 (reclamo de la clínica 2026-10-20).
+        return any(r.get(k, 0) > 0 for k in (
+            "citas_agendadas", "total_facturado", "citas_bot", "citas_asistente",
+            "citas_virtual", "citas_presencial"))
+
+    clinica_todo = [r for r in _between(clinica_all, "0000-00-00", today) if _con_datos(r)]
+    procs_todo = _between(procs_all, "0000-00-00", today)
+    facetech_todo = [r for r in _between(facetech_all, "0000-00-00", today)
+                     if r.get("leads", 0) > 0 or r.get("compras", 0) > 0]
+
+    _fechas = [r["fecha"] for r in clinica_todo + procs_todo + facetech_todo]
+    first_date = min(_fechas) if _fechas else today
+
+    # --- Serie diaria (alimenta el rango de fechas custom en el frontend) ---
+    logger.info(f"Obteniendo serie diaria Meta desde {first_date}...")
+    try:
+        daily_meta_clinica = get_insights_daily(campaign_clinica, first_date, today)
+        daily_meta_facetech = get_insights_daily(campaign_facetech, first_date, today)
+    except Exception as e:
+        logger.warning(f"No se pudo obtener la serie diaria de Meta: {e}")
+        daily_meta_clinica = daily_meta_facetech = {}
+
+    # Alcance del histórico: se le pide a Meta el rango exacto para que 'reach'
+    # sean personas únicas reales y no una suma de días.
+    try:
+        ins_c_todo = get_insights_totals(campaign_clinica, first_date, today)
+        ins_f_todo = get_insights_totals(campaign_facetech, first_date, today)
+    except Exception as e:
+        logger.warning(f"No se pudo obtener alcance histórico: {e}")
+        ins_c_todo = ins_f_todo = _empty_ins
+
+    # --- KPIs hoy, mes y todo ---
     clinica_kpis_hoy = calc_clinica_day(clinica_hoy, procs_hoy, gasto_clinica_hoy, precio_cita)
     clinica_kpis_mes = calc_clinica_day(clinica_mes, procs_mes, gasto_clinica_mes, precio_cita)
     facetech_kpis_hoy = calc_facetech_day(facetech_hoy, gasto_facetech_hoy)
     facetech_kpis_mes = calc_facetech_day(facetech_mes, gasto_facetech_mes)
+
+    gasto_clinica_todo = sum(v["spend"] for v in daily_meta_clinica.values())
+    gasto_facetech_todo = sum(v["spend"] for v in daily_meta_facetech.values())
+    clinica_kpis_todo = calc_clinica_day(clinica_todo, procs_todo, gasto_clinica_todo, precio_cita)
+    facetech_kpis_todo = calc_facetech_day(facetech_todo, gasto_facetech_todo)
 
     # --- Chart 7 días ---
     chart_dates = [(date.today() - timedelta(days=i)).isoformat() for i in range(6, -1, -1)]
@@ -93,6 +156,7 @@ def build_data() -> dict:
         clinica_mes, meta_clinica_7d,
         facetech_mes, meta_facetech_7d,
         chart_dates, precio_cita,
+        daily_procs=procs_mes,
     )
 
     # --- KPIs ayer ---
@@ -114,23 +178,67 @@ def build_data() -> dict:
     clinica_kpis_semana = calc_clinica_day(clinica_semana, procs_semana, gasto_clinica_semana, precio_cita)
     facetech_kpis_semana = calc_facetech_day(facetech_semana, gasto_facetech_semana)
 
+    # --- Bot vs Asistente ---
+    # Canal por nombre de campaña (ver get_channel_daily). Si falla, la pestaña
+    # sale vacía pero el resto del dashboard se actualiza igual.
+    logger.info("Obteniendo Bot vs Asistente...")
+    try:
+        meta_bot = get_channel_daily("bot", first_date, today, [campaign_facetech])
+        meta_asistente = get_channel_daily("asistente", first_date, today, [campaign_facetech])
+    except Exception as e:
+        logger.warning(f"No se pudo obtener Meta por canal: {e}")
+        meta_bot = meta_asistente = {}
+    pancake_bot = get_bot_daily(first_date)
+    calendar_bot = get_bot_calendar_daily(first_date)
+
+    def _canales(a: str, b: str) -> dict:
+        def _rng(d): return {k: v for k, v in d.items() if a <= k <= b}
+        return calc_canales(_between(clinica_todo, a, b), _between(procs_todo, a, b),
+                            _rng(meta_bot), _rng(meta_asistente), _rng(pancake_bot),
+                            precio_cita, _rng(calendar_bot) if calendar_bot else None)
+
+    canales = {
+        "hoy":    _canales(today, today),
+        "ayer":   _canales(_yesterday, _yesterday),
+        "semana": _canales(chart_start, today),
+        "mes":    _canales(first_of_month, today),
+        "todo":   _canales(first_date, today),
+    }
+
     data = {
         "updated_at": f"{today} {datetime.now().strftime('%H:%M')}",
         "today": today,
         "precio_cita": precio_cita,
+        "first_date": first_date,
         "clinica": {
             "hoy":    clinica_kpis_hoy,
             "ayer":   clinica_kpis_ayer,
             "semana": clinica_kpis_semana,
             "mes":    clinica_kpis_mes,
+            "todo":   clinica_kpis_todo,
         },
         "facetech": {
             "hoy":    facetech_kpis_hoy,
             "ayer":   facetech_kpis_ayer,
             "semana": facetech_kpis_semana,
             "mes":    facetech_kpis_mes,
+            "todo":   facetech_kpis_todo,
         },
+        "canales": canales,
         "chart": chart_data,
+        # Serie cruda por día: el frontend la usa para calcular rangos de fechas
+        # arbitrarios sin backend (el dashboard es estático en GitHub Pages).
+        "daily": {
+            "clinica":       clinica_todo,
+            "procedimientos": procs_todo,
+            "facetech":      facetech_todo,
+            "meta_clinica":  daily_meta_clinica,
+            "meta_facetech": daily_meta_facetech,
+            "meta_bot":       meta_bot,
+            "meta_asistente": meta_asistente,
+            "pancake_bot":    pancake_bot,
+            "calendar_bot":   calendar_bot,
+        },
     }
 
     # --- Conclusiones ---
@@ -201,25 +309,33 @@ def build_data() -> dict:
     data["alcance"] = {
         "clinica": {
             "hoy":    ins_c_hoy,
+            "ayer":   ins_c_ayer,
             "semana": ins_c_semana,
             "mes":    ins_c_mes,
+            "todo":   ins_c_todo,
         },
         "facetech": {
             "hoy":    ins_f_hoy,
+            "ayer":   ins_f_ayer,
             "semana": ins_f_semana,
             "mes":    ins_f_mes,
+            "todo":   ins_f_todo,
         },
     }
     data["conclusiones"] = {
         "clinica": {
             "hoy":    conclusiones_clinica(ins_c_hoy,    data["clinica"]["hoy"],    "Hoy"),
+            "ayer":   conclusiones_clinica(ins_c_ayer,   data["clinica"]["ayer"],   "Ayer"),
             "semana": conclusiones_clinica(ins_c_semana, data["clinica"]["semana"], "Esta semana"),
             "mes":    conclusiones_clinica(ins_c_mes,    data["clinica"]["mes"],    "Este mes"),
+            "todo":   conclusiones_clinica(ins_c_todo,   data["clinica"]["todo"],   "Desde el inicio"),
         },
         "facetech": {
             "hoy":    conclusiones_facetech(ins_f_hoy,    data["facetech"]["hoy"],    "Hoy"),
+            "ayer":   conclusiones_facetech(ins_f_ayer,   data["facetech"]["ayer"],   "Ayer"),
             "semana": conclusiones_facetech(ins_f_semana, data["facetech"]["semana"], "Esta semana"),
             "mes":    conclusiones_facetech(ins_f_mes,    data["facetech"]["mes"],    "Este mes"),
+            "todo":   conclusiones_facetech(ins_f_todo,   data["facetech"]["todo"],   "Desde el inicio"),
         },
     }
 
@@ -264,10 +380,22 @@ def deploy_github():
 if __name__ == "__main__":
     try:
         data = build_data()
-        if not data.get("_meta_ok"):
-            logger.warning("Meta API falló (rate limit o token). NO se sobreescribe data.json para preservar datos válidos previos. Reintenta en ~1 hora.")
-            sys.exit(0)
-        data.pop("_meta_ok", None)  # no exponer flag interno al frontend
+        # Antes, si Meta fallaba no se escribía nada y las ventas del Sheet/Pancake
+        # quedaban congeladas semanas (token muerto 2026-09-08). Ahora se publica
+        # igual y el frontend avisa que gasto/ROAS no están al día.
+        meta_ok = data.pop("_meta_ok", True)
+        prev_path = Path(__file__).parent / "dashboard" / "data.json"
+        try:
+            prev = json.loads(prev_path.read_text(encoding="utf-8"))
+        except Exception:
+            prev = {}
+        data["meta_ok"] = meta_ok
+        if meta_ok:
+            data["meta_last_ok"] = data["updated_at"]
+        else:
+            data["meta_last_ok"] = prev.get("meta_last_ok") or (
+                prev.get("updated_at") if prev.get("meta_ok", True) else None)
+            logger.warning(f"Meta API falló (token o rate limit). Se publican ventas igual; gasto Meta en 0. Último Meta OK: {data['meta_last_ok']}")
         save_data(data)
         deploy_github()
         logger.info("=== Actualización completada ===")

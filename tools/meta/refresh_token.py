@@ -14,6 +14,10 @@ def refresh_long_lived_token() -> str:
     """
     env_loader.load_env()
     current_token = env_loader.get("META_ACCESS_TOKEN")
+    # Token de System User (Business Manager): no expira ni depende de la
+    # contraseña de Facebook, así que no hay nada que renovar.
+    if (env_loader.get_optional("META_TOKEN_TYPE") or "").lower() == "system_user":
+        return current_token
     app_id = env_loader.get("META_APP_ID")
     app_secret = env_loader.get("META_APP_SECRET")
 

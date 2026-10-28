@@ -9,3 +9,7 @@ logs/
 # El subfolder dashboard/ vive en su propia rama gh-pages
 dashboard/.git/
 
+
+# Credencial del bot para LEER el calendario del Dr. (no subir)
+calendar_credentials.json
+.env.bak*
