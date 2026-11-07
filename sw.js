@@ -1,7 +1,7 @@
 // El HTML y data.json van network-first: con cache-first el iPhone del Dr. se
 // quedó con un index.html viejo sin la pestaña Bot vs Asistente (2026-10-03)
 // porque nadie subió la versión. Subirla igual limpia cachés viejos.
-const CACHE = 'drbareno-v3';
+const CACHE = 'drbareno-v4';
 // Relativas: el sitio vive en /dr-bareno-dashboard/, no en la raíz del dominio.
 const STATIC = ['./', 'index.html', 'manifest.json'];
 
@@ -20,6 +20,9 @@ self.addEventListener('activate', e => {
 });
 
 self.addEventListener('fetch', e => {
+  // La API del bot (pestaña Por llamar) nunca pasa por el caché: son datos de
+  // pacientes en vivo y van con la clave.
+  if (new URL(e.request.url).origin !== self.location.origin) return;
   // data.json y la página: siempre desde red, fallback a caché sin conexión
   if (e.request.url.includes('data.json') || e.request.mode === 'navigate') {
     e.respondWith(

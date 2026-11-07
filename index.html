@@ -893,6 +893,9 @@
       <button class="tab-pill vl-tab" id="tab-viral-lab" onclick="switchTab('viral-lab')">
         <span class="tab-pill-icon">🎬</span> Viral Lab
       </button>
+      <button class="tab-pill" id="tab-llamadas" onclick="switchTab('llamadas')">
+        <span class="tab-pill-icon">📞</span> Por llamar
+      </button>
     </div>
   </div>
 </div>
@@ -1442,6 +1445,8 @@
   </div><!-- /canales -->
 
   <!-- ─── VIRAL LAB ─── -->
+  <div class="page" id="page-llamadas"><div id="ll-root"></div></div>
+
   <div class="page" id="page-viral-lab">
 
     <!-- Aviso config -->
@@ -2504,10 +2509,14 @@ function switchTab(tab) {
   document.getElementById('page-facetech').classList.toggle('active', isFt);
   document.getElementById('page-canales').classList.toggle('active', tab === 'canales');
   document.getElementById('page-viral-lab').classList.toggle('active', isVL);
+  const isLL = tab === 'llamadas';
+  document.getElementById('tab-llamadas').classList.toggle('active', isLL);
+  document.getElementById('page-llamadas').classList.toggle('active', isLL);
+  if (isLL && window.llAbrir) window.llAbrir();
 
   /* filter bar visibility — hide for Viral Lab */
   const filterBar = document.getElementById('filter-bar');
-  filterBar.style.display = isVL ? 'none' : '';
+  filterBar.style.display = (isVL || isLL) ? 'none' : '';
 
   if (!isVL) {
     /* filter bar active color follows tab theme */
@@ -2616,5 +2625,6 @@ loadData();
 setInterval(loadData, 30 * 60 * 1000);
 </script>
 <script src="viral-lab.js?v=20260605b"></script>
+<script src="llamadas.js?v=20261106a"></script>
 </body>
 </html>
