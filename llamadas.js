@@ -279,7 +279,9 @@
         cuposCache = null; cargar(false, true);
       } catch (e) {
         if (e.message === '401') return;
-        if (e.status === 409) {
+        if (e.status === 409 && e.detail && e.detail !== 'ocupado') {
+          cerrarHoja(); toast(e.detail, true); cargar(false, true);
+        } else if (e.status === 409) {
           toast('Esa hora se acaba de ocupar. Elige otra.', true);
           sel.slot = null; cuposCache = null;
           try { await traerCupos(); } catch {}
