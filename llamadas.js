@@ -70,6 +70,11 @@
   .ll-slots .ll-btn{margin-top:0}
   .ll-slots .ll-btn.on{background:var(--g1);border-color:var(--g2)}
   .ll-lbl{font-size:15px;color:var(--txt2);margin-top:16px;font-weight:600}
+  .ll-doc{display:grid;grid-template-columns:118px 1fr;gap:12px}
+  select.ll-in{-webkit-appearance:none;appearance:none;font-weight:700;text-align:center}
+  input[type=date].ll-in{-webkit-appearance:none;appearance:none;display:block}
+  label.ll-btn{margin-top:12px}
+  .ll-prev{display:block;max-width:100%;max-height:260px;border-radius:14px;margin-top:12px;border:1px solid var(--border2)}
   .ll-toast{position:fixed;left:16px;right:16px;bottom:calc(20px + var(--safe-bottom));z-index:1100;background:var(--g1);
     color:#fff;font-size:17px;font-weight:700;border-radius:16px;padding:16px;text-align:center}
   .ll-toast.err{background:var(--r1)}
@@ -212,15 +217,49 @@
   function diaLargo(f) { const [y, m, d] = f.split('-').map(Number); const dt = new Date(y, m - 1, d); return `${DIAS[dt.getDay()]} ${d} de ${MESES[m - 1]}`; }
   function hora12(h) { let [H, M] = h.split(':').map(Number); const s = H < 12 ? 'am' : 'pm'; H = H % 12 || 12; return `${H}:${String(M).padStart(2, '0')} ${s}`; }
 
+  // Foto del comprobante → JPEG de máx. 1600 px (la del iPhone pesa 3–5 MB y
+  // el bot acepta hasta 6 MB). Un PDF va tal cual.
+  function comprimir(f) {
+    return new Promise((ok, mal) => {
+      const lector = new FileReader();
+      lector.onerror = mal;
+      if (f.type === 'application/pdf') { lector.onload = () => ok(lector.result); lector.readAsDataURL(f); return; }
+      lector.onload = () => {
+        const img = new Image();
+        img.onerror = mal;
+        img.onload = () => {
+          const k = Math.min(1, 1600 / Math.max(img.width, img.height));
+          const c = document.createElement('canvas');
+          c.width = Math.round(img.width * k); c.height = Math.round(img.height * k);
+          c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+          ok(c.toDataURL('image/jpeg', 0.82));
+        };
+        img.src = lector.result;
+      };
+      lector.readAsDataURL(f);
+    });
+  }
+
   async function hojaAgendar(t) {
-    const sel = { modalidad: 'presencial', slot: null, pago: 'pagó' };
+    const sel = { modalidad: 'presencial', slot: null, pago: 'pagó', comprobante: '' };
     const h = hoja(`<h2>Agendar a ${esc(t.nombre)}</h2><div class="ll-sub">Solo salen las horas libres del Dr.</div>
       <div class="ll-seg"><button class="ll-btn on" data-mod="presencial">🏥 Presencial</button><button class="ll-btn" data-mod="virtual">💻 Virtual</button></div>
       <div id="ll-cupos"><div class="ll-spin"></div></div>
-      <div class="ll-lbl">Nombre completo</div><input class="ll-in" id="ll-nom" value="${esc(t.nombre)}">
-      <div class="ll-lbl">Cédula (opcional)</div><input class="ll-in" id="ll-ced" inputmode="numeric">
+      <div class="ll-lbl">Nombre completo del paciente</div><input class="ll-in" id="ll-nom" value="${esc(t.nombre)}" autocomplete="off">
+      <div class="ll-lbl">Documento</div>
+      <div class="ll-doc"><select class="ll-in" id="ll-tdoc">
+        <option value="CC">CC</option><option value="TI">TI</option><option value="CE">CE</option>
+        <option value="PA">Pasaporte</option><option value="PPT">PPT</option><option value="RC">RC</option></select>
+        <input class="ll-in" id="ll-doc" inputmode="numeric" placeholder="Número" autocomplete="off"></div>
+      <div class="ll-lbl">Fecha de nacimiento</div><input class="ll-in" id="ll-nac" type="date">
+      <div class="ll-lbl">Celular</div><input class="ll-in" id="ll-cel" inputmode="tel" value="${esc(t.telefono)}" placeholder="300 123 4567">
       <div class="ll-lbl">Pago</div>
       <div class="ll-seg"><button class="ll-btn on" data-pago="pagó">✅ Pagó</button><button class="ll-btn" data-pago="efectivo">💵 Efectivo</button></div>
+      <div id="ll-comp-box">
+        <div class="ll-lbl">Comprobante de pago (Silvia lo verifica)</div>
+        <label class="ll-btn" id="ll-comp-btn">📷 Adjuntar foto del pago<input type="file" id="ll-comp" accept="image/*,application/pdf" hidden></label>
+        <div id="ll-comp-prev"></div>
+      </div>
       <div class="ll-lbl">Nota (opcional)</div><textarea class="ll-in" id="ll-nt"></textarea>
       <button class="ll-btn ok" id="ll-ag" disabled>Elige una hora</button>
       <button class="ll-btn ghost" id="ll-x">Cancelar</button>`);
@@ -237,7 +276,20 @@
     });
     h.querySelectorAll('[data-pago]').forEach(b => b.onclick = () => {
       sel.pago = b.dataset.pago; h.querySelectorAll('[data-pago]').forEach(x => x.classList.toggle('on', x === b));
+      $('#ll-comp-box', h).style.display = sel.pago === 'pagó' ? '' : 'none';
     });
+    $('#ll-comp', h).onchange = async e => {
+      const f = e.target.files && e.target.files[0]; if (!f) return;
+      const prev = $('#ll-comp-prev', h);
+      prev.innerHTML = '<div class="ll-sub">Preparando la foto…</div>';
+      try {
+        sel.comprobante = await comprimir(f);
+        prev.innerHTML = f.type === 'application/pdf'
+          ? `<div class="ll-sub">📄 ${esc(f.name)}</div>`
+          : `<img class="ll-prev" src="${sel.comprobante}" alt="Comprobante">`;
+        $('#ll-comp-btn', h).firstChild.textContent = '🔄 Cambiar foto';
+      } catch { sel.comprobante = ''; prev.innerHTML = '<div class="ll-banner">No se pudo leer ese archivo. Intenta con otra foto.</div>'; }
+    };
 
     async function traerCupos(desde) {
       const c = await api('/cupos' + (desde ? `?desde=${desde}` : ''));
@@ -269,12 +321,17 @@
 
     btnAg.onclick = async () => {
       const nombre = $('#ll-nom', h).value.trim();
+      const documento = $('#ll-doc', h).value.trim();
       if (!nombre) { toast('Falta el nombre.', true); return; }
+      if (!documento) { toast('Falta el número de documento.', true); $('#ll-doc', h).focus(); return; }
+      if (sel.pago === 'pagó' && !sel.comprobante) { toast('Adjunta la foto del pago para que Silvia la verifique.', true); return; }
       btnAg.disabled = true; btnAg.textContent = 'Agendando…';
       try {
         await api(`/${encodeURIComponent(t.conv_id)}/agendar`, { method: 'POST', body: JSON.stringify({
           fecha: sel.slot.fecha, hora: sel.slot.hora, modalidad: sel.modalidad, nombre,
-          cedula: $('#ll-ced', h).value.trim(), pago: sel.pago, nota: $('#ll-nt', h).value.trim() }) });
+          tipo_doc: $('#ll-tdoc', h).value, documento, nacimiento: $('#ll-nac', h).value,
+          celular: $('#ll-cel', h).value.trim(), pago: sel.pago,
+          comprobante: sel.pago === 'pagó' ? (sel.comprobante || '') : '', nota: $('#ll-nt', h).value.trim() }) });
         cerrarHoja(); toast(`✅ Cita agendada: ${diaLargo(sel.slot.fecha)} ${hora12(sel.slot.hora)}`);
         cuposCache = null; cargar(false, true);
       } catch (e) {
@@ -309,6 +366,18 @@
       }
     } finally { cargando = false; }
   }
+
+  // Enlace de entrada directa: …/dr-bareno-dashboard/#llamar=<clave> guarda la
+  // clave, la borra de la barra de direcciones y abre la pestaña. Así el
+  // equipo entra sin escribir nada y los datos no quedan abiertos a Google.
+  try {
+    const m = location.hash.match(/llamar=([^&]+)/);
+    if (m) {
+      setClave(decodeURIComponent(m[1]));
+      history.replaceState(null, '', location.pathname + location.search);
+      window.addEventListener('load', () => window.switchTab && window.switchTab('llamadas'));
+    }
+  } catch {}
 
   window.llAbrir = function () { if (!datos) cargar(false); };
 })();

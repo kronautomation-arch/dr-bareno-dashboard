@@ -884,13 +884,13 @@
       <button class="tab-pill active" id="tab-clinica" onclick="switchTab('clinica')">
         <span class="tab-pill-icon">🏥</span> Clínica
       </button>
-      <button class="tab-pill ft-tab" id="tab-facetech" onclick="switchTab('facetech')">
+      <button style="display:none" class="tab-pill ft-tab" id="tab-facetech" onclick="switchTab('facetech')">
         <span class="tab-pill-icon">🎤</span> FaceTech
       </button>
       <button class="tab-pill vs-tab" id="tab-canales" onclick="switchTab('canales')">
         <span class="tab-pill-icon">🤖</span> Bot vs Asistente
       </button>
-      <button class="tab-pill vl-tab" id="tab-viral-lab" onclick="switchTab('viral-lab')">
+      <button style="display:none" class="tab-pill vl-tab" id="tab-viral-lab" onclick="switchTab('viral-lab')">
         <span class="tab-pill-icon">🎬</span> Viral Lab
       </button>
       <button class="tab-pill" id="tab-llamadas" onclick="switchTab('llamadas')">
@@ -2625,6 +2625,6 @@ loadData();
 setInterval(loadData, 30 * 60 * 1000);
 </script>
 <script src="viral-lab.js?v=20260605b"></script>
-<script src="llamadas.js?v=20261107a"></script>
+<script src="llamadas.js?v=20261107b"></script>
 </body>
 </html>
