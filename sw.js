@@ -1,7 +1,7 @@
 // El HTML y data.json van network-first: con cache-first el iPhone del Dr. se
 // quedó con un index.html viejo sin la pestaña Bot vs Asistente (2026-10-03)
 // porque nadie subió la versión. Subirla igual limpia cachés viejos.
-const CACHE = 'drbareno-v4';
+const CACHE = 'drbareno-v5';
 // Relativas: el sitio vive en /dr-bareno-dashboard/, no en la raíz del dominio.
 const STATIC = ['./', 'index.html', 'manifest.json'];
 

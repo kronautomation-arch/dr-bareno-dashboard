@@ -881,7 +881,10 @@
 
   <div class="hdr-controls">
     <div class="tab-pills">
-      <button class="tab-pill active" id="tab-clinica" onclick="switchTab('clinica')">
+      <button class="tab-pill active" id="tab-finanzas" onclick="switchTab('finanzas')">
+        <span class="tab-pill-icon">💰</span> Finanzas
+      </button>
+      <button class="tab-pill" id="tab-clinica" onclick="switchTab('clinica')">
         <span class="tab-pill-icon">🏥</span> Clínica
       </button>
       <button style="display:none" class="tab-pill ft-tab" id="tab-facetech" onclick="switchTab('facetech')">
@@ -932,8 +935,11 @@
 <!-- ═══ APP ═══ -->
 <div id="app" style="display:none">
 
+  <!-- ─── FINANZAS (pestaña inicial; ver finanzas.js) ─── -->
+  <div class="page active" id="page-finanzas"><div id="fin-root"></div></div>
+
   <!-- ─── CLÍNICA ─── -->
-  <div class="page active" id="page-clinica">
+  <div class="page" id="page-clinica">
 
     <!-- Revenue hero -->
     <div class="rev-card">
@@ -1636,7 +1642,7 @@
 
 <script>
 /* ── State ── */
-let DATA = null, currentTab = 'clinica', currentPeriod = 'hoy', currentRange = null;
+let DATA = null, currentTab = 'finanzas', currentPeriod = 'hoy', currentRange = null;
 let chartC = null, chartF = null, donutC = null, donutF = null;
 
 /* ── Formatters ── */
@@ -2513,10 +2519,14 @@ function switchTab(tab) {
   document.getElementById('tab-llamadas').classList.toggle('active', isLL);
   document.getElementById('page-llamadas').classList.toggle('active', isLL);
   if (isLL && window.llAbrir) window.llAbrir();
+  const isFin = tab === 'finanzas';
+  document.getElementById('tab-finanzas').classList.toggle('active', isFin);
+  document.getElementById('page-finanzas').classList.toggle('active', isFin);
+  if (isFin && window.finAbrir) window.finAbrir();
 
-  /* filter bar visibility — hide for Viral Lab */
+  /* filter bar visibility — hide for Viral Lab, Por llamar y Finanzas (va por mes) */
   const filterBar = document.getElementById('filter-bar');
-  filterBar.style.display = (isVL || isLL) ? 'none' : '';
+  filterBar.style.display = (isVL || isLL || isFin) ? 'none' : '';
 
   if (!isVL) {
     /* filter bar active color follows tab theme */
@@ -2601,6 +2611,7 @@ async function loadData() {
     switchPeriod(currentPeriod, currentRange);
     document.getElementById('loading').style.display = 'none';
     document.getElementById('app').style.display = 'block';
+    if (currentTab === 'finanzas' && window.finAbrir) window.finAbrir();
     if (typeof mountLogoutButton === 'function') mountLogoutButton();
   } catch(e) {
     document.getElementById('loading').innerHTML =
@@ -2626,5 +2637,7 @@ setInterval(loadData, 30 * 60 * 1000);
 </script>
 <script src="viral-lab.js?v=20260605b"></script>
 <script src="llamadas.js?v=20261107b"></script>
+<script src="finanzas.js?v=20261125a"></script>
+<script>switchTab(currentTab);</script>
 </body>
 </html>
