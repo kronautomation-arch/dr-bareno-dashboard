@@ -103,7 +103,10 @@ def read_clinica(target_date: str = None) -> list[dict]:
         rows = ws.get_all_records()
         result = []
         for row in rows:
-            fecha = _norm_date(str(row.get("Fecha", "")).strip())
+            # El encabezado de la columna A ("Fecha") apareció borrado en nov-2026:
+            # get_all_records la entrega con clave "". Sin este alias se perdían
+            # todas las filas y las citas/consultas salían en 0.
+            fecha = _norm_date(_pick(row, "Fecha", ""))
             if not fecha:
                 continue
             if target_date and fecha != target_date:

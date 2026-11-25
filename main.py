@@ -15,6 +15,9 @@ from tools.pancake.bot_citas import get_bot_daily
 from tools.agenda.citas_bot import get_bot_calendar_daily
 from tools.sheets.read_data import read_clinica, read_procedimientos, read_facetech, get_last_30_days
 from tools.metrics.calculator import calc_clinica_day, calc_facetech_day, build_chart_data, calc_canales
+from tools.finanzas.read_finanzas import read_finanzas
+from tools.finanzas.calc import calc_finanzas
+from tools.finanzas.cifrado import cifrar
 
 logger = get_logger("main")
 
@@ -339,6 +342,20 @@ def build_data() -> dict:
         },
     }
 
+    # --- Finanzas (pestaña 💰) ---
+    # data.json es público: el estado de resultados va cifrado con FINANZAS_CLAVE
+    # y el navegador lo descifra cuando el equipo escribe la clave.
+    clave = env_loader.get_optional("FINANZAS_CLAVE")
+    if clave:
+        try:
+            fz = calc_finanzas(read_finanzas(), clinica_all, daily_meta_clinica, precio_cita, today)
+            fz["meta_ok"] = meta_ok
+            data["finanzas_enc"] = cifrar(fz, clave)
+        except Exception as e:
+            logger.error(f"No se pudo calcular Finanzas: {e}")
+    else:
+        logger.warning("FINANZAS_CLAVE no configurada: la pestaña Finanzas no se publica.")
+
     data["_meta_ok"] = meta_ok
     logger.info("Datos construidos correctamente")
     return data
@@ -390,6 +407,9 @@ if __name__ == "__main__":
         except Exception:
             prev = {}
         data["meta_ok"] = meta_ok
+        # Si Finanzas falló en esta corrida, mantener la última versión publicada.
+        if "finanzas_enc" not in data and prev.get("finanzas_enc"):
+            data["finanzas_enc"] = prev["finanzas_enc"]
         if meta_ok:
             data["meta_last_ok"] = data["updated_at"]
         else:

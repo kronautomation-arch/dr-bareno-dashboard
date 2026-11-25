@@ -13,3 +13,6 @@ dashboard/.git/
 # Credencial del bot para LEER el calendario del Dr. (no subir)
 calendar_credentials.json
 .env.bak*
+
+# Carga inicial del módulo Finanzas: tiene nombres de pacientes y pagos (repo público)
+tools/finanzas/setup_sheet.py
