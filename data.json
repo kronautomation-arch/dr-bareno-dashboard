@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-28 08:03",
+  "updated_at": "2026-11-28 13:05",
   "today": "2026-11-28",
   "precio_cita": 200000.0,
   "first_date": "2026-05-04",
@@ -13,10 +13,10 @@
       "ingresos_procedimientos": 0,
       "ingresos_totales": 0.0,
       "desglose_procedimientos": [],
-      "gasto_meta": 8713.0,
+      "gasto_meta": 54019.0,
       "costo_por_cita": 0,
       "porcentaje_publicidad": 0.0,
-      "utilidad_bruta": -8713.0,
+      "utilidad_bruta": -54019.0,
       "roas": 0.0
     },
     "ayer": {
@@ -28,10 +28,10 @@
       "ingresos_procedimientos": 0,
       "ingresos_totales": 0.0,
       "desglose_procedimientos": [],
-      "gasto_meta": 198415.0,
+      "gasto_meta": 198925.0,
       "costo_por_cita": 0,
       "porcentaje_publicidad": 0.0,
-      "utilidad_bruta": -198415.0,
+      "utilidad_bruta": -198925.0,
       "roas": 0.0
     },
     "semana": {
@@ -43,10 +43,10 @@
       "ingresos_procedimientos": 0,
       "ingresos_totales": 0.0,
       "desglose_procedimientos": [],
-      "gasto_meta": 1168269.0,
+      "gasto_meta": 1214114.0,
       "costo_por_cita": 0,
       "porcentaje_publicidad": 0.0,
-      "utilidad_bruta": -1168269.0,
+      "utilidad_bruta": -1214114.0,
       "roas": 0.0
     },
     "mes": {
@@ -58,10 +58,10 @@
       "ingresos_procedimientos": 0,
       "ingresos_totales": 200000.0,
       "desglose_procedimientos": [],
-      "gasto_meta": 4147159.0,
-      "costo_por_cita": 4147159,
-      "porcentaje_publicidad": 2073.6,
-      "utilidad_bruta": -3947159.0,
+      "gasto_meta": 4193004.0,
+      "costo_por_cita": 4193004,
+      "porcentaje_publicidad": 2096.5,
+      "utilidad_bruta": -3993004.0,
       "roas": 0.05
     },
     "todo": {
@@ -229,11 +229,11 @@
           "valor": 1200000.0
         }
       ],
-      "gasto_meta": 15893640,
-      "costo_por_cita": 62328,
+      "gasto_meta": 15939508,
+      "costo_por_cita": 62508,
       "porcentaje_publicidad": 2.0,
-      "utilidad_bruta": 775706360.0,
-      "roas": 49.81
+      "utilidad_bruta": 775660492.0,
+      "roas": 49.66
     }
   },
   "facetech": {
@@ -301,9 +301,9 @@
   "canales": {
     "hoy": {
       "bot": {
-        "gasto_meta": 8713,
-        "conversaciones": 7,
-        "costo_por_conversacion": 1245,
+        "gasto_meta": 54098,
+        "conversaciones": 31,
+        "costo_por_conversacion": 1745,
         "citas": 0,
         "tasa_conv_cita": 0.0,
         "costo_por_cita": 0,
@@ -316,7 +316,7 @@
         "fuente_citas": "calendario",
         "cirugias_agendadas": 0,
         "control_pancake": {
-          "conversaciones": 5,
+          "conversaciones": 26,
           "citas": 0
         }
       },
@@ -341,18 +341,18 @@
     },
     "ayer": {
       "bot": {
-        "gasto_meta": 198415,
+        "gasto_meta": 198925,
         "conversaciones": 136,
-        "costo_por_conversacion": 1459,
+        "costo_por_conversacion": 1463,
         "citas": 2,
         "tasa_conv_cita": 1.5,
-        "costo_por_cita": 99208,
+        "costo_por_cita": 99462,
         "procedimientos_vendidos": 0,
         "tasa_cita_venta": 0.0,
         "ingresos_citas": 400000,
         "ingresos_procedimientos": 0,
         "ingresos": 400000,
-        "roas": 2.02,
+        "roas": 2.01,
         "fuente_citas": "calendario",
         "cirugias_agendadas": 0,
         "control_pancake": {
@@ -381,22 +381,22 @@
     },
     "semana": {
       "bot": {
-        "gasto_meta": 1168269,
-        "conversaciones": 831,
-        "costo_por_conversacion": 1406,
+        "gasto_meta": 1214193,
+        "conversaciones": 855,
+        "costo_por_conversacion": 1420,
         "citas": 6,
         "tasa_conv_cita": 0.7,
-        "costo_por_cita": 194712,
+        "costo_por_cita": 202366,
         "procedimientos_vendidos": 0,
         "tasa_cita_venta": 0.0,
         "ingresos_citas": 1200000,
         "ingresos_procedimientos": 0,
         "ingresos": 1200000,
-        "roas": 1.03,
+        "roas": 0.99,
         "fuente_citas": "calendario",
         "cirugias_agendadas": 0,
         "control_pancake": {
-          "conversaciones": 715,
+          "conversaciones": 736,
           "citas": 7
         }
       },
@@ -421,22 +421,22 @@
     },
     "mes": {
       "bot": {
-        "gasto_meta": 4147159,
-        "conversaciones": 3363,
-        "costo_por_conversacion": 1233,
+        "gasto_meta": 4193083,
+        "conversaciones": 3387,
+        "costo_por_conversacion": 1238,
         "citas": 21,
         "tasa_conv_cita": 0.6,
-        "costo_por_cita": 197484,
+        "costo_por_cita": 199671,
         "procedimientos_vendidos": 1,
         "tasa_cita_venta": 4.8,
         "ingresos_citas": 4200000,
         "ingresos_procedimientos": 0,
         "ingresos": 4200000,
-        "roas": 1.01,
+        "roas": 1.0,
         "fuente_citas": "calendario",
         "cirugias_agendadas": 1,
         "control_pancake": {
-          "conversaciones": 2919,
+          "conversaciones": 2940,
           "citas": 22
         }
       },
@@ -461,12 +461,12 @@
     },
     "todo": {
       "bot": {
-        "gasto_meta": 7840873,
-        "conversaciones": 6233,
-        "costo_por_conversacion": 1258,
+        "gasto_meta": 7886797,
+        "conversaciones": 6257,
+        "costo_por_conversacion": 1260,
         "citas": 42,
         "tasa_conv_cita": 0.7,
-        "costo_por_cita": 186687,
+        "costo_por_cita": 187781,
         "procedimientos_vendidos": 3,
         "tasa_cita_venta": 7.1,
         "ingresos_citas": 8400000,
@@ -476,7 +476,7 @@
         "fuente_citas": "calendario",
         "cirugias_agendadas": 3,
         "control_pancake": {
-          "conversaciones": 5623,
+          "conversaciones": 5644,
           "citas": 49
         }
       },
@@ -524,9 +524,9 @@
       204120.0,
       195960.0,
       140753.0,
-      198473.0,
-      198415.0,
-      8713.0
+      198502.0,
+      198925.0,
+      54019.0
     ],
     "facetech_ingresos": [
       0,
@@ -2471,19 +2471,19 @@
         "clicks": 767
       },
       "2026-11-26": {
-        "spend": 198473,
-        "impressions": 18080,
+        "spend": 198502,
+        "impressions": 18082,
         "clicks": 1091
       },
       "2026-11-27": {
-        "spend": 198415,
-        "impressions": 17052,
-        "clicks": 986
+        "spend": 198925,
+        "impressions": 17125,
+        "clicks": 989
       },
       "2026-11-28": {
-        "spend": 8713,
-        "impressions": 541,
-        "clicks": 28
+        "spend": 54042,
+        "impressions": 4039,
+        "clicks": 229
       }
     },
     "meta_facetech": {
@@ -2788,16 +2788,16 @@
         "conversaciones": 89
       },
       "2026-11-26": {
-        "spend": 198473,
+        "spend": 198502,
         "conversaciones": 134
       },
       "2026-11-27": {
-        "spend": 198415,
+        "spend": 198925,
         "conversaciones": 136
       },
       "2026-11-28": {
-        "spend": 8713,
-        "conversaciones": 7
+        "spend": 54098,
+        "conversaciones": 31
       }
     },
     "meta_asistente": {
@@ -3728,7 +3728,7 @@
         "citas": 3
       },
       "2026-11-28": {
-        "conversaciones": 5,
+        "conversaciones": 26,
         "citas": 0
       }
     },
@@ -3870,54 +3870,54 @@
   "alcance": {
     "clinica": {
       "hoy": {
-        "spend": 8713,
-        "reach": 484,
-        "impressions": 541,
-        "frequency": 1.12,
-        "clicks": 28,
-        "ctr": 5.18,
-        "cpm": 16105,
-        "cpp": 18002
+        "spend": 54019,
+        "reach": 3554,
+        "impressions": 4035,
+        "frequency": 1.14,
+        "clicks": 229,
+        "ctr": 5.68,
+        "cpm": 13388,
+        "cpp": 15199
       },
       "ayer": {
-        "spend": 198415,
-        "reach": 13904,
-        "impressions": 17052,
-        "frequency": 1.23,
-        "clicks": 986,
+        "spend": 198925,
+        "reach": 14020,
+        "impressions": 17125,
+        "frequency": 1.22,
+        "clicks": 989,
         "ctr": 5.78,
-        "cpm": 11636,
-        "cpp": 14270
+        "cpm": 11616,
+        "cpp": 14189
       },
       "semana": {
-        "spend": 1168269,
-        "reach": 68284,
-        "impressions": 116502,
-        "frequency": 1.71,
-        "clicks": 7136,
-        "ctr": 6.13,
-        "cpm": 10028,
-        "cpp": 17109
+        "spend": 1214114,
+        "reach": 69779,
+        "impressions": 120071,
+        "frequency": 1.72,
+        "clicks": 7340,
+        "ctr": 6.11,
+        "cpm": 10112,
+        "cpp": 17399
       },
       "mes": {
-        "spend": 4147159,
-        "reach": 166995,
-        "impressions": 453221,
-        "frequency": 2.71,
-        "clicks": 29321,
-        "ctr": 6.47,
-        "cpm": 9150,
-        "cpp": 24834
+        "spend": 4193004,
+        "reach": 167590,
+        "impressions": 456790,
+        "frequency": 2.73,
+        "clicks": 29525,
+        "ctr": 6.46,
+        "cpm": 9179,
+        "cpp": 25019
       },
       "todo": {
-        "spend": 15893640,
-        "reach": 283032,
-        "impressions": 1413039,
-        "frequency": 4.99,
-        "clicks": 96025,
-        "ctr": 6.8,
-        "cpm": 11248,
-        "cpp": 56155
+        "spend": 15939508,
+        "reach": 283239,
+        "impressions": 1416612,
+        "frequency": 5.0,
+        "clicks": 96229,
+        "ctr": 6.79,
+        "cpm": 11252,
+        "cpp": 56276
       }
     },
     "facetech": {
@@ -3976,39 +3976,39 @@
   "conclusiones": {
     "clinica": {
       "hoy": [
-        "📣 Hoy tu clínica llegó a 484 personas únicas en la región — excelente alcance de marca.",
-        "👁️ 541 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
+        "📣 Hoy tu clínica llegó a 3.554 personas únicas en la región — excelente alcance de marca.",
+        "👁️ 4.035 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
         "🚀 Con 1.1x de frecuencia, tu anuncio está llegando constantemente a nuevas personas — la audiencia de la clínica sigue creciendo.",
-        "🎯 CTR 5.18% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
-        "🖱️ 28 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
+        "🎯 CTR 5.68% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
+        "🖱️ 229 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
       ],
       "ayer": [
-        "📣 Ayer tu clínica llegó a 13.904 personas únicas en la región — excelente alcance de marca.",
-        "👁️ 17.052 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
+        "📣 Ayer tu clínica llegó a 14.020 personas únicas en la región — excelente alcance de marca.",
+        "👁️ 17.125 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
         "🚀 Con 1.2x de frecuencia, tu anuncio está llegando constantemente a nuevas personas — la audiencia de la clínica sigue creciendo.",
         "🎯 CTR 5.78% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
-        "🖱️ 986 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
+        "🖱️ 989 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
       ],
       "semana": [
-        "📣 Esta semana tu clínica llegó a 68.284 personas únicas en la región — excelente alcance de marca.",
-        "👁️ 116.502 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
+        "📣 Esta semana tu clínica llegó a 69.779 personas únicas en la región — excelente alcance de marca.",
+        "👁️ 120.071 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
         "🚀 Con 1.7x de frecuencia, tu anuncio está llegando constantemente a nuevas personas — la audiencia de la clínica sigue creciendo.",
-        "🎯 CTR 6.13% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
-        "🖱️ 7.136 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
+        "🎯 CTR 6.11% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
+        "🖱️ 7.340 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
       ],
       "mes": [
-        "📣 Este mes tu clínica llegó a 166.995 personas únicas en la región — excelente alcance de marca.",
-        "👁️ 453.221 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
+        "📣 Este mes tu clínica llegó a 167.590 personas únicas en la región — excelente alcance de marca.",
+        "👁️ 456.790 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
         "✅ Frecuencia 2.7x — nivel óptimo de recordación. Tu marca está perfectamente posicionada en la mente de los pacientes.",
-        "🎯 CTR 6.47% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
-        "🖱️ 29.321 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
+        "🎯 CTR 6.46% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
+        "🖱️ 29.525 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
       ],
       "todo": [
-        "📣 Desde el inicio tu clínica llegó a 283.032 personas únicas en la región — excelente alcance de marca.",
-        "👁️ 1.413.039 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
+        "📣 Desde el inicio tu clínica llegó a 283.239 personas únicas en la región — excelente alcance de marca.",
+        "👁️ 1.416.612 impresiones generadas — tu clínica estuvo presente en la mente de los pacientes de la zona.",
         "💪 Frecuencia 5.0x — tu audiencia conoce muy bien la clínica. Excelente nivel de recordación de marca logrado.",
-        "🎯 CTR 6.80% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
-        "🖱️ 96.025 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
+        "🎯 CTR 6.79% — supera el promedio médico (1.5%). Los pacientes sienten una fuerte atracción por el anuncio de la clínica.",
+        "🖱️ 96.229 personas hicieron clic para conocer más sobre la clínica — interés real y concreto demostrado."
       ]
     },
     "facetech": {
@@ -4028,10 +4028,10 @@
   "finanzas_enc": {
     "v": 1,
     "iter": 250000,
-    "salt": "r2HU34dPR/BHX/7ZOkR95g==",
-    "iv": "dMtdF6hQbqigATqz",
-    "ct": "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"
+    "salt": "v73g42iE/dFnp+dvAoKJng==",
+    "iv": "OLrYMOLM2cgbZFvf",
+    "ct": "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"
   },
   "meta_ok": true,
-  "meta_last_ok": "2026-11-28 08:03"
+  "meta_last_ok": "2026-11-28 13:05"
 }
